@@ -12,6 +12,7 @@
     <% if current_user  %>
       <p>Hello <%= current_user.uid %></p>
       <%= link_to "Logout", logout_path %>
+      <%= link_to "Add/Update Command Line App Credentials", edit_user_path(current_user.id) %>
     <% else %>
       <%= link_to "Login on Quizlet", quizlet_login_path %>
     <% end %>

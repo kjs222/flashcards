@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   get "/auth/quizlet/callback", to: "sessions#create"
   delete "/logout", to: "sessions#destroy", as: :logout
 
+  resources :users, only: [:edit, :update]
+
 end

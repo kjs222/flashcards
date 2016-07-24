@@ -1,0 +1,7 @@
+<h2>Add/Edit Password for Command Line Application</h2>
+
+<%= form_for @user do |f| %>
+<%= f.label :password %>
+<%= f.password_field :password %>
+<%= f.submit "Add/Update Password"%>
+<% end %>
