@@ -35,14 +35,11 @@ module OmniAuth
       end
 
       extra do
-        {
-          'raw_info' => raw_info
-        }
+        {'raw_info' => raw_info}
       end
 
       def raw_info
         @raw_info ||= access_token.get("/2.0/users/#{access_token.params["user_id"]}").parsed
-        # @raw_info ||= access_token.get('/auth/quizlet').parsed
       end
     end
   end

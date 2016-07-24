@@ -31,11 +31,23 @@ gem 'omniauth', '~> 1.3.1'
 gem 'omniauth-oauth2'
 # gem 'omniauth-quizlet'
 gem 'figaro'
+gem 'faraday'
+gem 'rspec-rails'
+
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
+  gem "minitest-rails-capybara"
+  gem "pry", :require => "pry"
+  gem 'capybara'
+  gem 'byebug'
+  gem 'launchy'
 end
+
+group :test do
+  gem 'webmock'
+  gem 'vcr'
+end
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

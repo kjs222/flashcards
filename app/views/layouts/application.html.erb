@@ -9,7 +9,12 @@
   </head>
 
   <body>
-    <%= link_to "Login on Quizlet", quizlet_login_path %>
+    <% if current_user  %>
+      <p>Hello <%= current_user.uid %></p>
+      <%= link_to "Logout", logout_path %>
+    <% else %>
+      <%= link_to "Login on Quizlet", quizlet_login_path %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
