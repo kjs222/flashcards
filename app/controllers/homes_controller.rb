@@ -1,7 +1,11 @@
 class HomesController<ApplicationController
 
   def show
-    # @sets = QuizSet.sets(current_user) if current_user
+    if current_user
+      redirect_to dashboard_index_path 
+    else
+      render :show
+    end
   end
 
 
