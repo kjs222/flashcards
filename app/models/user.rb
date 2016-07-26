@@ -11,6 +11,10 @@ class User < ApplicationRecord
     end
   end
 
+  def add_quizlet_credientials_to_account(auth_info)
+    update_attributes(quiz_id: auth_info["uid"], quiz_token:auth_info["credentials"]["token"])
+  end
+
 
   # def self.from_omniauth(auth_info)
   #
@@ -19,11 +23,12 @@ class User < ApplicationRecord
   #     user.token = auth_info["credentials"]["token"]
   #   end
   # end
-
-  def self.get_credentials_for_cli(uid, password)
-    user = User.find_by(uid: uid)
+  #decide if nickname or quiz
+  def self.get_credentials_for_cli(nickname, password)
+    user = User.find_by(nickname: nickname)
+    #NEED to handle if quiz values are nil
     if user && user.authenticate(password)
-      {"uid" => uid, "token" => user.token}
+      {"uid" => user.quiz_id, "token" => user.quiz_token}
     else
       {"uid" => "User not found", "token" => "User not found"}
     end

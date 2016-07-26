@@ -13,9 +13,17 @@
       <p>Hello <%= current_user.name %></p>
       <%= link_to "Logout", logout_path, method: :delete %>
       <%= link_to "Add/Update Command Line App Credentials", edit_user_path(current_user.id) %>
+      <% if current_user.quiz_id == nil %>
+        <%= link_to "Add Quizlet to Account", quizlet_login_path %>
+      <% else %>
+        <p>Quizlet Enabled.  Hello <%= current_user.quiz_id %>!</p>
+      <% end %>
     <% else %>
       <%= link_to "Login with Github", github_login_path %>
     <% end %>
+
+
+
     <%= yield %>
   </body>
   <%= javascript_include_tag 'application' %>
