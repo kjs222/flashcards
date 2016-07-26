@@ -14,7 +14,11 @@ class UsersController < ApplicationController
       flash.now[:warning] = @user.errors.full_messages.join(", ")
       render :edit
     end
+  end
 
+  def add_quizlet
+    current_user.add_quizlet_credentials(request.env["omniauth.auth"])
+    redirect_to root_path
   end
 
   private

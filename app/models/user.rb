@@ -11,7 +11,7 @@ class User < ApplicationRecord
     end
   end
 
-  def add_quizlet_credientials_to_account(auth_info)
+  def add_quizlet_credentials(auth_info)
     update_attributes(quiz_id: auth_info["uid"], quiz_token:auth_info["credentials"]["token"])
   end
 
