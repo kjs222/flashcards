@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 gem 'omniauth', '~> 1.3.1'
 gem 'omniauth-oauth2'
+gem 'omniauth-github'
 # gem 'omniauth-quizlet'
 gem 'figaro'
 gem 'faraday'
