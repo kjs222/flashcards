@@ -6,12 +6,13 @@ Rails.application.routes.draw do
 
   get "/auth/quizlet", as: :quizlet_login
   get "/auth/quizlet/callback", to: "users#add_quizlet"
-  
+
   delete "/logout", to: "sessions#destroy", as: :logout
 
   get "/api/v1/authenticate", to: "api/v1/users#show"
 
   resources :users, only: [:edit, :update]
+  resources :dashboard, only: [:index]
 
   namespace :api do
     namespace :v1 do

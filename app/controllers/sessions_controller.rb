@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     if user = User.github_from_omniauth(request.env["omniauth.auth"])
       session[:user_id] = user.id
     end
-    redirect_to root_path
+    redirect_to dashboard_index_path
   end
 
   def destroy

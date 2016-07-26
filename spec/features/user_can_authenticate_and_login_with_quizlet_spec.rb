@@ -1,28 +1,22 @@
 require 'rails_helper'
 
-RSpec.feature "user can login with quizlet" do
-  include Capybara::DSL
-  def setup
-    Capybara.app = Apicurious::Application
-    stub_omniauth
-  end
+RSpec.feature "user can login with github" do
 
-  scenario "user authenticates with quizlet" do
+  scenario "user authenticates with github" do
     visit root_path
-    page.should have_content("Login on Quizlet")
-    click_link "Login on Quizlet"
-    page.should have_content("kjs222")  # user name
-    # page.should have_css('img', :src => 'mock_user_thumbnail_url') # user image
-    page.should have_content("Log out")
+    stub_omniauth
+    expect(page).to_not have_content("Kerry Sheldon")
+    expect(page).to have_button("Login with Github")
+
+    user = User.create(gh_uid: 1, name: "Kerry Sheldon", nickname: "kjs222", gh_token: ENV['GITHUB_TOKEN'], email: "myemail@email.com")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
+
+    click_button "Login with Github"
+    expect(current_path).to eq(dashboard_index_path)
+    within("nav") do
+      expect(page).to have_content("Welcome, Kerry Sheldon")
+      expect(page).to have_link("Logout")
+    end
   end
-
-  # it "can handle authentication error" do
-  #   OmniAuth.config.mock_auth[:twitter] = :invalid_credentials
-  #   visit '/'
-  #   page.should have_content("Sign in with Twitter")
-  #   click_link "Sign in"
-  #   page.should have_content('Authentication failed.')
-  # end
-
 
 end

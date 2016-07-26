@@ -1,9 +1,2 @@
-<% if @sets %>
-  <% @sets.each do |set| %>
-    <h4>Title: <%= set.title %></h4>
-    <p>Created: <%= set.created_date %></p>
-    <p>Number of Cards: <%= set.term_count %></p>
-    <%= link_to "Practice", "https://www.quizlet.com/#{set.url}" %>
-  <% end %>
 
-<% end %>
+<%= button_to "Login with Github", github_login_path, method: :get %>
