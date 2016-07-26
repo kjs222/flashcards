@@ -3,9 +3,9 @@
   <head>
     <title>Flashcards</title>
     <%= csrf_meta_tags %>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600italic,400,400italic,600,300,300italic,700italic,800,800italic' rel='stylesheet' type='text/css'>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
@@ -18,4 +18,5 @@
     <% end %>
     <%= yield %>
   </body>
+  <%= javascript_include_tag 'application' %>
 </html>

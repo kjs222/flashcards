@@ -11,6 +11,12 @@ class QuizletService
     parse(response)
   end
 
+  def get_terms(set_id)
+    response = @connecton.get("/2.0/sets/#{set_id}/terms")
+    parse(response)
+    binding.pry
+  end
+
   private
 
   def parse(response)

@@ -16,6 +16,28 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+module StubOmniauth
+  def stub_omniauth
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+      provider: 'github',
+      uid: "1",
+      info: {
+        name: "Kerry Sheldon",
+        nickname: "kjs222"
+            },
+      credentials: {
+        token: ENV['GITHUB_TOKEN']
+                    },
+      extra: {
+        raw_info: {
+          avatar_url: "https://avatars.githubusercontent.com/u/11400778?v=3"
+        }
+              }
+      })
+  end
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -96,4 +118,5 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  config.include StubOmniauth
 end

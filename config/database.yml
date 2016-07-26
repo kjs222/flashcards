@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: flashcards_production
-  username: flashcards
-  password: <%= ENV['FLASHCARDS_DATABASE_PASSWORD'] %>
+  # username: flashcards
+  # password: <%= ENV['FLASHCARDS_DATABASE_PASSWORD'] %>

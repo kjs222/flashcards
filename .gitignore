@@ -21,3 +21,4 @@
 
 /spec/cassettes/*
 coverage
+public/assets/**

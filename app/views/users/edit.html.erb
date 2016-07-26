@@ -1,7 +1,19 @@
-<h2>Add/Edit Password for Command Line Application</h2>
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-default">
 
-<%= form_for @user do |f| %>
-<%= f.label :password %>
-<%= f.password_field :password %>
-<%= f.submit "Add/Update Password"%>
-<% end %>
+      <div class="panel-heading">
+        <h3 class="panel-title text-center">Add/Edit Password for Command Line Application</h3>
+      </div>
+
+      <div class="panel-body">
+        <%= form_for @user do |f| %>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: "form-control" %>
+          <%= f.submit "Add/Update Password"%>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>

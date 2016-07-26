@@ -8,12 +8,12 @@ class User < ApplicationRecord
     end
   end
 
-  def self.get_token_for_cli(uid, password)
+  def self.get_credentials_for_cli(uid, password)
     user = User.find_by(uid: uid)
     if user && user.authenticate(password)
-      {"token" => user.token}
+      {"uid" => uid, "token" => user.token}
     else
-      {"token" => "User not found"}
+      {"uid" => "User not found", "token" => "User not found"}
     end
   end
 
