@@ -22,13 +22,32 @@
   <%= render partial: "new_goal_form" , locals: {week_num: next_week_number, type: "next"} %>
 </div>
 
-<div class="current_sessions">
+<div id="current-sessions">
   <h2>Completed Sessions This Week:</h2>
-  <ul>
   <% @dashboard.sessions.each do |session| %>
-  <li><%= session.skill.nickname %>: <%= session.duration %> minutes, <%= days_from_today session.created_at %> ago</li>
+  <div class="session">
+  <p><%= session.skill.nickname %>: <%= session.duration %> minutes, <%= days_from_today session.created_at %> ago</p>
+  </div>
   <% end %>
-  </ul>
+</div>
+
+<div id="log-session">
+  <div class="row">
+    <div class="col-sm-3">
+      <%= form_for current_user do |f| %>
+      <div class="form-group">
+        <%= f.label :skill %>
+        <%= select(:skill_nickname, :skill_id, current_user.session_form_options, {}, :id => "skill-id-session", :class=> "form-control") %>
+        <% end  %>
+        <label for="session-length">Duration</label>
+        <select class="form-control session-length" id="session-length-log"></select>
+      </div>
+      <input class="btn btn-default pull-right" id="create-session" type="button" name="submit" value="Log Session">
+    </div>
+  </div>
+
+</div>
+
 </div>
 
 <h2>Skills</h2>
@@ -55,5 +74,4 @@
     </div>
     <input class="btn btn-default pull-right" id="create-skill" type="button" name="submit" value="Add Skill">
   </div>
-  <div class="col-sm-2"></div>
 </div>

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "/api/v1/authenticate", to: "api/v1/users#show"
   post "/api/v1/skills", to: "api/v1/skills#create"
   post "/api/v1/goals", to: "api/v1/goals#create"
+  post "/api/v1/sessions", to: "api/v1/sessions#create"
 
 
   resources :users, only: [:edit, :update]

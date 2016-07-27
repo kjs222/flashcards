@@ -10,13 +10,17 @@ $(document).ready(function(){
       "<div class='goal'><h4>" + goal_skill[1].nickname + "</h4><p>" + goal_skill[0].num_sessions + " sessions</p><p>" + goal_skill[0].session_length + " minutes</p></div>")
   }
 
+  function appendSession(session_skill) {
+    $("#current-sessions").append(
+      "<div class='session'><p>" + session_skill[1].nickname + ": " + session_skill[0].duration + " minutes, within last hour</p>")
+  }
+
   // figure out how to get combined with above (pass in currnet or next)
   function appendNextGoal(goal_skill) {
     $("#next-goals").append(
       "<div class='goal'><h4>" + goal_skill[1].nickname + "</h4><p>" + goal_skill[0].num_sessions + " sessions</p><p>" + goal_skill[0].session_length + " minutes</p></div>")
   }
 
-  // function loadlist()
 
 
   $(function(){
@@ -86,6 +90,22 @@ $(document).ready(function(){
           .append($('<option>', { value : newSkill.id })
           .text(newSkill.nickname));
         $('.form-control, textarea').val('');
+      }
+    })
+  });
+
+  $("#create-session").on('click', function(){
+    var skillId = $("#skill-id-session").val()
+    var duration = $("#session-length-log").val()
+    $.ajax({
+      method: "POST",
+      url: "/api/v1/sessions.json",
+      dataType: "JSON",
+      data: {session: {skill_id: skillId, duration: duration}},
+      success: function(newSession) {
+        appendSession(newSession)
+        $('#skill-id-session').prop('selectedIndex',0);
+        $('#session-length-log').prop('selectedIndex',0);
       }
     })
   });

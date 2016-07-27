@@ -24,7 +24,7 @@ class User < ApplicationRecord
   end
 
   def session_form_options
-    skills = skills.select("skills.*").joins(:goals).where('goals.week_number = ?', current_week).distinct
+    skills = self.skills.select("skills.*").joins(:goals).where('goals.week_number = ?', current_week).distinct
     skills.pluck(:nickname).zip(skills.pluck(:id))
   end
 
