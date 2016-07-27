@@ -16,8 +16,11 @@ $(document).ready(function(){
       "<div class='goal'><h4>" + goal_skill[1].nickname + "</h4><p>" + goal_skill[0].num_sessions + " sessions</p><p>" + goal_skill[0].session_length + " minutes</p></div>")
   }
 
+  // function loadlist()
+
+
   $(function(){
-    var $select = $(".num-sessions");
+    var $select = $('.num-sessions');
     for (i=1;i<=10;i++){
         $select.append($('<option id=option-' + i +' ></option>').val(i).html(i))
     }

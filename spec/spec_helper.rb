@@ -31,20 +31,22 @@ module StubOmniauth
   end
 end
 
-# module WaitForAjax
-#   def wait_for_ajax
-#     Timeout.timeout(Capybara.default_max_wait_time) do
-#       loop until finished_all_ajax_requests?
-#     end
-#   end
-#
-#   def finished_all_ajax_requests?
-#     page.evaluate_script('jQuery.active').zero?
-#   end
-# end
+module WaitForAjax
+  def wait_for_ajax
+    Timeout.timeout(Capybara.default_max_wait_time) do
+      loop until finished_all_ajax_requests?
+    end
+  end
+
+  def finished_all_ajax_requests?
+    page.evaluate_script('jQuery.active').zero?
+  end
+end
 
 
+require 'selenium/webdriver'
 
+Selenium::WebDriver::Firefox::Binary.path = "/Volumes/Firefox/Firefox.app/Contents/MacOS/firefox"
 
 RSpec.configure do |config|
 
@@ -58,6 +60,18 @@ RSpec.configure do |config|
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
+  config.before :suite do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, :js => true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
   config.include StubOmniauth
-  # config.include WaitForAjax, type: :feature
+  config.include WaitForAjax, type: :feature
 end

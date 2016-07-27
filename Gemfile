@@ -40,6 +40,7 @@ group :development, :test do
   gem "minitest-rails-capybara"
   gem "pry", :require => "pry"
   gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'byebug'
   gem 'launchy'
 end
@@ -47,6 +48,7 @@ end
 group :test do
   gem 'webmock'
   gem 'vcr'
+  gem 'database_cleaner'
 end
 
 

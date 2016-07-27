@@ -2,20 +2,29 @@ class User < ApplicationRecord
   has_secure_password :validations => false
   has_many :skills
   has_many :goals, through: :skills
+  has_many :sessions, through: :skills
+
 
   def current_goals
-    current_week = Date.today.cweek
     goals.where('goals.week_number = ?', current_week)
   end
 
   def next_week_goals
-    current_week = Date.today.cweek #consider putting in module somewhere
     goals.where('goals.week_number = ?', current_week + 1)
   end
 
+  def current_sessions
+    sessions.where('extract(week from sessions.created_at) = ?', current_week)
+  end
 
-  #move this to presenter
+
+  #move these to presenters
   def skill_form_options
+    skills.pluck(:nickname).zip(skills.pluck(:id))
+  end
+
+  def session_form_options
+    skills = skills.select("skills.*").joins(:goals).where('goals.week_number = ?', current_week).distinct
     skills.pluck(:nickname).zip(skills.pluck(:id))
   end
 
@@ -32,6 +41,11 @@ class User < ApplicationRecord
   def add_quizlet_credentials(auth_info)
     update_attributes(quiz_id: auth_info["uid"], quiz_token:auth_info["credentials"]["token"])
   end
+
+  def current_week
+    current_week = Date.today.cweek
+  end
+
 
   #does this belong here or somewhere else?:
   def self.get_credentials_for_cli(nickname, password)

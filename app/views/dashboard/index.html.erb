@@ -5,8 +5,10 @@
 <% end %>
 </div>
 
-<h2>Add a Goal for This Week</h2>
-<%= render partial: "new_goal_form" , locals: {week_num: current_week_number, type: "current"} %>
+<div class="new-current-goal-form">
+  <h2>Add a Goal for This Week</h2>
+  <%= render partial: "new_goal_form" , locals: {week_num: current_week_number, type: "current"} %>
+</div>
 
 <h2>Next Week's Goals</h2>
 <div id="next-goals">
@@ -15,8 +17,19 @@
 <% end %>
 </div>
 
-<h2>Add a Goal for Next Week</h2>
-<%= render partial: "new_goal_form" , locals: {week_num: next_week_number, type: "next"} %>
+<div class="new-next-goal-form">
+  <h2>Add a Goal for Next Week</h2>
+  <%= render partial: "new_goal_form" , locals: {week_num: next_week_number, type: "next"} %>
+</div>
+
+<div class="current_sessions">
+  <h2>Completed Sessions This Week:</h2>
+  <ul>
+  <% @dashboard.sessions.each do |session| %>
+  <li><%= session.skill.nickname %>: <%= session.duration %> minutes, <%= days_from_today session.created_at %> ago</li>
+  <% end %>
+  </ul>
+</div>
 
 <h2>Skills</h2>
 <div id="skills">
