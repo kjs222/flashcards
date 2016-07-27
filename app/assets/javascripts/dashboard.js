@@ -6,7 +6,6 @@ $(document).ready(function(){
   }
 
   function appendGoal(goal_skill) {
-    // do i need to add an ajax call here that gets the name of the skill?
     $("#goals").append(
       "<div class='goal'><h4>" + goal_skill[1].nickname + "</h4><p>" + goal_skill[0].num_sessions + " sessions</p><p>" + goal_skill[0].session_length + " minutes</p></div>")
   }
@@ -53,7 +52,11 @@ $(document).ready(function(){
       dataType: "JSON",
       data: {skill: {nickname: skillNickname, description: skillDescription, user_id: skillUserId}},
       success: function(newSkill) {
+
         appendSkill(newSkill);
+        $('#skill-id')
+          .append($('<option>', { value : newSkill.id })
+          .text(newSkill.nickname));
         $('.form-control, textarea').val('');
       }
     })
