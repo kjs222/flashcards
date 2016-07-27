@@ -1,7 +1,5 @@
 <% goals.each do |goal| %>
   <div class="goal">
-    <h4><%= goal.skill.nickname %></h4>
-    <p><%= goal.num_sessions %> sessions</p>
-    <p><%= goal.session_length %> minutes</p>
+    <p><b><%= goal.skill.nickname %></b>: <%= goal.num_sessions %> sessions, <%= goal.session_length %> minutes</p>
   </div>
 <% end %>

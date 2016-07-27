@@ -9,18 +9,6 @@
   </head>
 
   <body>
-    <!-- <%# if current_user  %>
-      <p>Hello <%#= current_user.name %></p>
-      <%#= link_to "Logout", logout_path, method: :delete %>
-      <%#= link_to "Add/Update Command Line App Credentials", edit_user_path(current_user.id) %>
-      <%# if current_user.quiz_id == nil %>
-
-      <%# else %>
-        <p>Quizlet Enabled.  Hello <%#= current_user.quiz_id %>!</p>
-      <%# end %>
-    <%# else %>
-      <%#= link_to "Login with Github", github_login_path %>
-    <%# end %> -->
     <div class="container-fluid">
     <nav class="navbar navbar-custom" >
       <div class="navbar-header">
@@ -53,9 +41,10 @@
     </nav>
     </div>
 
-
-
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
+    
   </body>
   <%= javascript_include_tag 'application' %>
 </html>
