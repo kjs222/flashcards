@@ -31,6 +31,20 @@ module StubOmniauth
   end
 end
 
+# module WaitForAjax
+#   def wait_for_ajax
+#     Timeout.timeout(Capybara.default_max_wait_time) do
+#       loop until finished_all_ajax_requests?
+#     end
+#   end
+#
+#   def finished_all_ajax_requests?
+#     page.evaluate_script('jQuery.active').zero?
+#   end
+# end
+
+
+
 
 RSpec.configure do |config|
 
@@ -45,4 +59,5 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.include StubOmniauth
+  # config.include WaitForAjax, type: :feature
 end
