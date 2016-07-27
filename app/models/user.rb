@@ -15,15 +15,6 @@ class User < ApplicationRecord
     update_attributes(quiz_id: auth_info["uid"], quiz_token:auth_info["credentials"]["token"])
   end
 
-
-  # def self.from_omniauth(auth_info)
-  #
-  #   where(uid: auth_info['uid']).first_or_create do |user|
-  #     user.uid = auth_info["uid"]
-  #     user.token = auth_info["credentials"]["token"]
-  #   end
-  # end
-  #decide if nickname or quiz
   def self.get_credentials_for_cli(nickname, password)
     user = User.find_by(nickname: nickname)
     #NEED to handle if quiz values are nil

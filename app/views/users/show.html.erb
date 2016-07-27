@@ -14,3 +14,13 @@
   <%= button_to "Enable Quizlet", quizlet_login_path, method: :get %>
 <% end %>
 </div>
+
+<div class="command-line">
+<h4>Command Line App Integration</h4>
+<% if @user.password_digest %>
+  <p>Activated</p>
+<% else %>
+  <p>Not Enabled</p>
+  <%= button_to "Enable Command Line App", edit_user_path(@user), method: :get %>
+<% end %>
+</div>

@@ -1,14 +1,3 @@
-# On my user page, If I clock on manage my account
-# i end on a profit page
-# I see my name
-# user name (nickname)
-# I can click on add QUILT features to my account
-# when i do that, i go through auth
-# and i return to manage my account page
-# it says quilt enabled
-# QUILT is now an option in my nav
-# when i click on quilt i am brough to quilt path
-
 require 'rails_helper'
 
 RSpec.feature "user can add quizlet to their account" do

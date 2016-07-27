@@ -11,8 +11,8 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(user_params)
-      flash[:success] = "Your updates have been saved"
-      redirect_to root_path
+      flash[:success] = "Command Line App is Enabled"
+      redirect_to account_path
     else
       flash.now[:warning] = @user.errors.full_messages.join(", ")
       render :edit
