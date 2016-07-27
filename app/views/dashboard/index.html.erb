@@ -1,32 +1,21 @@
-<h2>Goals</h2>
+<h2>Current Goals</h2>
 <div id="current-goals">
 <% if @dashboard.current_goals %>
-  <% @dashboard.current_goals.each do |goal| %>
-    <div class="goal">
-      <h4><%= goal.skill.nickname %></h4>
-      <p><%= goal.num_sessions %> sessions</p>
-      <p><%= goal.session_length %> minutes</p>
-    </div>
-  <% end %>
+<%= render partial: "goal_list" , locals: {goals:  @dashboard.current_goals} %>
 <% end %>
 </div>
 
-<h2>Add a New Goal for This Week</h2>
+<h2>Add a Goal for This Week</h2>
 <%= render partial: "new_goal_form" , locals: {week_num: current_week_number, type: "current"} %>
 
+<h2>Next Week's Goals</h2>
 <div id="next-goals">
 <% if @dashboard.next_goals %>
-  <% @dashboard.next_goals.each do |goal| %>
-    <div class="goal">
-      <h4><%= goal.skill.nickname %></h4>
-      <p><%= goal.num_sessions %> sessions</p>
-      <p><%= goal.session_length %> minutes</p>
-    </div>
-  <% end %>
+  <%= render partial: "goal_list" , locals: {goals:  @dashboard.next_goals} %>
 <% end %>
 </div>
 
-<h2>Add a New Goal for Next Week</h2>
+<h2>Add a Goal for Next Week</h2>
 <%= render partial: "new_goal_form" , locals: {week_num: next_week_number, type: "next"} %>
 
 <h2>Skills</h2>

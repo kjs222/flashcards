@@ -10,6 +10,7 @@ $(document).ready(function(){
       "<div class='goal'><h4>" + goal_skill[1].nickname + "</h4><p>" + goal_skill[0].num_sessions + " sessions</p><p>" + goal_skill[0].session_length + " minutes</p></div>")
   }
 
+  // figure out how to get combined with above (pass in currnet or next)
   function appendNextGoal(goal_skill) {
     $("#next-goals").append(
       "<div class='goal'><h4>" + goal_skill[1].nickname + "</h4><p>" + goal_skill[0].num_sessions + " sessions</p><p>" + goal_skill[0].session_length + " minutes</p></div>")
@@ -59,7 +60,6 @@ $(document).ready(function(){
       dataType: "JSON",
       data: {goal: {skill_id: skillId, num_sessions: numSessions, session_length: sessionLength, week_number: weekNumber}},
       success: function(newGoal) {
-        //NEEDS TO APPEND TO NEXT
         appendNextGoal(newGoal)
         $('#skill-id-next').prop('selectedIndex',0);
         $('#num-sessions-next').prop('selectedIndex',0);
