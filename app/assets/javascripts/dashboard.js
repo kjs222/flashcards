@@ -14,14 +14,14 @@ $(document).ready(function(){
   $(function(){
     var $select = $("#num-sessions");
     for (i=1;i<=10;i++){
-        $select.append($('<option></option>').val(i).html(i))
+        $select.append($('<option id=option-' + i +' ></option>').val(i).html(i))
     }
   })
 
   $(function(){
     var $select = $("#session-length");
     for (i=15;i<=60;i+=15){
-        $select.append($('<option></option>').val(i).html(i))
+        $select.append($('<option id=option-' + i +'></option>').val(i).html(i))
     }
   })
 
@@ -36,6 +36,9 @@ $(document).ready(function(){
       data: {goal: {skill_id: skillId, num_sessions: numSessions, session_length: sessionLength}},
       success: function(newGoal) {
         appendGoal(newGoal)
+        $('#skill-id').prop('selectedIndex',0);
+        $('#num-sessions').prop('selectedIndex',0);
+        $('#session-length').prop('selectedIndex',0);
       }
     })
   });
@@ -50,7 +53,8 @@ $(document).ready(function(){
       dataType: "JSON",
       data: {skill: {nickname: skillNickname, description: skillDescription, user_id: skillUserId}},
       success: function(newSkill) {
-        appendSkill(newSkill)
+        appendSkill(newSkill);
+        $('.form-control, textarea').val('');
       }
     })
   });
