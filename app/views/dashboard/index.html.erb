@@ -1,12 +1,42 @@
+<h2>Goals</h2>
+<div id="goals">
+<% if @dashboard.goals %>
+  <% @dashboard.goals.each do |goal| %>
+    <div class="goal">
+      <h4><%= goal.skill.nickname %></h4>
+      <p><%= goal.num_sessions %> sessions</p>
+      <p><%= goal.session_length %> minutes</p>
+    </div>
+  <% end %>
+<% end %>
+</div>
 
+<div class="container">
+<div class="panel-body">
+<%= form_for current_user do |f| %>
+  <div class="form-group">
+    <%= f.label :skill %>
+    <%= select(:skill_nickname, :skill_id, current_user.skill_form_options, {}, :id => "skill-id") %>
+<% end  %>
+  <label for="num-sessions">Number of Sessions</label>
+  <select id="num-sessions"></select>
+  <label for="session-length">Session Length</label>
+  <select id="session-length"></select>
+  <input class="btn btn-default pull-right" id="create-goal" type="button" name="submit" value="Add Goal">
+  </div>
+
+</div>
+</div>
 
 <h2>Skills</h2>
 <div id="skills">
-<% @dashboard.skills.each do |skill| %>
-  <div class="skill">
-    <h4><%= skill.nickname %></h4>
-    <p><%= skill.description %></p>
-  </div>
+<% if @dashboard.skills %>
+  <% @dashboard.skills.each do |skill| %>
+    <div class="skill">
+      <h4><%= skill.nickname %></h4>
+      <p><%= skill.description %></p>
+    </div>
+  <% end %>
 <% end %>
 </div>
 

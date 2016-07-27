@@ -1,6 +1,16 @@
 class User < ApplicationRecord
   has_secure_password :validations => false
   has_many :skills
+  has_many :goals, through: :skills
+
+  def active_goals
+    goals.where('goals.created_at >= ?', 1.week.ago)
+  end
+
+  #move this to presenter
+  def skill_form_options
+    skills.pluck(:nickname).zip(skills.pluck(:id))
+  end
 
   def self.github_from_omniauth(auth_info)
     where(gh_uid: auth_info['uid']).first_or_create do |user|

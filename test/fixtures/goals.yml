@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  num_sessions: 1
+  session_length: 1
+  reference: 
+
+two:
+  num_sessions: 1
+  session_length: 1
+  reference: 
