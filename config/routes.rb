@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "/account", to: "users#show", as: :account
 
   get "/api/v1/authenticate", to: "api/v1/users#show"
+  post "/api/v1/skills", to: "api/v1/skills#create"
+
 
   resources :users, only: [:edit, :update]
   resources :dashboard, only: [:index]

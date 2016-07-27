@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password :validations => false
+  has_many :skills
 
   def self.github_from_omniauth(auth_info)
     where(gh_uid: auth_info['uid']).first_or_create do |user|
@@ -15,6 +16,7 @@ class User < ApplicationRecord
     update_attributes(quiz_id: auth_info["uid"], quiz_token:auth_info["credentials"]["token"])
   end
 
+  #does this belong here or somewhere else?:
   def self.get_credentials_for_cli(nickname, password)
     user = User.find_by(nickname: nickname)
     #NEED to handle if quiz values are nil
