@@ -3,12 +3,14 @@ class User < ApplicationRecord
   has_many :skills
   has_many :goals, through: :skills
 
-  def active_goals
-    goals.where('goals.created_at >= ?', 1.week.ago)
+  def current_goals
+    current_week = Date.today.cweek
+    goals.where('goals.week_number = ?', current_week)
   end
 
   def next_week_goals
-
+    current_week = Date.today.cweek #consider putting in module somewhere
+    goals.where('goals.week_number = ?', current_week + 1)
   end
 
 

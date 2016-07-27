@@ -5,39 +5,65 @@ $(document).ready(function(){
       "<div class='skill'><h4>" + skill.nickname + "</h4><p>" + skill.description + "</p></div>")
   }
 
-  function appendGoal(goal_skill) {
-    $("#goals").append(
+  function appendCurrentGoal(goal_skill) {
+    $("#current-goals").append(
+      "<div class='goal'><h4>" + goal_skill[1].nickname + "</h4><p>" + goal_skill[0].num_sessions + " sessions</p><p>" + goal_skill[0].session_length + " minutes</p></div>")
+  }
+
+  function appendNextGoal(goal_skill) {
+    $("#next-goals").append(
       "<div class='goal'><h4>" + goal_skill[1].nickname + "</h4><p>" + goal_skill[0].num_sessions + " sessions</p><p>" + goal_skill[0].session_length + " minutes</p></div>")
   }
 
   $(function(){
-    var $select = $("#num-sessions");
+    var $select = $(".num-sessions");
     for (i=1;i<=10;i++){
         $select.append($('<option id=option-' + i +' ></option>').val(i).html(i))
     }
   })
 
   $(function(){
-    var $select = $("#session-length");
+    var $select = $(".session-length");
     for (i=15;i<=60;i+=15){
         $select.append($('<option id=option-' + i +'></option>').val(i).html(i))
     }
   })
 
-  $("#create-goal").on('click', function(){
-    var skillId = $("#skill-id").val()
-    var numSessions = $("#num-sessions").val()
-    var sessionLength = $("#session-length").val()
+  $("#create-current-goal").on('click', function(){
+    var skillId = $("#skill-id-current").val()
+    var numSessions = $("#num-sessions-current").val()
+    var sessionLength = $("#session-length-current").val()
+    var weekNumber = $("#week_num-current").val()
     $.ajax({
       method: "POST",
       url: "/api/v1/goals.json",
       dataType: "JSON",
-      data: {goal: {skill_id: skillId, num_sessions: numSessions, session_length: sessionLength}},
+      data: {goal: {skill_id: skillId, num_sessions: numSessions, session_length: sessionLength, week_number: weekNumber}},
       success: function(newGoal) {
-        appendGoal(newGoal)
-        $('#skill-id').prop('selectedIndex',0);
-        $('#num-sessions').prop('selectedIndex',0);
-        $('#session-length').prop('selectedIndex',0);
+        appendCurrentGoal(newGoal)
+        $('#skill-id-current').prop('selectedIndex',0);
+        $('#num-sessions-current').prop('selectedIndex',0);
+        $('#session-length-current').prop('selectedIndex',0);
+      }
+    })
+  });
+  // dry this up
+  $("#create-next-goal").on('click', function(){
+    var skillId = $("#skill-id-next").val()
+    var numSessions = $("#num-sessions-next").val()
+    var sessionLength = $("#session-length-next").val()
+    var weekNumber = $("#week_num-next").val()
+    $.ajax({
+      method: "POST",
+      url: "/api/v1/goals.json",
+      dataType: "JSON",
+      data: {goal: {skill_id: skillId, num_sessions: numSessions, session_length: sessionLength, week_number: weekNumber}},
+      success: function(newGoal) {
+        //NEEDS TO APPEND TO NEXT
+        appendNextGoal(newGoal)
+        $('#skill-id-next').prop('selectedIndex',0);
+        $('#num-sessions-next').prop('selectedIndex',0);
+        $('#session-length-next').prop('selectedIndex',0);
       }
     })
   });

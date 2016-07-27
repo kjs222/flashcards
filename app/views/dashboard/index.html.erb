@@ -1,7 +1,7 @@
 <h2>Goals</h2>
-<div id="goals">
-<% if @dashboard.goals %>
-  <% @dashboard.goals.each do |goal| %>
+<div id="current-goals">
+<% if @dashboard.current_goals %>
+  <% @dashboard.current_goals.each do |goal| %>
     <div class="goal">
       <h4><%= goal.skill.nickname %></h4>
       <p><%= goal.num_sessions %> sessions</p>
@@ -11,21 +11,23 @@
 <% end %>
 </div>
 
-<div class="row">
-  <div class="col-sm-3">
-    <%= form_for current_user do |f| %>
-    <div class="form-group">
-      <%= f.label :skill %>
-      <%= select(:skill_nickname, :skill_id, current_user.skill_form_options, {}, :id => "skill-id", :class=> "form-control") %>
-      <% end  %>
-      <label for="num-sessions">Number of Sessions</label>
-      <select class="form-control" id="num-sessions"></select>
-      <label for="session-length">Session Length</label>
-      <select class="form-control" id="session-length"></select>
-      <input class="btn btn-default pull-right" id="create-goal" type="button" name="submit" value="Add Goal">
+<h2>Add a New Goal for This Week</h2>
+<%= render partial: "new_goal_form" , locals: {week_num: current_week_number, type: "current"} %>
+
+<div id="next-goals">
+<% if @dashboard.next_goals %>
+  <% @dashboard.next_goals.each do |goal| %>
+    <div class="goal">
+      <h4><%= goal.skill.nickname %></h4>
+      <p><%= goal.num_sessions %> sessions</p>
+      <p><%= goal.session_length %> minutes</p>
     </div>
-  </div>
+  <% end %>
+<% end %>
 </div>
+
+<h2>Add a New Goal for Next Week</h2>
+<%= render partial: "new_goal_form" , locals: {week_num: next_week_number, type: "next"} %>
 
 <h2>Skills</h2>
 <div id="skills">

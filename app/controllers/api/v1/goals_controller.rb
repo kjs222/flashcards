@@ -9,7 +9,7 @@ class Api::V1::GoalsController < ApplicationController
   private
 
   def goal_params
-    params.require(:goal).permit(:skill_id, :num_sessions, :session_length)
+    params.require(:goal).permit(:skill_id, :num_sessions, :session_length, :week_number)
   end
 
 
