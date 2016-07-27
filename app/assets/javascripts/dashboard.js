@@ -30,7 +30,7 @@ $(document).ready(function(){
     var sessionLength = $("#session-length").val()
     $.ajax({
       method: "POST",
-      url: "http://127.0.0.1:3000/api/v1/goals.json",
+      url: "/api/v1/goals.json",
       dataType: "JSON",
       data: {goal: {skill_id: skillId, num_sessions: numSessions, session_length: sessionLength}},
       success: function(newGoal) {
@@ -48,11 +48,10 @@ $(document).ready(function(){
     var skillUserId = $("#skill-user").val()
     $.ajax({
       method: "POST",
-      url: "http://127.0.0.1:3000/api/v1/skills.json",
+      url: "/api/v1/skills.json",
       dataType: "JSON",
       data: {skill: {nickname: skillNickname, description: skillDescription, user_id: skillUserId}},
       success: function(newSkill) {
-
         appendSkill(newSkill);
         $('#skill-id')
           .append($('<option>', { value : newSkill.id })

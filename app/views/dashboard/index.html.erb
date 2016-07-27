@@ -11,21 +11,20 @@
 <% end %>
 </div>
 
-<div class="container">
-<div class="panel-body">
-<%= form_for current_user do |f| %>
-  <div class="form-group">
-    <%= f.label :skill %>
-    <%= select(:skill_nickname, :skill_id, current_user.skill_form_options, {}, :id => "skill-id") %>
-<% end  %>
-  <label for="num-sessions">Number of Sessions</label>
-  <select id="num-sessions"></select>
-  <label for="session-length">Session Length</label>
-  <select id="session-length"></select>
-  <input class="btn btn-default pull-right" id="create-goal" type="button" name="submit" value="Add Goal">
+<div class="row">
+  <div class="col-sm-3">
+    <%= form_for current_user do |f| %>
+    <div class="form-group">
+      <%= f.label :skill %>
+      <%= select(:skill_nickname, :skill_id, current_user.skill_form_options, {}, :id => "skill-id", :class=> "form-control") %>
+      <% end  %>
+      <label for="num-sessions">Number of Sessions</label>
+      <select class="form-control" id="num-sessions"></select>
+      <label for="session-length">Session Length</label>
+      <select class="form-control" id="session-length"></select>
+      <input class="btn btn-default pull-right" id="create-goal" type="button" name="submit" value="Add Goal">
+    </div>
   </div>
-
-</div>
 </div>
 
 <h2>Skills</h2>
@@ -41,7 +40,7 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <div class="form-group">
       <h4>Add a Skill</h4>
       <label for="skill-nickname">Nickname</label>

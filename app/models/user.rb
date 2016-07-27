@@ -7,6 +7,11 @@ class User < ApplicationRecord
     goals.where('goals.created_at >= ?', 1.week.ago)
   end
 
+  def next_week_goals
+
+  end
+
+
   #move this to presenter
   def skill_form_options
     skills.pluck(:nickname).zip(skills.pluck(:id))
