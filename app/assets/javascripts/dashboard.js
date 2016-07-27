@@ -5,9 +5,10 @@ $(document).ready(function(){
       "<div class='skill'><h4>" + skill.nickname + "</h4><p>" + skill.description + "</p></div>")
   }
 
-  function appendGoal(goal) {
+  function appendGoal(goal_skill) {
+    // do i need to add an ajax call here that gets the name of the skill?
     $("#goals").append(
-      "<div class='goal'><h4>" + goal.skill_id + "</h4><p>" + goal.num_sessions + " sessions</p><p>" + goal.session_length + " minutes</p></div>")
+      "<div class='goal'><h4>" + goal_skill[1].nickname + "</h4><p>" + goal_skill[0].num_sessions + " sessions</p><p>" + goal_skill[0].session_length + " minutes</p></div>")
   }
 
   $(function(){
