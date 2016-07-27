@@ -18,6 +18,17 @@ module StubOmniauth
               }
       })
   end
+
+  def stub_quizlet_omniauth
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:quizlet] = OmniAuth::AuthHash.new({
+      provider: 'quizlet',
+      uid: 'kjs222',
+      credentials: {
+        token: ENV['QUIZLET_TOKEN']
+        }
+      })
+  end
 end
 
 

@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
 
-  def edit
+  def show
     @user = current_user
   end
 
+  def edit
+    @user = current_user
+  end
 
   def update
     @user = current_user
@@ -18,7 +21,7 @@ class UsersController < ApplicationController
 
   def add_quizlet
     current_user.add_quizlet_credentials(request.env["omniauth.auth"])
-    redirect_to root_path
+    redirect_to account_path
   end
 
   private

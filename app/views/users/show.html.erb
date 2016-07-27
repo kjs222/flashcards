@@ -1,0 +1,16 @@
+<h4>Name</h4>
+<p><%= @user.name %></p>
+
+<h4>Nickname</h4>
+<p><%= @user.nickname %></p>
+
+<div class="quizlet">
+<h4>Quizlet Integration</h4>
+<% if @user.quiz_id %>
+  <p>Activated</p>
+  <p>Quizlet Username:<%= @user.quiz_id %></p>
+<% else %>
+  <p>Not Enabled</p>
+  <%= button_to "Enable Quizlet", quizlet_login_path, method: :get %>
+<% end %>
+</div>
