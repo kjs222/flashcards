@@ -33,6 +33,7 @@ class User < ApplicationRecord
       user.name = auth_info["info"]["name"]
       user.gh_token = auth_info["credentials"]["token"]
       user.nickname = auth_info["info"]["nickname"]
+      user.image = auth_info["extra"]["raw_info"]["avatar_url"]
       user.email = auth_info["info"]["email"]
     end
   end

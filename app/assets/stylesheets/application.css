@@ -37,3 +37,9 @@
  	-moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.025), inset 0 0 50px rgba(0, 0, 0, 0.025);
  	box-shadow: 0 0 2px rgba(0, 0, 0, 0.025), inset 0 0 50px rgba(0, 0, 0, 0.025);
  }
+
+ .profile-photo {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+}
