@@ -19,10 +19,7 @@ module OmniAuth
 
       info do
         {
-          "username" => raw_info["username"],
-          "account_type" => raw_info["account_type"],
-          "sign_up_date" => raw_info["sign_up_date"],
-          "profile_image" => raw_info["profile_image"]
+
         }
       end
 

@@ -8,7 +8,6 @@ RSpec.feature "user sees her quizlet sets" do
      VCR.use_cassette("my_sets") do
        visit quizlet_index_path
        expect(page).to have_content("oauth technical")
-       expect(page).to have_content("Created: 4 days ago")
        expect(page).to have_content("Number of Cards: 9")
      end
   end

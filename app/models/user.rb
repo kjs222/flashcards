@@ -49,7 +49,6 @@ class User < ApplicationRecord
   #does this belong here or somewhere else?:
   def self.get_credentials_for_cli(nickname, password)
     user = User.find_by(nickname: nickname)
-    #NEED to handle if quiz values are nil
     if user && user.authenticate(password)
       {"uid" => user.quiz_id, "token" => user.quiz_token}
     else

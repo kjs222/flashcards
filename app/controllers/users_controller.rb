@@ -14,7 +14,6 @@ class UsersController < ApplicationController
       flash[:success] = "Command Line App is Enabled"
       redirect_to account_path
     else
-      flash.now[:warning] = @user.errors.full_messages.join(", ")
       render :edit
     end
   end
