@@ -33,6 +33,7 @@ gem 'omniauth-github'
 gem 'figaro'
 gem 'faraday'
 gem 'rspec-rails'
+gem 'public_activity'
 
 
 group :development, :test do
