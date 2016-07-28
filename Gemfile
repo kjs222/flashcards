@@ -34,6 +34,7 @@ gem 'figaro'
 gem 'faraday'
 gem 'rspec-rails'
 gem 'public_activity'
+gem 'metrics-graphics-rails', '~> 2.9'
 
 
 group :development, :test do

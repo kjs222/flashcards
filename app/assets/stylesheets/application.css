@@ -14,6 +14,60 @@
  *= require_self
  *= require bootstrap.min
  */
+
+ .home-bar {
+    min-height: 70vh;
+    padding-top: 100px;
+    padding-bottom: 10px;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    color: white;
+    font-family: 'Open Sans';
+}
+
+
+#grad {
+  background: #399e5a;
+  background: -webkit-linear-gradient(-90deg, #399e5a, #63E2C6);
+  background: -o-linear-gradient(-90deg, #399e5a, #63E2C6);
+  background: -moz-linear-gradient(-90deg, #399e5a, #63E2C6);
+  background: linear-gradient(-90deg, #399e5a, #63E2C6);
+}
+
+.home-integrate {
+  min-height: 70vh;
+  padding-top: 100px;
+  padding-bottom: 10px;
+  overflow: hidden;
+  text-align: center;
+  font-family: 'Open Sans';
+  postition: relative;
+}
+
+
+.home-button {
+  padding: 18px 28px;
+  font-size: 22px;
+  line-height: normal;
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+    background: none;
+    border: 2px solid white;
+    position: relative;
+    text-align: center;
+    margin-top: 100;
+}
+
+
+.feature-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 180px;
+}
+
  .sidebar {
    background-color: #565857;
    padding: 20px;
