@@ -1,7 +1,6 @@
 <div class="row">
 
-  <form class="form-inline">
-    <div class="input-group">
+  <form class="form">
     <%= form_for current_user do |f| %>
     <div class="form-group">
       <%= select(:skill_nickname, :skill_id, current_user.skill_form_options, {}, :id => "skill-id-#{type}", :class=> "form-control") %>
@@ -21,7 +20,6 @@
       <input type="hidden" name="week_num" id="week_num-<%= type%>" value="<%= week_num %>">
       <input class="btn btn-default pull-right" id="create-<%= type%>-goal" type="button" name="submit" value="Add Goal">
 
-    </div>
   </form>
 
 </div>

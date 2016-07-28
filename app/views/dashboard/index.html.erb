@@ -1,68 +1,78 @@
 <div class="row">
+
   <div class="col-sm-4">
-    <h2>Stats Placeholder</h2>
+
+    <div class="col-sm-12" id="current-sessions">
+      <h2>Completed This Week:</h2>
+      <% @dashboard.sessions.each do |session| %>
+        <div class="session">
+          <p><b><%= session.skill.nickname %></b>: <%= session.duration %> minutes, <%= days_from_today session.created_at %> ago</p>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-sm-12" id="log-session">
+      <h2>Log a Practice Session</h2>
+      <%= form_for current_user do |f| %>
+        <div class="form-group">
+          <%= f.label :skill %>
+          <%= select(:skill_nickname, :skill_id, current_user.session_form_options, {}, :id => "skill-id-session", :class=> "form-control") %>
+          <% end  %>
+          <label for="session-length">Duration</label>
+          <select class="form-control session-length" id="session-length-log"></select>
+        </div>
+        <input class="btn btn-default pull-right" id="create-session" type="button" name="submit" value="Log Session">
+    </div>
+
+
+
   </div>
 
   <div class="col-sm-8">
-    <div class="col-sm-12">
-      <h2>Add a Goal</h2>
-      <div class="new-current-goal-form">
-        <h4>This Week:</h4>
-        <%= render partial: "new_goal_form" , locals: {week_num: current_week_number, type: "current"} %>
-      </div>
 
-
-      <div class="new-next-goal-form">
-        <h4>Next Week:</h4>
-        <%= render partial: "new_goal_form" , locals: {week_num: next_week_number, type: "next"} %>
-      </div>
-    </div>
-
-  <div class="col-sm-6">
-    <div id="current-goals">
-      <h2>Current Goals</h2>
-      <% if @dashboard.current_goals %>
-        <%= render partial: "goal_list" , locals: {goals:  @dashboard.current_goals} %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="col-sm-6">
-    <div id="next-goals">
-      <h2>Next Week's Goals</h2>
-      <% if @dashboard.next_goals %>
-        <%= render partial: "goal_list" , locals: {goals:  @dashboard.next_goals} %>
-      <% end %>
-    </div>
-  </div>
-  </div>
-</div>
-
-<div class="col-sm-4" id="current-sessions">
-  <h2>Completed This Week:</h2>
-  <% @dashboard.sessions.each do |session| %>
-    <div class="session">
-      <p><b><%= session.skill.nickname %></b>: <%= session.duration %> minutes, <%= days_from_today session.created_at %> ago</p>
-    </div>
-  <% end %>
-
-  <div id="log-session">
-    <h2>Log a Practice Session</h2>
     <div class="row">
-      <div class="col-sm-12">
-        <%= form_for current_user do |f| %>
-          <div class="form-group">
-            <%= f.label :skill %>
-            <%= select(:skill_nickname, :skill_id, current_user.session_form_options, {}, :id => "skill-id-session", :class=> "form-control") %>
-            <% end  %>
-            <label for="session-length">Duration</label>
-            <select class="form-control session-length" id="session-length-log"></select>
-          </div>
-          <input class="btn btn-default pull-right" id="create-session" type="button" name="submit" value="Log Session">
+
+      <div class="col-sm-6">
+        <div id="current-goals">
+          <h2>Current Goals</h2>
+          <% if @dashboard.current_goals %>
+            <%= render partial: "goal_list" , locals: {goals:  @dashboard.current_goals} %>
+          <% end %>
+        </div>
       </div>
+
+      <div class="col-sm-6">
+        <div class="new-current-goal-form">
+          <h2>Add Goal for This Week:</h2>
+          <%= render partial: "new_goal_form" , locals: {week_num: current_week_number, type: "current"} %>
+        </div>
+      </div>
+
     </div>
-  </div>
+    <div class="row">
+
+      <div class="col-sm-6">
+        <div id="next-goals">
+          <h2>Next Week's Goals</h2>
+          <% if @dashboard.next_goals %>
+            <%= render partial: "goal_list" , locals: {goals:  @dashboard.next_goals} %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="new-next-goal-form">
+          <h2>Add Goal For Next Week:</h2>
+          <%= render partial: "new_goal_form" , locals: {week_num: next_week_number, type: "next"} %>
+        </div>
+      </div>
+
+    </div>
 
 </div>
+
+
+
+
 
 <%= render partial: "shared/new_skill" %>
