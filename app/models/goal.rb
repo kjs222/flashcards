@@ -3,4 +3,8 @@ class Goal < ApplicationRecord
   tracked
   belongs_to :skill
 
+  def username
+    skill.user.name
+  end
+
 end
