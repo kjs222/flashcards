@@ -7,18 +7,18 @@ $(document).ready(function(){
 
   function appendCurrentGoal(goal_skill) {
     $("#current-goals").append(
-      "<div class='goal'><h4>" + goal_skill[1].nickname + "</h4><p>" + goal_skill[0].num_sessions + " sessions</p><p>" + goal_skill[0].session_length + " minutes</p></div>")
+      "<div class='goal'><p><b>" + goal_skill[1].nickname + "</b>: " + goal_skill[0].num_sessions + " sessions, " + goal_skill[0].session_length + " minutes</p></div>")
   }
 
   function appendSession(session_skill) {
     $("#current-sessions").append(
-      "<div class='session'><p>" + session_skill[1].nickname + ": " + session_skill[0].duration + " minutes, within last hour</p>")
+      "<div class='session'><p><b>" + session_skill[1].nickname + "</b>: " + session_skill[0].duration + " minutes, within last hour</p>")
   }
 
   // figure out how to get combined with above (pass in currnet or next)
   function appendNextGoal(goal_skill) {
     $("#next-goals").append(
-      "<div class='goal'><h4>" + goal_skill[1].nickname + "</h4><p>" + goal_skill[0].num_sessions + " sessions</p><p>" + goal_skill[0].session_length + " minutes</p></div>")
+      "<div class='goal'><p><b>" + goal_skill[1].nickname + "</b>: " + goal_skill[0].num_sessions + " sessions, " + goal_skill[0].session_length + " minutes</p></div>")
   }
 
 
@@ -108,6 +108,19 @@ $(document).ready(function(){
         $('#session-length-log').prop('selectedIndex',0);
       }
     })
+  });
+
+  $(function(){
+          $('.expandTerms').click(function(){
+                $('#set-'+$(this).attr('target')).show();
+          });
+  });
+
+  $(function(){
+          $('.collapseTerms').click(function(){
+            console.log("heard that")
+                $('#set-'+$(this).attr('target')).hide();
+          });
   });
 
 });

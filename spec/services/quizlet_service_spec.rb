@@ -17,4 +17,14 @@ describe QuizletService do
     end
   end
 
+  context 'terms' do
+    it "returns a list of terms for a given set" do
+      VCR.use_cassette("terms") do
+        terms = @service.get_terms(145163778)
+        expect(terms.count).to eq(9)
+        expect(terms.first["term"]).to eq("first oauth technical step")
+      end
+    end
+  end
+
 end
