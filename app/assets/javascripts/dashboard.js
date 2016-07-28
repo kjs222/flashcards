@@ -1,4 +1,6 @@
 $(document).ready(function(){
+  $(".termList").hide();
+  $(".collapseTerms").hide();
 
   function appendSkill(skill) {
     $("#skills").append(
@@ -111,16 +113,19 @@ $(document).ready(function(){
   });
 
   $(function(){
-          $('.expandTerms').click(function(){
-                $('#set-'+$(this).attr('target')).show();
-          });
+     $('.expandTerms').click(function(){
+        $('#set-'+$(this).attr('target')).show();
+        $('#show-'+$(this).attr('target')).hide();
+        $('#hide-'+$(this).attr('target')).show();
+      });
   });
 
   $(function(){
-          $('.collapseTerms').click(function(){
-            console.log("heard that")
-                $('#set-'+$(this).attr('target')).hide();
-          });
+    $('.collapseTerms').click(function(){
+        $('#set-'+$(this).attr('target')).hide();
+        $('#hide-'+$(this).attr('target')).hide();
+        $('#show-'+$(this).attr('target')).show();
+    });
   });
 
 });

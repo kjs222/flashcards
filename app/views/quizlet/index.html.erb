@@ -6,8 +6,8 @@
     <p>Created: <%= unix_to_days_from_today(quizset.created_date) %> ago</p>
     <p>Number of Cards: <%= quizset.term_count %></p>
     <%= button_to "Practice On Quizlet", "https://www.quizlet.com/#{quizset.url}" %>
-    <button type="button" class="expandTerms" target="<%=quizset.id%>"  name="button">Show Terms</button>
-    <button type="button" class="collapseTerms" target="<%=quizset.id%>" name="button">Hide Terms</button>
+    <button type="button" class="expandTerms" id="show-<%=quizset.id%>" target="<%=quizset.id%>"  name="button">Show Terms</button>
+    <button type="button" class="collapseTerms" id="hide-<%=quizset.id%>" target="<%=quizset.id%>" name="button">Hide Terms</button>
 
     <div class="termList" id="set-<%=quizset.id%>">
       <% quizset.terms.each do |term| %>
@@ -18,31 +18,3 @@
 
   </div>
   <% end %>
-
-     <!-- <div class="buttons">
-     <a  id="showall">All</a>
-     <a  class="showSingle" target="1">Div 1</a>
-     <a  class="showSingle" target="2">Div 2</a>
-     <a  class="showSingle" target="3">Div 3</a>
-     <a  class="showSingle" target="4">Div 4</a>
-     </div>
-
-     <div id="div1" class="targetDiv">Lorum Ipsum1</div>
-     <div id="div2" class="targetDiv">Lorum Ipsum2</div>
-     <div id="div3" class="targetDiv">Lorum Ipsum3</div>
-     <div id="div4" class="targetDiv">Lorum Ipsum4</div>
-
-     $(function(){
-             $('.expandTerms').click(function(){
-                   $('#set'+$(this).attr('target')).show();
-             });
-     });
-
-     $(function(){
-             $('.collapseTerms').click(function(){
-                   $('#set'+$(this).attr('target')).hide();
-             });
-     });
-
-
-   -->
