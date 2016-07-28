@@ -1,3 +1,10 @@
+require 'simplecov'
+SimpleCov.start 'rails'
+require 'factory_girl_rails'
+# require 'support/factory_girl'
+require 'selenium/webdriver'
+
+
 module StubOmniauth
   def stub_omniauth
     OmniAuth.config.test_mode = true
@@ -43,9 +50,6 @@ module WaitForAjax
   end
 end
 
-
-require 'selenium/webdriver'
-
 Selenium::WebDriver::Firefox::Binary.path = "/Volumes/Firefox/Firefox.app/Contents/MacOS/firefox"
 
 RSpec.configure do |config|
@@ -71,7 +75,7 @@ RSpec.configure do |config|
   config.before(:each, :js => true) do
     DatabaseCleaner.strategy = :truncation
   end
-
+  config.include FactoryGirl::Syntax::Methods
   config.include StubOmniauth
   config.include WaitForAjax, type: :feature
 end

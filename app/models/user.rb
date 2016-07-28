@@ -17,18 +17,14 @@ class User < ApplicationRecord
     sessions.where('extract(week from sessions.created_at) = ?', current_week)
   end
 
-  # def most_recent_skills
-  #   skills.order(:created_at, :desc).limit(10)
-
-
   #move these to presenters
   def skill_form_options
-    skills.pluck(:nickname).zip(skills.pluck(:id))
+    skills.pluck(:nickname, :id)
   end
 
   def session_form_options
     skills = self.skills.select("skills.*").joins(:goals).where('goals.week_number = ?', current_week).distinct
-    skills.pluck(:nickname).zip(skills.pluck(:id))
+    skills.pluck(:nickname, :id)
   end
 
   def self.github_from_omniauth(auth_info)

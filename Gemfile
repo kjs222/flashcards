@@ -30,7 +30,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'omniauth', '~> 1.3.1'
 gem 'omniauth-oauth2'
 gem 'omniauth-github'
-# gem 'omniauth-quizlet'
 gem 'figaro'
 gem 'faraday'
 gem 'rspec-rails'
@@ -43,6 +42,9 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'byebug'
   gem 'launchy'
+  gem 'shoulda-matchers'
+  gem 'simplecov', :require => false
+  gem 'factory_girl_rails'
 end
 
 group :test do

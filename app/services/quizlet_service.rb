@@ -3,11 +3,11 @@ class QuizletService
   def initialize(user)
     @user = user
     @connection = Faraday.new('https://api.quizlet.com')
-    @connection.headers["Authorization"] = "Bearer #{@user.token}"
+    @connection.headers["Authorization"] = "Bearer #{@user.quiz_token}"
   end
 
   def get_sets
-    response = @connection.get("/2.0/users/#{@user.uid}/sets")
+    response = @connection.get("/2.0/users/#{@user.quiz_id}/sets")
     parse(response)
   end
 

@@ -1,0 +1,8 @@
+
+<h2>Your Quizsets</h2>
+  <% @quizsets.each do |quizset| %>
+    <h4>Title: <%= quizset.title %></h4>
+    <p>Created: <%= unix_to_days_from_today(quizset.created_date) %> ago</p>
+    <p>Number of Cards: <%= quizset.term_count %></p>
+    <%= link_to "Practice", "https://www.quizlet.com/#{quizset.url}" %>
+  <% end %>

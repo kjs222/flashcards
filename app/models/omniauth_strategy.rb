@@ -4,11 +4,8 @@ require 'omniauth-oauth2'
 module OmniAuth
   module Strategies
     class Quizlet < OmniAuth::Strategies::OAuth2
-      # Give your strategy a name.
       option :name, "quizlet"
 
-      # This is where you pass the options you would pass when
-      # initializing your consumer from the OAuth gem.
       option :client_options, {
         :site => 'https://api.quizlet.com',
         :authorize_url => 'https://quizlet.com/authorize/',
@@ -18,11 +15,6 @@ module OmniAuth
       option :authorize_params, {:response_type => "code"}
       option :authorize_options, [:scope, :state]
 
-      # These are called after authentication has succeeded. If
-      # possible, you should try to set the UID without making
-      # additional calls (if the user id is returned with the token
-      # or as a URI parameter). This may not be possible with all
-      # providers.
       uid { raw_info["username"] }
 
       info do
