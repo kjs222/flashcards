@@ -14,3 +14,26 @@
  *= require_self
  *= require bootstrap.min
  */
+ .sidebar {
+   background-color: #565857;
+   padding: 20px;
+ }
+ .sidebar h4 {
+   color: #e8e6e5;
+ }
+
+ .sidebar label {
+   color: #e8e6e5;
+ }
+
+ .paper
+ {
+ 	position: relative;
+ 	width: 800px;
+ 	padding: 20px;
+ 	margin: 0 auto;
+ 	background-color: #fff;
+ 	-webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.025), inset 0 0 50px rgba(0, 0, 0, 0.025);
+ 	-moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.025), inset 0 0 50px rgba(0, 0, 0, 0.025);
+ 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.025), inset 0 0 50px rgba(0, 0, 0, 0.025);
+ }

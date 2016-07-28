@@ -44,7 +44,36 @@
     </nav>
     </div>
 
-    <div class="container">
+    <div class="sidebar col-sm-3">
+
+      <div class="new-next-goal-form container-fluid">
+        <h4>Add Goal For Next Week:</h4>
+        <%= render partial: "shared/new_goal_form" , locals: {week_num: next_week_number, type: "next"} %>
+      </div>
+
+      <div class="new-current-goal-form container-fluid">
+        <h4>Add Goal for This Week:</h4>
+        <%= render partial: "shared/new_goal_form" , locals: {week_num: current_week_number, type: "current"} %>
+      </div>
+
+      <div class="container-fluid" id="log-session">
+        <h4>Log a Practice Session</h4>
+        <%= form_for current_user do |f| %>
+          <div class="form-group">
+            <%= f.label :skill %>
+            <%= select(:skill_nickname, :skill_id, current_user.session_form_options, {}, :id => "skill-id-session", :class=> "form-control") %>
+            <% end  %>
+            <label for="session-length">Duration</label>
+            <select class="form-control session-length" id="session-length-log"></select>
+          </div>
+          <input class="btn btn-default pull-right" id="create-session" type="button" name="submit" value="Log Session">
+      </div>
+
+      <%= render partial: "shared/new_skill" %>
+
+    </div>
+
+    <div class="">
       <%= yield %>
     </div>
 
