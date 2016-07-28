@@ -28,6 +28,7 @@
             aria-haspopup="true" aria-expanded="false">All <span class="caret"></span></a>
             <ul class="dropdown-menu not-home">
               <li><a href="#">Statistics</a></li>
+              <li><a href="<%=skills_path%>">Skills</a></li>
               <li><a href="#">Tools</a></li>
               <li><a href="<%=account_path %>">Account</a></li>
             </ul>
@@ -44,7 +45,7 @@
     <div class="container">
       <%= yield %>
     </div>
-    
+
   </body>
   <%= javascript_include_tag 'application' %>
 </html>

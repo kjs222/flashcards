@@ -1,0 +1,13 @@
+<h2>Skills</h2>
+<div id="skills">
+<% if @skills %>
+  <% @skills.each do |skill| %>
+    <div class="skill">
+      <h4><%= skill.nickname %></h4>
+      <p><%= skill.description %></p>
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+<%= render partial: "shared/new_skill" %>

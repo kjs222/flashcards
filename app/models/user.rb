@@ -17,6 +17,9 @@ class User < ApplicationRecord
     sessions.where('extract(week from sessions.created_at) = ?', current_week)
   end
 
+  # def most_recent_skills
+  #   skills.order(:created_at, :desc).limit(10)
+
 
   #move these to presenters
   def skill_form_options

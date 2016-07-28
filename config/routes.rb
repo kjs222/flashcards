@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:edit, :update]
   resources :dashboard, only: [:index]
+  resources :skills, only: [:index]
 
   namespace :api do
     namespace :v1 do

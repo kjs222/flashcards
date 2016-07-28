@@ -7,7 +7,7 @@ RSpec.feature "user can see and add skills from dashboard" do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 
-    visit dashboard_index_path
+    visit skills_path
     within("#skills") do
       expect(page).to have_content(user_skill.nickname)
       expect(page).to have_content(user_skill.description)
@@ -25,7 +25,7 @@ RSpec.feature "user can see and add skills from dashboard" do
     new_skill_nickname = "skill1"
     new_skill_description = "description for skill 1"
 
-    visit dashboard_index_path
+    visit skills_path
 
     fill_in("skill-nickname", with: new_skill_nickname)
     fill_in("skill-description", with: new_skill_description)

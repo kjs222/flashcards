@@ -1,18 +1,27 @@
 <div class="row">
 
-  <div class="col-sm-3">
+  <form class="form-inline">
+    <div class="input-group">
     <%= form_for current_user do |f| %>
     <div class="form-group">
-      <%= f.label :skill %>
       <%= select(:skill_nickname, :skill_id, current_user.skill_form_options, {}, :id => "skill-id-#{type}", :class=> "form-control") %>
       <% end  %>
+    </div>
+
+    <div class="form-group">
       <label for="num-sessions">Number of Sessions</label>
       <select class="form-control num-sessions" id="num-sessions-<%= type%>"></select>
+    </div>
+
+    <div class="form-group">
       <label for="session-length">Session Length</label>
       <select class="form-control session-length" id="session-length-<%= type%>"></select>
+    </div>
+
       <input type="hidden" name="week_num" id="week_num-<%= type%>" value="<%= week_num %>">
       <input class="btn btn-default pull-right" id="create-<%= type%>-goal" type="button" name="submit" value="Add Goal">
+
     </div>
-  </div>
+  </form>
 
 </div>
