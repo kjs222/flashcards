@@ -51,6 +51,9 @@ $(document).ready(function(){
       data: {goal: {skill_id: skillId, num_sessions: numSessions, session_length: sessionLength, week_number: weekNumber}},
       success: function(newGoal) {
         appendCurrentGoal(newGoal)
+        $('#skill-id-session')
+          .append($('<option>', { value : newGoal[0].skill_id })
+          .text(newGoal[1].nickname));
         $('#skill-id-current').prop('selectedIndex',0);
         $('#num-sessions-current').prop('selectedIndex',0);
         $('#session-length-current').prop('selectedIndex',0);
@@ -88,7 +91,10 @@ $(document).ready(function(){
       data: {skill: {nickname: skillNickname, description: skillDescription, user_id: skillUserId}},
       success: function(newSkill) {
         appendSkill(newSkill);
-        $('#skill-id')
+        $('#skill-id-current')
+          .append($('<option>', { value : newSkill.id })
+          .text(newSkill.nickname));
+        $('#skill-id-next')
           .append($('<option>', { value : newSkill.id })
           .text(newSkill.nickname));
         $('.form-control, textarea').val('');

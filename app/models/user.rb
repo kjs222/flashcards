@@ -23,6 +23,7 @@ class User < ApplicationRecord
   end
 
   def session_form_options
+    # byebug
     skills = self.skills.select("skills.*").joins(:goals).where('goals.week_number = ?', current_week).distinct
     skills.pluck(:nickname, :id)
   end
