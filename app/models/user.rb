@@ -47,6 +47,15 @@ class User < ApplicationRecord
     current_week = Date.today.cweek
   end
 
+  def points(points=0)
+    points += goals.count
+    points += sessions.sum(:duration)/6
+  end
+
+  def level
+    (points/100).round
+  end
+
 
   #does this belong here or somewhere else?:
   def self.get_credentials_for_cli(nickname, password)

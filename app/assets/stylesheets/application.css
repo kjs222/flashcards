@@ -76,6 +76,9 @@
    color: white;
  }
 
+ .sidebar h3 {
+   color: white;
+ }
  .sidebar label {
    color: white;
  }
@@ -91,14 +94,46 @@
           border-radius: 8px;
     background: none;
     border: 2px solid #5abcb9;
- 	/*background-color: #fff;
- 	-webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.025), inset 0 0 50px rgba(0, 0, 0, 0.025);
- 	-moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.025), inset 0 0 50px rgba(0, 0, 0, 0.025);
- 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.025), inset 0 0 50px rgba(0, 0, 0, 0.025);*/
  }
 
  .profile-photo {
   height: 50px;
   width: 50px;
   border-radius: 50px;
+  margin-left: -20px;
+}
+.name {
+  margin-top: -10px;
+  margin-left: -20px;
+}
+
+.number-circle {
+    display:inline-block;
+    border-radius:50%;
+    border:3px solid white;
+    color: white;
+    font-size:32px;
+}
+
+.number-circle:before,
+.number-circle:after {
+    content:'\200B';
+    display:inline-block;
+    line-height:0px;
+
+    padding-top:50%;
+    padding-bottom:50%;
+}
+
+.number-circle:before {
+    padding-left:8px;
+}
+.number-circle:after {
+    padding-right:8px;
+}
+
+.user-stats {
+  margin-left: -20px;
+  margin-top: 10px;
+  color:white;
 }

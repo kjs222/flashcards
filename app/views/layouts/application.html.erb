@@ -51,21 +51,12 @@
         <div class="col-sm-3">
           <img src="<%= current_user.image %>", class="profile-photo">
         </div>
-        <div class="col-sm-9">
-        <h4><%= current_user.name %></h4>
-      </div>
-
-
-      </div>
-
-      <div class="new-next-goal-form container-fluid">
-        <h4>Add Goal For Next Week:</h4>
-        <%= render partial: "shared/new_goal_form" , locals: {week_num: next_week_number, type: "next"} %>
-      </div>
-
-      <div class="new-current-goal-form container-fluid">
-        <h4>Add Goal for This Week:</h4>
-        <%= render partial: "shared/new_goal_form" , locals: {week_num: current_week_number, type: "current"} %>
+        <div class="col-sm-9 name">
+        <h3><%= current_user.name %></h3>
+        </div>
+        <div class='col-sm-12 user-stats'>
+          <h4> Points: <span class="number-circle"><%= current_user.points%></span>  Level: <span class="number-circle"> <%= current_user.level.to_s + " "%> </span></h4>
+        </div>
       </div>
 
       <div class="container-fluid" id="log-session">
@@ -79,6 +70,16 @@
             <select class="form-control session-length" id="session-length-log"></select>
           </div>
           <input class="btn btn-default pull-right" id="create-session" type="button" name="submit" value="Log Session">
+      </div>
+
+      <div class="new-next-goal-form container-fluid">
+        <h4>Add Goal For Next Week:</h4>
+        <%= render partial: "shared/new_goal_form" , locals: {week_num: next_week_number, type: "next"} %>
+      </div>
+
+      <div class="new-current-goal-form container-fluid">
+        <h4>Add Goal for This Week:</h4>
+        <%= render partial: "shared/new_goal_form" , locals: {week_num: current_week_number, type: "current"} %>
       </div>
 
       <%= render partial: "shared/new_skill" %>
