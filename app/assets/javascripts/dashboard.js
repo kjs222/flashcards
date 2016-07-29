@@ -2,6 +2,7 @@ $(document).ready(function(){
   $(".termList").hide();
   $(".collapseTerms").hide();
   $(".side-form").hide();
+  $(".next").hide();
 
   function appendSkill(skill) {
     $("#skills").append(
@@ -140,6 +141,14 @@ $(document).ready(function(){
 
   $(".arrow-down").on('click', function(){
       $('#'+$(this).attr('target')).fadeIn(600);
+  });
+
+  $(".tab").on('click', function(){
+      $('.tab').removeClass("active-tab")
+      $(this).addClass("active-tab")
+      $('.current').hide();
+      $('.next').hide();
+      $('.'+$(this).attr('target')).show();
   });
 
 });

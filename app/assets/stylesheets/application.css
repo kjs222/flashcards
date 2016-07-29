@@ -15,6 +15,31 @@
  *= require bootstrap.min
  */
 
+ .tab-container{
+   margin-top: -50px;
+   text-align: right;
+ }
+
+ .tab {
+   display: inline-block;
+   /*border-left: 1px solid black;*/
+   padding-left: 10px;
+   padding-right: 10px;
+   /*margin-left: 10px;*/
+   color: black;
+   font-weight: bold;
+ }
+
+ .tab:hover {
+   text-decoration: none;
+   color: gray;
+ }
+
+ .active-tab {
+   border-bottom: 4px solid #9C7A97;
+ }
+
+
  .home-bar {
     min-height: 70vh;
     padding-top: 100px;

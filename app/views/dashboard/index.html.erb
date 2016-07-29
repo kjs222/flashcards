@@ -1,14 +1,18 @@
 
 <div class="paper col-sm-7 col-sm-offset-1">
+  <div class="tab-container">
+    <h5 class='tab active-tab' id="current-tab" target="current">Current Week</h5>
+    <h5 class="tab" id="next-tab" target="next">Next Week</h5>
+  </div>
 
-  <div id="current-goals">
+  <div class="current" id="current-goals">
     <h4>Current Goals</h4>
     <% if @dashboard.current_goals %>
       <%= render partial: "goal_list" , locals: {goals:  @dashboard.current_goals} %>
     <% end %>
   </div>
 
-  <div id="current-sessions">
+  <div class="current" id="current-sessions">
     <h4>Completed This Week:</h4>
     <% @dashboard.sessions.each do |session| %>
       <div class="session">
@@ -17,7 +21,7 @@
     <% end %>
   </div>
 
-  <div id="next-goals">
+  <div class="next" id="next-goals">
     <h4>Next Week's Goals</h4>
     <% if @dashboard.next_goals %>
       <%= render partial: "goal_list" , locals: {goals:  @dashboard.next_goals} %>

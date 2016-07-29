@@ -41,8 +41,6 @@ RSpec.feature "user can see and add skills from dashboard" do
       expect(page).to have_content(new_skill_description)
     end
 
-    #testing that it's in db is failing even with wait for ajax and other wait methods...
-
   end
 
 end
