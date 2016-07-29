@@ -22,10 +22,8 @@
 
  .tab {
    display: inline-block;
-   /*border-left: 1px solid black;*/
    padding-left: 10px;
    padding-right: 10px;
-   /*margin-left: 10px;*/
    color: black;
    font-weight: bold;
  }
@@ -107,8 +105,7 @@
    color: white;
  }
 
- .paper
- {
+ .paper {
  	position: relative;
  	width: 800px;
  	padding: 20px;
@@ -137,6 +134,13 @@
     border:3px solid white;
     color: white;
     font-size:32px;
+}
+.number-circle.inverse {
+  border:3px solid #9C7A97;
+  color: #9C7A97;
+}
+.pull-right {
+  text-align: right;
 }
 
 .number-circle:before,

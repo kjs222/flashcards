@@ -52,6 +52,10 @@ class User < ApplicationRecord
     points += sessions.sum(:duration)/6
   end
 
+  def current_week_points
+    current_sessions.sum(:duration)/6
+  end
+
   def level
     (points/100).round
   end

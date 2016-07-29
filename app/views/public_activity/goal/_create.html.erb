@@ -1,3 +1,11 @@
+<div class="col-sm-12">
+
 <p class="actvity-item">
-  <%= a.trackable.goal.username %><%= a.trackable.username %> added a goal of <%= a.trackable.num_sessions %> <%= a.trackable. session_length%> minute session(s) for the following skill: <%= a.trackable.skill.nickname %>.
+  <%= image_tag a.trackable.skill.user.image, class: "profile-photo"%>
+  <%= a.trackable.username %> added a goal of
+  <%= a.trackable.num_sessions %>
+  <%= a.trackable. session_length%> minute session(s) for the following skill:
+  <%= a.trackable.skill.nickname %> <%= days_from_today a.trackable.updated_at%> ago.
 </p>
+
+</div>
