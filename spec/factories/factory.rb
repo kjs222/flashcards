@@ -27,6 +27,43 @@ FactoryGirl.define do
     duration 15
   end
 
+  factory :session_fixed_date, class: Session do
+    skill
+    duration 15
+    created_at "2016-01-01 00:00:00"
+  end
+
+  factory :session_1_week_ago, class: Session do
+    skill
+    duration 10
+    created_at 6.days.ago
+  end
+
+  factory :session_2_weeks_ago, class: Session do
+    skill
+    duration 10
+    created_at 13.days.ago
+  end
+
+  factory :session_3_weeks_ago, class: Session do
+    skill
+    duration 10
+    created_at 20.days.ago
+  end
+
+  factory :session_4_weeks_ago, class: Session do
+    skill
+    duration 10
+    created_at 27.days.ago
+  end
+
+  factory :session_2_months_ago, class: Session do
+    skill
+    duration 10
+    created_at 55.days.ago
+  end
+
+
   factory :current_goal, class: Goal do
     num_sessions 2
     session_length 15
