@@ -45,7 +45,6 @@
   postition: relative;
 }
 
-
 .home-button {
   padding: 18px 28px;
   font-size: 22px;
@@ -136,4 +135,21 @@
   margin-left: -20px;
   margin-top: 10px;
   color:white;
+}
+
+.arrow-down {
+  margin-top: 10px;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid white;
+}
+
+.arrow-down:hover {
+  border-top: 20px solid gray;
+
+}
+.side-form {
+  margin-top: 10px;
 }

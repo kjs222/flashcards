@@ -1,6 +1,7 @@
 $(document).ready(function(){
   $(".termList").hide();
   $(".collapseTerms").hide();
+  $(".side-form").hide();
 
   function appendSkill(skill) {
     $("#skills").append(
@@ -44,6 +45,7 @@ $(document).ready(function(){
     var numSessions = $("#num-sessions-current").val()
     var sessionLength = $("#session-length-current").val()
     var weekNumber = $("#week_num-current").val()
+    $("#new-current-goal").fadeOut(600);
     $.ajax({
       method: "POST",
       url: "/api/v1/goals.json",
@@ -66,6 +68,7 @@ $(document).ready(function(){
     var numSessions = $("#num-sessions-next").val()
     var sessionLength = $("#session-length-next").val()
     var weekNumber = $("#week_num-next").val()
+    $("#new-next-goal").fadeOut(600);
     $.ajax({
       method: "POST",
       url: "/api/v1/goals.json",
@@ -84,6 +87,7 @@ $(document).ready(function(){
     var skillNickname = $("#skill-nickname").val()
     var skillDescription = $("#skill-description").val()
     var skillUserId = $("#skill-user").val()
+    $("#new-skill").fadeOut(600);
     $.ajax({
       method: "POST",
       url: "/api/v1/skills.json",
@@ -132,6 +136,10 @@ $(document).ready(function(){
         $('#hide-'+$(this).attr('target')).hide();
         $('#show-'+$(this).attr('target')).show();
     });
+  });
+
+  $(".arrow-down").on('click', function(){
+      $('#'+$(this).attr('target')).fadeIn(600);
   });
 
 });

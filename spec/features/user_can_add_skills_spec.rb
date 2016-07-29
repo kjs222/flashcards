@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.feature "user can see and add skills from dashboard" do
   scenario "user sees skills" do
 
@@ -26,6 +28,9 @@ RSpec.feature "user can see and add skills from dashboard" do
     new_skill_description = "description for skill 1"
 
     visit skills_path
+    within(".new-skill") do
+      page.find(".arrow-down").click
+    end
 
     fill_in("skill-nickname", with: new_skill_nickname)
     fill_in("skill-description", with: new_skill_description)
