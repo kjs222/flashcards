@@ -189,30 +189,38 @@
 }
 
 .flashcard {
-  height: 300px;
-  width: 500px;
-  margin: 10% auto;                                              /* Centers the flashcard on the page */
-  border: 1px solid gray;                            /*  Border makes the animation easier to see. */
-  box-shadow: 2px 2px 2px #000;
+  height: 200px;
+  width: 400px;
+  margin: 10% auto;
+  border: 2px solid #9C7A97;
+  border-radius: 8px;
+
+  box-shadow: 2px 2px 2px #9C7A97;
   -webkit-transform-style: preserve-3d;                                 /* Provides 3D perspective. */
   transition: all 0.3s;                                /* Slows down any transitions (e.g. rotation) */
   -webkit-transition: all 0.3s;
 }
 
-.flipped, .back {
+.flashcard:hover{
+  border: 3px solid #5abcb9;
+}
+
+
+.flipped, .definition {
   transform: rotateX(180deg);
   -webkit-transform: rotateX(180deg);                      /* Rotates flashcard div when applied */
 }
 
-.front, .back {
+.term, .definition {
   position: absolute;
   -webkit-backface-visibility: hidden;           /*  Hides back side of text (it's upside down) */
-  height: 300px;                                   /* Stretches side to inhabit full size of flashcard */
-  width: 500px;
+  height: 180px;                                   /* Stretches side to inhabit full size of flashcard */
+  width: 380px;
   text-align: center;
 }
 
-.front p, .back p {
-  margin-top: 25%;
-  font-size: 3em;
+.term p, .definition p {
+  margin-top: 15%;
+  font-size: 18px;
+  font-family: 'Open Sans';
 }

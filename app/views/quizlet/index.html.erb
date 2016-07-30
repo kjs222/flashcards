@@ -14,10 +14,12 @@
       <% quizset.terms.each do |term| %>
         <div class="stage">
           <div class="flashcard">
-            <div class="front">
+            <div class="term">
+              <%= image_tag "icon_flip.png" %>
               <p><%= term["term"] %></p>
             </div>
-            <div class="back">
+            <div class="definition">
+              <%= image_tag "icon_flip.png" %>
               <p><%= term["definition"] %></p>
             </div>
           </div>
