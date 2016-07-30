@@ -55,23 +55,23 @@ RSpec.describe User, type: :model do
 
   it "adds quizlet credentials" do
     user = create(:user)
-    user.add_quizlet_credentials({"uid" => "x", "credentials" => {"token" => "x-token"}})
+    user.add_quizlet_credentials({"quiz_id" => "x", "credentials" => {"token" => "x-token"}})
     expect(user.quiz_id).to eq("x")
     expect(user.quiz_token).to eq("x-token")
   end
 
   it "gets quiz credentials for cli user" do
     user = create(:user)
-    user.add_quizlet_credentials({"uid" => "x", "credentials" => {"token" => "x-token"}})
+    user.add_quizlet_credentials({"quiz_id" => "x", "credentials" => {"token" => "x-token"}})
     cred = User.get_credentials_for_cli("nickname", "password")
-    expect(cred).to eq({"uid" => user.quiz_id, "token" => user.quiz_token})
+    expect(cred).to eq({"id" => user.id, "quiz_id" => user.quiz_id, "quiz_token" => user.quiz_token})
   end
 
   it "gets user not found as quiz credentials for bad user info" do
     user = create(:user)
-    user.add_quizlet_credentials({"uid" => "x", "credentials" => {"token" => "x-token"}})
+    user.add_quizlet_credentials({"quiz_id" => "x", "credentials" => {"token" => "x-token"}})
     cred = User.get_credentials_for_cli("nickname", "not_password")
-    expect(cred).to eq({"uid" => "User not found", "token" => "User not found"})
+    expect(cred).to eq({"id" => "User not found", "quiz_id" => "User not found", "token" => "User not found"})
   end
 
   it "calculates total points for user" do
