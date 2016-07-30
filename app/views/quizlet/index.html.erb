@@ -12,8 +12,16 @@
 
     <div class="termList" id="set-<%=quizset.id%>">
       <% quizset.terms.each do |term| %>
-        <p><b>Term</b>: <%= term["term"] %></p>
-        <p><b>Definition</b>: <%= term["definition"] %></p>
+        <div class="stage">
+          <div class="flashcard">
+            <div class="front">
+              <p><%= term["term"] %></p>
+            </div>
+            <div class="back">
+              <p><%= term["definition"] %></p>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
 

@@ -151,4 +151,8 @@ $(document).ready(function(){
       $('.'+$(this).attr('target')).show();
   });
 
+  $('.flashcard').on('click', function() {
+    $(this).toggleClass('flipped');
+  });
+
 });
