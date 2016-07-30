@@ -74,13 +74,34 @@ RSpec.describe User, type: :model do
     expect(cred).to eq({"uid" => "User not found", "token" => "User not found"})
   end
 
+  it "calculates total points for user" do
+    user = create(:user)
+    skill = create(:skill, user: user)
+    goal = create(:current_goal, skill: skill)
+    session = create(:session, skill: skill)
+    expect(user.points).to eq(3)
+  end
+
+  it "calculates total points for user" do
+    user = create(:user)
+    skill = create(:skill, user: user)
+    goal = create(:current_goal, skill: skill)
+    session1 = create(:session, skill: skill)
+    session2 = create(:session_2_weeks_ago, skill: skill)
+    expect(user.points).to eq(5)
+  end
+
+  it "calculates current week points for user" do
+    user = create(:user)
+    skill = create(:skill, user: user)
+    goal = create(:current_goal, skill: skill)
+    session_current = create(:session, skill: skill)
+    session_past = create(:session_2_weeks_ago, skill: skill)
+    expect(user.current_week_points).to eq(3)
+  end
 
 
 
 
 
-  #  it "identifies an active need item" do
-  #    active = create(:future_need_item)
-  #    expect(active.active_need_item).to eq(true)
-  #  end
 end

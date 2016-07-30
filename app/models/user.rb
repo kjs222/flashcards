@@ -23,11 +23,11 @@ class User < ApplicationRecord
   end
 
   def session_form_options
-    # byebug
     skills = self.skills.select("skills.*").joins(:goals).where('goals.week_number = ?', current_week).distinct
     skills.pluck(:nickname, :id)
   end
 
+  #change to find or create by
   def self.github_from_omniauth(auth_info)
     where(gh_uid: auth_info['uid']).first_or_create do |user|
       user.gh_uid = auth_info["uid"]
