@@ -55,7 +55,7 @@ RSpec.describe User, type: :model do
 
   it "adds quizlet credentials" do
     user = create(:user)
-    user.add_quizlet_credentials({"quiz_id" => "x", "credentials" => {"token" => "x-token"}})
+    user.add_quizlet_credentials({"uid" => "x", "credentials" => {"token" => "x-token"}})
     expect(user.quiz_id).to eq("x")
     expect(user.quiz_token).to eq("x-token")
   end
@@ -71,7 +71,7 @@ RSpec.describe User, type: :model do
     user = create(:user)
     user.add_quizlet_credentials({"quiz_id" => "x", "credentials" => {"token" => "x-token"}})
     cred = User.get_credentials_for_cli("nickname", "not_password")
-    expect(cred).to eq({"id" => "User not found", "quiz_id" => "User not found", "token" => "User not found"})
+    expect(cred).to eq({"id"=>"User not found", "quiz_id"=>"User not found", "quiz_token"=>"User not found"})
   end
 
   it "calculates total points for user" do
@@ -95,9 +95,9 @@ RSpec.describe User, type: :model do
     user = create(:user)
     skill = create(:skill, user: user)
     goal = create(:current_goal, skill: skill)
-    session_current = create(:session, skill: skill)
+    session_current = skill.sessions.create(duration: 60)
     session_past = create(:session_2_weeks_ago, skill: skill)
-    expect(user.current_week_points).to eq(3)
+    expect(user.current_week_points).to eq(10)
   end
 
 

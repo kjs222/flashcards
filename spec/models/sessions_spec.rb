@@ -59,5 +59,18 @@ RSpec.describe Session, type: :model do
     expect(session.username).to eq(user.name)
   end
 
+  it "calculates duration for a practice session " do
+    skill = create(:skill)
+    session = Session.create(skill_id: skill.id, created_at: 10.minutes.ago)
+    expect(session.calculate_duration).to eq(10)
+  end
+
+  it "finds most recent session for  a given skill" do
+    skill, other_skill = create_list(:skill, 2)
+    most_recent = create(:session, skill: skill)
+    not_most_recent = create(:session_1_week_ago, skill: skill)
+    other_skill_session = create(:session, skill: other_skill)
+    expect(Session.find_recent_by_skill(skill)).to eq(most_recent)
+  end
 
 end

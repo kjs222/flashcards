@@ -30,7 +30,6 @@ class Session < ApplicationRecord
     where(created_at: time_period.weeks.ago..Time.now)
   end
 
-  #needs test
   def self.find_recent_by_skill(skill)
     joins(:skill)
       .where('skills.id = ?', skill.id)
@@ -39,13 +38,8 @@ class Session < ApplicationRecord
       .limit(1).first
   end
 
-  #needs test
   def calculate_duration
     ((Time.now - created_at)/60).round
   end
-
-
-
-
 
 end

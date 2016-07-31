@@ -67,7 +67,7 @@ class User < ApplicationRecord
     if user && user.authenticate(password)
       {"id" => user.id, "quiz_id" => user.quiz_id, "quiz_token" => user.quiz_token}
     else
-      {"id" => "User not found", "uid" => "User not found", "token" => "User not found"}
+      {"id" => "User not found", "quiz_id" => "User not found", "quiz_token" => "User not found"}
     end
   end
 
