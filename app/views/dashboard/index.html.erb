@@ -7,7 +7,11 @@
 
   <div class="current" id="current-goals">
 
-    <h4><span class="number-circle inverse"> <%= @dashboard.current_week_points_available%> </span> Points Available This Week</h4>
+    <h4><span class="number-circle inverse"> <%= @dashboard.current_week_points_available%> </span> Points Available This Week
+    <div class="pull-right">
+      <span class="number-circle inverse"> <%= current_user.current_week_points%> </span> Points Earned This Week</div></h4>
+
+
     <h4>Goals</h4>
     <% if @dashboard.current_goals %>
       <%= render partial: "goal_list" , locals: {goals:  @dashboard.current_goals} %>
@@ -16,15 +20,18 @@
 
   <div class="current" id="current-sessions">
     <h4>Completed This Week:</h4>
+    <table class=table>
     <% @dashboard.sessions.each do |session| %>
       <div class="session">
-        <p><b><%= session.skill.nickname %></b>: <%= session.duration %> minutes, <%= days_from_today session.created_at %> ago</p>
+        <tr>
+        <td><b><%= session.skill.nickname %></b></td>
+        <td><%= session.duration %> minutes</td>
+        <td><%= days_from_today session.created_at %> ago</td>
+        </tr>
       </div>
     <% end %>
-    <div class="pull-right">
-      <h4><span class="number-circle inverse"> <%= current_user.current_week_points%> </span> Points Earned This Week</h4>
+    </table>
 
-    </div>
   </div>
 
   <div class="next" id="next-goals">

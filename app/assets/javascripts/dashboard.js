@@ -6,7 +6,7 @@ $(document).ready(function(){
 
   function appendSkill(skill) {
     $("#skills").append(
-      "<div class='skill'><h4>" + skill.nickname + "</h4><p>" + skill.description + "</p></div>")
+      "<div class='skill'><tr><td><h4>" + skill.nickname + "</h4><p>" + skill.description + "</p></td><td><p>Added 1 minute ago</p></td><td></td></tr></div>")
   }
 
   function appendCurrentGoal(goal_skill) {

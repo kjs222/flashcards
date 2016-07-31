@@ -1,26 +1,40 @@
-<h4>Name</h4>
-<p><%= @user.name %></p>
+<div class="paper col-sm-7 col-md-offset-1">
+  <table class="table">
+    <tr><td>
 
-<h4>Nickname</h4>
-<p><%= @user.nickname %></p>
+    <h4>Name</h4>
+    <p><%= @user.name %></p>
 
-<div class="quizlet">
-<h4>Quizlet Integration</h4>
-<% if @user.quiz_id %>
-  <p>Activated</p>
-  <p>Quizlet Username:<%= @user.quiz_id %></p>
-<% else %>
-  <p>Not Enabled</p>
-  <%= button_to "Enable Quizlet", quizlet_login_path, method: :get %>
-<% end %>
-</div>
+    <h4>Nickname</h4>
+    <p><%= @user.nickname %></p>
 
-<div class="command-line">
-<h4>Command Line App Integration</h4>
-<% if @user.password_digest %>
-  <p>Activated</p>
-<% else %>
-  <p>Not Enabled</p>
-  <%= button_to "Enable Command Line App", edit_user_path(@user), method: :get %>
-<% end %>
+    </td></tr>
+
+    <div class="quizlet">
+    <tr><td>
+
+    <h4>Quizlet Integration</h4>
+    <% if @user.quiz_id %>
+      <p>Activated</p>
+      <p>Quizlet Username:<%= @user.quiz_id %></p>
+    <% else %>
+      <p>Not Enabled</p>
+      <%= button_to "Enable Quizlet", quizlet_login_path, method: :get %>
+    <% end %>
+
+    </td></tr>
+    </div>
+
+    <div class="command-line">
+    <tr><td>
+    <h4>Command Line App Integration</h4>
+    <% if @user.password_digest %>
+      <p>Activated</p>
+    <% else %>
+      <p>Not Enabled</p>
+      <%= button_to "Enable Command Line App", edit_user_path(@user), method: :get %>
+    <% end %>
+    </div>
+    </td></tr>
+  </table>
 </div>

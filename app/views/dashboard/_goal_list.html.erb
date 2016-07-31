@@ -1,5 +1,11 @@
-<% goals.each do |goal| %>
-  <div class="goal">
-    <p><b><%= goal.skill.nickname %></b>: <%= goal.num_sessions %> practice session(s), <%= goal.session_length %> minutes each</p>
-  </div>
-<% end %>
+<table class=table>
+  <% goals.each do |goal| %>
+    <div class="goal">
+      <tr>
+      <td><b><%= goal.skill.nickname %></b></td>
+      <td><%= goal.num_sessions %> practice session(s)</td>
+      <td><%= goal.session_length %> minutes each</td>
+      </tr>
+    </div>
+  <% end %>
+</table>

@@ -19,6 +19,10 @@ class Skill < ApplicationRecord
     sessions.sum(:duration)
   end
 
+  def points_earned
+    total_practice_time/6
+  end
+
   def last_practiced_date
     sessions.order('created_at DESC').pluck(:created_at).first
   end

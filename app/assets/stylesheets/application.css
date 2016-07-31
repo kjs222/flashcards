@@ -14,6 +14,9 @@
  *= require_self
  *= require bootstrap.min
  */
+ body {
+   font-family: 'Open Sans', !important;
+ }
 
  .tab-container{
    margin-top: -50px;
@@ -93,6 +96,7 @@
  .sidebar {
    background-color: #5abcb9;
    padding: 20px;
+   padding-bottom: 300px;
  }
  .sidebar h4 {
    color: white;

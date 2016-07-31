@@ -11,11 +11,11 @@ class Dashboard
   end
 
   def current_week_points_available
-    @current_goals.sum("num_sessions * session_length")
+    @current_goals.sum("num_sessions * session_length")/6
   end
-  
+
   def next_week_points_available
-    @next_goals.sum("num_sessions * session_length")
+    @next_goals.sum("num_sessions * session_length")/6
   end
 
 
