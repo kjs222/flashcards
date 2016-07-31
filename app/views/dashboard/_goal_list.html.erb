@@ -1,11 +1,11 @@
-<table class=table>
+<table class=table  id="<%=type%>-goals">
   <% goals.each do |goal| %>
+  <tr>
     <div class="goal">
-      <tr>
       <td><b><%= goal.skill.nickname %></b></td>
       <td><%= goal.num_sessions %> practice session(s)</td>
       <td><%= goal.session_length %> minutes each</td>
-      </tr>
     </div>
+  </tr>
   <% end %>
 </table>

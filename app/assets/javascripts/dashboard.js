@@ -11,12 +11,13 @@ $(document).ready(function(){
 
   function appendCurrentGoal(goal_skill) {
     $("#current-goals").append(
-      "<div class='goal'><p><b>" + goal_skill[1].nickname + "</b>: " + goal_skill[0].num_sessions + " sessions, " + goal_skill[0].session_length + " minutes</p></div>")
+      "<tr><div class='goal'><td><b>" + goal_skill[1].nickname + "</b></td><td>" + goal_skill[0].num_sessions + " practice session(s)</td><td>" + goal_skill[0].session_length + " minutes each</td></div></tr>")
   }
 
   function appendSession(session_skill) {
+    console.log("this got called")
     $("#current-sessions").append(
-      "<div class='session'><p><b>" + session_skill[1].nickname + "</b>: " + session_skill[0].duration + " minutes, within last hour</p>")
+      "<tr><div class='session'><td><b>" + session_skill[1].nickname + "</b></td><td>" + session_skill[0].duration + " minutes</td><td>less than a minute ago</td></div></tr>")
   }
 
   // figure out how to get combined with above (pass in currnet or next)
