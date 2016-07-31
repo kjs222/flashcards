@@ -1,8 +1,13 @@
 $(document).ready(function(){
-  $(".termList").hide();
-  $(".collapseTerms").hide();
-  $(".side-form").hide();
-  $(".next").hide();
+
+  hideElementsOnLoad()
+
+  function hideElementsOnLoad() {
+    $(".termList").hide();
+    $(".collapseTerms").hide();
+    $(".side-form").hide();
+    $(".next").hide();
+  }
 
   function updatePoints(points, type) {
     var current = parseInt($("#points-" + type).html())
