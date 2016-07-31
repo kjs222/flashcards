@@ -7,9 +7,9 @@
 
   <div class="current">
 
-    <h4><span class="number-circle inverse"> <%= @dashboard.current_week_points_available%> </span> Points Available This Week
+    <h4><span class="number-circle inverse" id="points-available"> <%= @dashboard.current_week_points_available%> </span> Points Available This Week
     <div class="pull-right">
-      <span class="number-circle inverse"> <%= current_user.current_week_points%> </span> Points Earned This Week</div></h4>
+      <span class="number-circle inverse" id="points-earned"> <%= current_user.current_week_points%> </span> Points Earned This Week</div></h4>
 
 
     <h4>Goals</h4>
@@ -34,7 +34,7 @@
   </div>
 
   <div class="next">
-    <h4><span class="number-circle inverse"> <%= @dashboard.next_week_points_available%> </span> Points Available Next Week</h4>
+    <h4><span class="number-circle inverse" id="points-available-next"> <%= @dashboard.next_week_points_available%> </span> Points Available Next Week</h4>
     <h4>Goals</h4>
     <h4>Next Week's Goals</h4>
     <% if @dashboard.next_goals %>

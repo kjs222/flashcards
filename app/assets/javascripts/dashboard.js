@@ -4,29 +4,26 @@ $(document).ready(function(){
   $(".side-form").hide();
   $(".next").hide();
 
+  function updatePoints(points, type) {
+    var current = parseInt($("#points-" + type).html())
+    $("#points-" + type).html(" " + (current + points) + " ")
+  }
+
+
   function appendSkill(skill) {
     $("#skills").append(
       "<div class='skill'><tr><td><h4>" + skill.nickname + "</h4><p>" + skill.description + "</p></td><td><p>Added 1 minute ago</p></td><td></td></tr></div>")
   }
 
-  function appendCurrentGoal(goal_skill) {
-    $("#current-goals").append(
+  function appendGoal(goal_skill, type) {
+    $("#" + type + "-goals").append(
       "<tr><div class='goal'><td><b>" + goal_skill[1].nickname + "</b></td><td>" + goal_skill[0].num_sessions + " practice session(s)</td><td>" + goal_skill[0].session_length + " minutes each</td></div></tr>")
   }
 
   function appendSession(session_skill) {
-    console.log("this got called")
     $("#current-sessions").append(
       "<tr><div class='session'><td><b>" + session_skill[1].nickname + "</b></td><td>" + session_skill[0].duration + " minutes</td><td>less than a minute ago</td></div></tr>")
   }
-
-  // figure out how to get combined with above (pass in currnet or next)
-  function appendNextGoal(goal_skill) {
-    $("#next-goals").append(
-      "<div class='goal'><p><b>" + goal_skill[1].nickname + "</b>: " + goal_skill[0].num_sessions + " sessions, " + goal_skill[0].session_length + " minutes</p></div>")
-  }
-
-
 
   $(function(){
     var $select = $('.num-sessions');
@@ -47,6 +44,7 @@ $(document).ready(function(){
     var numSessions = $("#num-sessions-current").val()
     var sessionLength = $("#session-length-current").val()
     var weekNumber = $("#week_num-current").val()
+    var points = Math.floor((numSessions * sessionLength)/6)
     $("#new-current-goal").fadeOut(600);
     $.ajax({
       method: "POST",
@@ -54,7 +52,8 @@ $(document).ready(function(){
       dataType: "JSON",
       data: {goal: {skill_id: skillId, num_sessions: numSessions, session_length: sessionLength, week_number: weekNumber}},
       success: function(newGoal) {
-        appendCurrentGoal(newGoal)
+        appendGoal(newGoal, "current")
+        updatePoints(points, "available")
         $('#skill-id-session')
           .append($('<option>', { value : newGoal[0].skill_id })
           .text(newGoal[1].nickname));
@@ -64,12 +63,13 @@ $(document).ready(function(){
       }
     })
   });
-  // dry this up
+  // dry this up - can just take in current/next i think
   $("#create-next-goal").on('click', function(){
     var skillId = $("#skill-id-next").val()
     var numSessions = $("#num-sessions-next").val()
     var sessionLength = $("#session-length-next").val()
     var weekNumber = $("#week_num-next").val()
+    var points = Math.floor((numSessions * sessionLength)/6)
     $("#new-next-goal").fadeOut(600);
     $.ajax({
       method: "POST",
@@ -77,7 +77,8 @@ $(document).ready(function(){
       dataType: "JSON",
       data: {goal: {skill_id: skillId, num_sessions: numSessions, session_length: sessionLength, week_number: weekNumber}},
       success: function(newGoal) {
-        appendNextGoal(newGoal)
+        appendGoal(newGoal, "next")
+        updatePoints(points, "available-next")
         $('#skill-id-next').prop('selectedIndex',0);
         $('#num-sessions-next').prop('selectedIndex',0);
         $('#session-length-next').prop('selectedIndex',0);
@@ -118,6 +119,8 @@ $(document).ready(function(){
       data: {session: {skill_id: skillId, duration: duration}},
       success: function(newSession) {
         appendSession(newSession)
+        updatePoints(Math.floor(duration/6), "earned")
+        updatePoints(Math.floor(duration/6), "total")
         $('#skill-id-session').prop('selectedIndex',0);
         $('#session-length-log').prop('selectedIndex',0);
       }
