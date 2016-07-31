@@ -1,9 +1,7 @@
 require 'simplecov'
 SimpleCov.start 'rails'
 require 'factory_girl_rails'
-# require 'support/factory_girl'
 require 'selenium/webdriver'
-
 
 module StubOmniauth
   def stub_omniauth
