@@ -1,6 +1,21 @@
 $(document).ready(function(){
 
   hideElementsOnLoad()
+  renderChartOnLoad()
+
+
+  function renderChartOnLoad(){
+    $.ajax({
+      method: "GET",
+      url: "/api/v1/sessions/statistics.json",
+      dataType: "JSON",
+      data: {period: 1},
+      success: function(chartInfo) {
+        renderChart(chartInfo, "week")
+      }
+    });
+  }
+
 
   function hideElementsOnLoad() {
     $(".termList").hide();

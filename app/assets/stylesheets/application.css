@@ -54,11 +54,11 @@
 
 
 #grad {
-  background: #399e5a;
-  background: -webkit-linear-gradient(-90deg, #399e5a, #63E2C6);
-  background: -o-linear-gradient(-90deg, #399e5a, #63E2C6);
-  background: -moz-linear-gradient(-90deg, #399e5a, #63E2C6);
-  background: linear-gradient(-90deg, #399e5a, #63E2C6);
+  background: #02918C;
+  background: -webkit-linear-gradient(-90deg, #02918C, #63E2C6);
+  background: -o-linear-gradient(-90deg, #02918C, #63E2C6);
+  background: -moz-linear-gradient(-90deg, #02918C, #63E2C6);
+  background: linear-gradient(-90deg, #02918C, #63E2C6);
 }
 
 .home-integrate {
@@ -90,7 +90,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-height: 180px;
+  max-height: 100px;
 }
 
  .sidebar {
