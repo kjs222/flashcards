@@ -2,6 +2,9 @@ $(document).ready(function(){
 
   hideElementsOnLoad()
 
+
+
+
   function hideElementsOnLoad() {
     $(".termList").hide();
     $(".collapseTerms").hide();
@@ -56,6 +59,70 @@ $(document).ready(function(){
         $select.append($('<option id=option-' + i +'></option>').val(i).html(i))
     }
   })
+
+
+  $(".chart-button").on('click', function(){
+    var type = $(this).attr('target')
+    var weeks = $(this).attr('value')
+    $.ajax({
+      method: "GET",
+      url: "/api/v1/sessions/statistics.json",
+      dataType: "JSON",
+      data: {period: weeks},
+      success: function(chartInfo) {
+        renderChart(chartInfo, type)
+      }
+    })
+  });
+
+  function renderChart(chartData, type) {
+    $(".charts").hide()
+    $("#" + type + "-chart").show()
+    var options = {
+        scales: {
+            yAxes: [{
+                display: true,
+                ticks: {
+                    beginAtZero: true
+                },
+            }]
+        }
+    };
+    var data = {
+        labels: chartData[0],
+        datasets: [
+            {
+                label: "PRACTICE",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(75,192,192,0.4)",
+                borderColor: "rgba(75,192,192,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(75,192,192,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: chartData[1],
+                spanGaps: false,
+            }
+        ]
+    };
+
+    var element = document.getElementById(type + '-chart').getContext('2d');
+
+    new Chart(element, {
+      type: 'line',
+      data: data
+    });
+  }
 
   $(".create-goal").on('click', function(){
     var type = $(this).attr('target')

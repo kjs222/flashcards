@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "/account", to: "users#show", as: :account
 
   get "/api/v1/authenticate", to: "api/v1/users#show"
+  get "/api/v1/sessions/statistics", to: "api/v1/sessions/statistics#index"
   post "/api/v1/skills", to: "api/v1/skills#create"
   post "/api/v1/goals", to: "api/v1/goals#create"
   post "/api/v1/sessions", to: "api/v1/sessions#create"
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   resources :skills, only: [:index]
   resources :quizlet, only: [:index]
   resources :activity, only: [:index]
+  resources :statistics, only: [:index]
 
   namespace :api do
     namespace :v1 do
