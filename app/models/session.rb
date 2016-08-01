@@ -8,17 +8,22 @@ class Session < ApplicationRecord
   end
 
   def self.data_for_charts(user, time_period)
-    sessions = sessions_for_charts(user, time_period.to_i)
-    sessions.get_data_for_charts(time_period.to_i)
+    interval = time_period == 52 ? "month" : "day"
+    start_date = time_period.weeks.ago
+    #self is correct here (just the user's sessions)
+    time_series_session_data(user, start_date, Time.now.utc, interval)
+    # sessions = sessions_for_charts(user, time_period.to_i)
+    # sessions.get_data_for_charts(time_period.to_i)
   end
 
   def self.get_data_for_charts(time_period)
     interval = time_period == 52 ? "month" : "day"
     start_date = time_period.weeks.ago
-    time_series_session_data(start_date, Time.now.utc, interval)
+    #self is correct here (just the user's sessions)
+    self.time_series_session_data(start_date, Time.now.utc, interval)
   end
 
-  def self.time_series_session_data(start_date, end_date, interval)
+  def self.time_series_session_data(user, start_date, end_date, interval)
     result = ActiveRecord::Base.connection.exec_query("SELECT
         date_trunc('#{interval}', date) as period,
         coalesce(minutes,0) AS minutes
@@ -40,8 +45,32 @@ class Session < ApplicationRecord
     [get_dates(result, interval), get_values(result)]
   end
 
+  # def self.time_series_session_data(start_date, end_date, interval)
+  #   result = ActiveRecord::Base.connection.exec_query("SELECT
+  #       date_trunc('#{interval}', date) as period,
+  #       coalesce(minutes,0) AS minutes
+  #     FROM
+  #       generate_series(
+  #         date_trunc('#{interval}', '#{start_date}'::date),
+  #         date_trunc('#{interval}', '#{end_date}'::date),
+  #         '1 #{interval}') AS date
+  #     LEFT OUTER JOIN
+  #     (SELECT
+  #        date_trunc('#{interval}', sessions.created_at) as period,
+  #        sum(sessions.duration) as minutes
+  #      FROM sessions
+  #      WHERE
+  #        created_at >= '#{start_date}'
+  #        AND created_at <= '#{end_date}'
+  #        GROUP BY period) results
+  #      ON (date = results.period)").rows
+  #   [get_dates(result, interval), get_values(result)]
+  # end
+
+  #this seems obsolete now = need to get this in the above
   def self.sessions_for_charts(user, time_period)
     # where(created_at: time_period.weeks.ago..Time.now)
+    #this seems to limit it to current user
     joins(:skill).where('skills.user_id = ?', user.id).where('sessions.created_at > ? AND sessions.created_at <= ?', time_period.weeks.ago, Time.now)
   end
 

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "User sees charts" do
-  scenario "User sees last weeks chart when navigating" do
+  scenario "User sees last weeks chart when navigating", js: true do
 
     user = User.create(gh_uid: 1, name: "Kerry Sheldon", nickname: "kjs222", gh_token: ENV['GITHUB_TOKEN'], email: "myemail@email.com")
 
@@ -11,23 +11,19 @@ RSpec.feature "User sees charts" do
 
     session = skill.sessions.create(duration: 60, created_at: session_date)
 
-
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 
-    visit statistics_path
+    visit dashboard_index_path
+    click_on "All"
+    click_on "Statistics"
 
-    
+    expect(current_path).to eq(statistics_path)
 
+    #NOT WORKING DUE TO JQUERY
 
-    # expect(response).to be_success
-    #
-    # json = JSON.parse(response.body)
-    #
-    # expect(json.first.count).to eq(13)
-    # expect(json.first.include?(session_date.strftime('%B %Y'))).to eq(true)
-    #
-    # expect(json.last.count(0)).to eq(12)
-    # expect(json.last.count(60)).to eq(1)
-
+    # expect(page).to have_content(session_date.strftime('%b %d'))
+    # expect(page).to have_content((session_date + 1.days).strftime('%b %d'))
+    # expect(page).to have_content("Total Practice in Minutes")
 
   end
+end
