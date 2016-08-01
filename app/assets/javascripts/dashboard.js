@@ -2,9 +2,6 @@ $(document).ready(function(){
 
   hideElementsOnLoad()
 
-
-
-
   function hideElementsOnLoad() {
     $(".termList").hide();
     $(".collapseTerms").hide();
