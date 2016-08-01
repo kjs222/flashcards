@@ -1,8 +1,10 @@
 $(document).ready(function(){
 
   hideElementsOnLoad()
-  renderChartOnLoad()
 
+  $(".statistics-nav").on('click', function(){
+    renderChartOnLoad();
+  });
 
   function renderChartOnLoad(){
     $.ajax({
@@ -15,7 +17,6 @@ $(document).ready(function(){
       }
     });
   }
-
 
   function hideElementsOnLoad() {
     $(".termList").hide();

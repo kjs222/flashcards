@@ -18,6 +18,10 @@
    font-family: 'Open Sans', !important;
  }
 
+.navbar-inverse {
+  height: 60px;
+  z-index: 9999;
+}
  .tab-container{
    margin-top: -50px;
    text-align: right;
@@ -40,6 +44,10 @@
    border-bottom: 4px solid #9C7A97;
  }
 
+ .nav-image {
+   max-height: 50px;
+   margin-top: -10px;
+ }
 
  .home-bar {
     min-height: 70vh;
@@ -51,7 +59,6 @@
     color: white;
     font-family: 'Open Sans';
 }
-
 
 #grad {
   background: #02918C;
@@ -85,6 +92,20 @@
     margin-top: 50px;
 }
 
+.flash-button {
+  padding: 9px 14px;
+  font-size: 14px;
+  line-height: normal;
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+    background: none;
+    border: 2px solid #9C7A97;
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+    color: #9C7A97,
+}
 
 .feature-img {
   display: block;
@@ -96,7 +117,6 @@
  .sidebar {
    background-color: #5abcb9;
    padding: 20px;
-   padding-bottom: 300px;
  }
  .sidebar h4 {
    color: white;
@@ -126,6 +146,7 @@
   width: 50px;
   border-radius: 50px;
   margin-left: -20px;
+
 }
 .name {
   margin-top: -10px;
@@ -186,7 +207,6 @@
 .side-form {
   margin-top: 10px;
 }
-
 
 .stage {
  -webkit-perspective: 1000;                   /* Sets up your viewpoint for seeing the animation */

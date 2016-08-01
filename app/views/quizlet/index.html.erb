@@ -1,32 +1,54 @@
 <div class="paper col-sm-7 col-md-offset-1">
 
 <h2>Your Quizsets</h2>
+
+  <table class="table">
+
+
   <% @quizsets.each do |quizset| %>
-  <div class="<%=quizset.title%>">
-    <h4>Title: <%= quizset.title %></h4>
-    <p>Created: <%= unix_to_days_from_today(quizset.created_date) %> ago</p>
-    <p>Number of Cards: <%= quizset.term_count %></p>
-    <%= button_to "Practice On Quizlet", "https://www.quizlet.com/#{quizset.url}" %>
-    <button type="button" class="expandTerms" id="show-<%=quizset.id%>" target="<%=quizset.id%>"  name="button">Show Flashcards</button>
-    <button type="button" class="collapseTerms" id="hide-<%=quizset.id%>" target="<%=quizset.id%>" name="button">Hide Flashcards</button>
+    <tr>
+      <td>
+      <div class="<%=quizset.title%>">
+        <h4>Title: <%= quizset.title %></h4>
 
-    <div class="termList" id="set-<%=quizset.id%>">
-      <% quizset.terms.each do |term| %>
-        <div class="stage">
-          <div class="flashcard">
-            <div class="term">
-              <%= image_tag "icon_flip.png" %>
-              <p><%= term["term"] %></p>
+        <button type="button" class="expandTerms flash-button" id="show-<%=quizset.id%>" target="<%=quizset.id%>"  name="button">Show Flashcards</button>
+
+        <button type="button" class="collapseTerms flash-button" id="hide-<%=quizset.id%>" target="<%=quizset.id%>" name="button">Hide Flashcards</button>
+
+        <div class="termList" id="set-<%=quizset.id%>">
+          <% quizset.terms.each do |term| %>
+            <div class="stage">
+              <div class="flashcard">
+                <div class="term">
+                  <%= image_tag "icon_flip.png" %>
+                  <p><%= term["term"] %></p>
+                </div>
+                <div class="definition">
+                  <%= image_tag "icon_flip.png" %>
+                  <p><%= term["definition"] %></p>
+                </div>
+              </div>
             </div>
-            <div class="definition">
-              <%= image_tag "icon_flip.png" %>
-              <p><%= term["definition"] %></p>
-            </div>
-          </div>
+          <% end %>
         </div>
-      <% end %>
-    </div>
 
-  </div>
+
+      </td>
+      <td>
+        <p>Created <%= unix_to_days_from_today(quizset.created_date) %> ago</p>
+
+        <p><%= quizset.term_count %> Cards</p>
+        <%= link_to "Practice On Quizlet", "https://www.quizlet.com/#{quizset.url}" %>
+      </td>
+
+
+
+
+
+      </div>
+
+    </td>
+  </tr>
   <% end %>
+</table>
 </div>
