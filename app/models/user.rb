@@ -44,7 +44,7 @@ class User < ApplicationRecord
   end
 
   def current_week
-    current_week = Date.today.cweek
+     Date.parse(Time.now.utc.to_s).cweek
   end
 
   def points(points=0)

@@ -68,21 +68,21 @@ FactoryGirl.define do
     num_sessions 2
     session_length 15
     skill
-    week_number Date.today.cweek
+    week_number Date.parse(Time.now.utc.to_s).cweek
   end
 
   factory :next_week_goal, class: Goal do
     num_sessions 2
     session_length 15
     skill
-    week_number (Date.today.cweek + 1)
+    week_number (Date.parse(Time.now.utc.to_s).cweek + 1)
   end
 
   factory :past_goal, class: Goal do
     num_sessions 2
     session_length 15
     skill
-    week_number (Date.today.cweek - 1)
+    week_number (Date.parse(Time.now.utc.to_s).cweek - 1)
   end
 
 

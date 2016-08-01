@@ -12,8 +12,4 @@ module TimeHelper
     Date.today.cweek + 1
   end
 
-  def date_trunc
-
-  end
-
 end

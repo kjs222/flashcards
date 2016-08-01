@@ -8,6 +8,7 @@ class Dashboard
     @current_goals = user.current_goals
     @next_goals = user.next_week_goals
     @sessions = user.current_sessions
+
   end
 
   def current_week_points_available

@@ -39,17 +39,6 @@ class Session < ApplicationRecord
        ON (date = results.period)").rows
     [get_dates(result, interval), get_values(result)]
   end
-  #
-  # def self.get_data_by_month
-  #   data = group_by_month(:created_at, format: "%B %Y").sum(:duration)
-  #   [data.keys, data.values]
-  # end
-  #
-  # def self.get_data_by_day
-  #   data = group_by_day(:created_at, format: '%B %d').sum(:duration)
-  #   [data.keys, data.values]
-  # end
-
 
   def self.sessions_for_charts(time_period)
     where(created_at: time_period.weeks.ago..Time.now)
