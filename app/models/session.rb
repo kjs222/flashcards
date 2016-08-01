@@ -13,18 +13,42 @@ class Session < ApplicationRecord
   end
 
   def self.get_data_for_charts(time_period)
-    time_period == 52 ? self.get_data_by_month : self.get_data_by_day
+    interval = time_period == 52 ? "month" : "day"
+    start_date = time_period.weeks.ago
+    time_series_session_data(start_date, Time.now, interval)
   end
 
-  def self.get_data_by_month
-    data = group_by_month(:created_at, format: "%B %Y").sum(:duration)
-    [data.keys, data.values]
+  def self.time_series_session_data(start_date, end_date, interval)
+    result = ActiveRecord::Base.connection.exec_query("SELECT
+        date_trunc('#{interval}', date) as period,
+        coalesce(minutes,0) AS minutes
+      FROM
+        generate_series(
+          date_trunc('#{interval}', '#{start_date}'::date),
+          date_trunc('#{interval}', '#{end_date}'::date),
+          '1 #{interval}') AS date
+      LEFT OUTER JOIN
+      (SELECT
+         date_trunc('#{interval}', sessions.created_at) as period,
+         sum(sessions.duration) as minutes
+       FROM sessions
+       WHERE
+         created_at >= '#{start_date}'
+         AND created_at <= '#{end_date}'
+         GROUP BY period) results
+       ON (date = results.period)").rows
+    [get_dates(result, interval), get_values(result)]
   end
-
-  def self.get_data_by_day
-    data = group_by_day(:created_at, format: '%B %d').sum(:duration)
-    [data.keys, data.values]
-  end
+  #
+  # def self.get_data_by_month
+  #   data = group_by_month(:created_at, format: "%B %Y").sum(:duration)
+  #   [data.keys, data.values]
+  # end
+  #
+  # def self.get_data_by_day
+  #   data = group_by_day(:created_at, format: '%B %d').sum(:duration)
+  #   [data.keys, data.values]
+  # end
 
 
   def self.sessions_for_charts(time_period)
@@ -42,49 +66,17 @@ class Session < ApplicationRecord
   def calculate_duration
     ((Time.now - created_at)/60).round
   end
-  def self.time_series_session_data(start_date, end_date, interval)
 
-    result = ActiveRecord::Base.connection.exec_query("SELECT
-        date_trunc('#{interval}', date) as period,
-        coalesce(minutes,0) AS minutes
-      FROM
-        generate_series(
-          '#{start_date}'::date,
-          '#{end_date}'::date,
-          '1 #{interval}') AS date
-      LEFT OUTER JOIN
-      (SELECT
-         date_trunc('#{interval}', sessions.created_at) as period,
-         sum(sessions.duration) as minutes
-       FROM sessions
-       WHERE
-         created_at >= '#{start_date}'
-         AND created_at <= '#{end_date}'
-         GROUP BY period) results
-       ON (date = results.period)")
-      result.to_hash
+  def self.get_dates(date_value_pairs, interval)
+    date_format = interval == "month" ? '%B %Y' : '%b %d'
+    dates = date_value_pairs.map do |data_point|
+      Date.parse(data_point.first).strftime(date_format)
+    end
   end
 
-  # def self.test_sql
-  #   result = ActiveRecord::Base.connection.exec_query("SELECT
-  #       date,
-  #       coalesce(sum,0) AS sum
-  #     FROM
-  #       generate_series(
-  #         '2016-07-20 00:00'::timestamp,
-  #         '2016-08-01 00:00'::timestamp,
-  #         '1 day') AS date
-  #     LEFT OUTER JOIN
-  #     (SELECT
-  #        date_trunc('day', sessions.created_at) as day,
-  #        sum(sessions.duration) as sum
-  #      FROM sessions
-  #      WHERE
-  #        created_at >= '2016-07-20 00:00'
-  #        AND created_at < '2016-08-09 00:00'
-  #        GROUP BY day) results
-  #      ON (date = results.day)")
-  #   result.to_hash
-  # end
+  def self.get_values(date_value_pairs)
+    date_value_pairs.map {|data_point| data_point.last}
+  end
+
 
 end
