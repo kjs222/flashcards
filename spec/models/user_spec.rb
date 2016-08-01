@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
     future_goal = create(:next_week_goal, skill: skill)
 
     expect(user.current_goals.count).to eq(1)
-    expect(user.current_goals.first.week_number).to eq(Date.today.cweek)
+    expect(user.current_goals.first.week_number).to eq(Date.parse(Time.now.utc.to_s).cweek)
 
   end
 
@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
     future_goal = create(:next_week_goal, skill: skill)
 
     expect(user.next_week_goals.count).to eq(1)
-    expect(user.next_week_goals.first.week_number).to eq(Date.today.cweek + 1)
+    expect(user.next_week_goals.first.week_number).to eq(Date.parse(Time.now.utc.to_s).cweek + 1)
   end
 
   it "generates skill option lists" do

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include TimeHelper
+
   has_secure_password :validations => false
   has_many :skills
   has_many :goals, through: :skills
@@ -10,7 +12,7 @@ class User < ApplicationRecord
   end
 
   def next_week_goals
-    goals.where('goals.week_number = ?', current_week + 1)
+    goals.where('goals.week_number = ?', next_week)
   end
 
   def current_sessions
@@ -41,10 +43,6 @@ class User < ApplicationRecord
 
   def add_quizlet_credentials(auth_info)
     update_attributes(quiz_id: auth_info["uid"], quiz_token:auth_info["credentials"]["token"])
-  end
-
-  def current_week
-     Date.parse(Time.now.utc.to_s).cweek
   end
 
   def points(points=0)

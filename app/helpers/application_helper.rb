@@ -1,10 +1,10 @@
 module ApplicationHelper
   def current_week_number
-    Date.today.cweek
+    Date.parse(Time.now.utc.to_s).cweek
   end
 
   def next_week_number
-    Date.today.cweek + 1
+    current_week_number + 1
   end
 
   def days_from_today(date)
