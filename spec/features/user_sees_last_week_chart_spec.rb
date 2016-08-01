@@ -14,7 +14,6 @@ RSpec.feature "User sees charts" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 
     visit dashboard_index_path
-    click_on "All"
     click_on "Statistics"
 
     expect(current_path).to eq(statistics_path)
