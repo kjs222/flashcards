@@ -18,9 +18,10 @@ RSpec.feature "User sees charts" do
     click_on "Statistics"
 
     expect(current_path).to eq(statistics_path)
-
-    #NOT WORKING DUE TO JQUERY
-
+    # sleep(5)
+    #
+    # #NOT WORKING DUE TO JQUERY
+    #
     # expect(page).to have_content(session_date.strftime('%b %d'))
     # expect(page).to have_content((session_date + 1.days).strftime('%b %d'))
     # expect(page).to have_content("Total Practice in Minutes")
