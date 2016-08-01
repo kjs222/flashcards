@@ -7,8 +7,8 @@ class Session < ApplicationRecord
     skill.user.name
   end
 
-  def self.data_for_charts(time_period)
-    sessions = self.sessions_for_charts(time_period.to_i)
+  def self.data_for_charts(user, time_period)
+    sessions = sessions_for_charts(user, time_period.to_i)
     sessions.get_data_for_charts(time_period.to_i)
   end
 
@@ -40,8 +40,9 @@ class Session < ApplicationRecord
     [get_dates(result, interval), get_values(result)]
   end
 
-  def self.sessions_for_charts(time_period)
-    where(created_at: time_period.weeks.ago..Time.now)
+  def self.sessions_for_charts(user, time_period)
+    # where(created_at: time_period.weeks.ago..Time.now)
+    joins(:skill).where('skills.user_id = ?', user.id).where('sessions.created_at > ? AND sessions.created_at <= ?', time_period.weeks.ago, Time.now)
   end
 
   def self.find_recent_by_skill(skill)
