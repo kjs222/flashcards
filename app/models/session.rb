@@ -15,7 +15,7 @@ class Session < ApplicationRecord
   def self.get_data_for_charts(time_period)
     interval = time_period == 52 ? "month" : "day"
     start_date = time_period.weeks.ago
-    time_series_session_data(start_date, Time.now, interval)
+    time_series_session_data(start_date, Time.now.utc, interval)
   end
 
   def self.time_series_session_data(start_date, end_date, interval)

@@ -76,20 +76,14 @@ $(document).ready(function(){
     $(".charts").hide()
     $("#" + type + "-chart").show()
     var options = {
-        scales: {
-            yAxes: [{
-                display: true,
-                ticks: {
-                    beginAtZero: true
-                },
-            }]
-        }
-    };
+        responsive: true,
+        maintainAspectRatio: true
+    }
     var data = {
         labels: chartData[0],
         datasets: [
             {
-                label: "PRACTICE",
+                label: "Total Practice Minutes",
                 fill: false,
                 lineTension: 0.1,
                 backgroundColor: "rgba(75,192,192,0.4)",
@@ -117,7 +111,9 @@ $(document).ready(function(){
 
     new Chart(element, {
       type: 'line',
-      data: data
+      data: data,
+      options: options
+
     });
   }
 

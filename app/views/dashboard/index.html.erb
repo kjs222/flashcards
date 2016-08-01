@@ -18,8 +18,9 @@
     <% end %>
   </div>
 
-  <h4>Completed This Week:</h4>
+
   <div class="current">
+    <h4>Completed This Week:</h4>
     <table class=table id="current-sessions">
     <% @dashboard.sessions.each do |session| %>
     <tr>
@@ -35,7 +36,6 @@
 
   <div class="next">
     <h4><span class="number-circle inverse" id="points-available-next"> <%= @dashboard.next_week_points_available%> </span> Points Available Next Week</h4>
-    <h4>Goals</h4>
     <h4>Next Week's Goals</h4>
     <% if @dashboard.next_goals %>
       <%= render partial: "goal_list" , locals: {goals:  @dashboard.next_goals, type: "next"} %>

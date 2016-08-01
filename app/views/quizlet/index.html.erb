@@ -7,8 +7,8 @@
     <p>Created: <%= unix_to_days_from_today(quizset.created_date) %> ago</p>
     <p>Number of Cards: <%= quizset.term_count %></p>
     <%= button_to "Practice On Quizlet", "https://www.quizlet.com/#{quizset.url}" %>
-    <button type="button" class="expandTerms" id="show-<%=quizset.id%>" target="<%=quizset.id%>"  name="button">Show Terms</button>
-    <button type="button" class="collapseTerms" id="hide-<%=quizset.id%>" target="<%=quizset.id%>" name="button">Hide Terms</button>
+    <button type="button" class="expandTerms" id="show-<%=quizset.id%>" target="<%=quizset.id%>"  name="button">Show Flashcards</button>
+    <button type="button" class="collapseTerms" id="hide-<%=quizset.id%>" target="<%=quizset.id%>" name="button">Hide Flashcards</button>
 
     <div class="termList" id="set-<%=quizset.id%>">
       <% quizset.terms.each do |term| %>

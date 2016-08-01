@@ -10,10 +10,10 @@ RSpec.feature "user sees quizlet terms" do
        within(".technical") do
          expect(page).to_not have_content("second
          oauth technical step")
-         click_on "Show Terms"
+         click_on "Show Flashcards"
          expect(page).to have_content("second
          oauth technical step")
-         click_on "Hide Terms"
+         click_on "Hide Flashcards"
          expect(page).to_not have_content("second
          oauth technical step")
        end

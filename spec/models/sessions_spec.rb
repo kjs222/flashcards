@@ -21,32 +21,35 @@ RSpec.describe Session, type: :model do
   end
 
   it "gets session duration sum by day" do
-    session1 = create(:session_fixed_date)
-    session2 = create(:session_fixed_date)
+    user = create(:user)
+    skill = create(:skill, user: user)
+    session1 = skill.sessions.create(duration: 60, created_at: "2016-08-01 00:00:00")
+    session2 = skill.sessions.create(duration: 60, created_at: "2016-08-02 00:00:00")
     total_duration = session1.duration + session2.duration
 
-    expect(Session.get_data_by_day).to eq({"January 01" => total_duration})
+    expect(Session.time_series_session_data(session1.created_at, session1.created_at + 2.days, "day")).to eq([["Aug 01", "Aug 02", "Aug 03"], [session1.duration, session2.duration, 0]])
   end
 
   it "gets session duration sum by month" do
-    session1 = create(:session_fixed_date)
-    session2 = create(:session_fixed_date)
+    user = create(:user)
+    skill = create(:skill, user: user)
+    session1 = skill.sessions.create(duration: 60, created_at: "2016-08-01 00:00:00")
+    session2 = skill.sessions.create(duration: 60, created_at: "2016-08-01 00:00:00")
     total_duration = session1.duration + session2.duration
 
-    expect(Session.get_data_by_month).to eq({"January 2016" => total_duration})
+    expect(Session.time_series_session_data(session1.created_at, session1.created_at + 1.days, "month")).to eq([["August 2016"], [total_duration]])
   end
 
   it "gets correct data in right format based on time period" do
     session_1_week_ago = create(:session_1_week_ago)
     session_2_weeks_ago = create(:session_2_weeks_ago)
-    session_3_weeks_ago = create(:session_3_weeks_ago)
     session_4_weeks_ago = create(:session_4_weeks_ago)
     session_2_months_ago = create(:session_2_months_ago)
 
-    expect(Session.data_for_charts(1).count).to eq(1)
+    expect(Session.data_for_charts(2).count).to eq(2)
     expect(Session.data_for_charts(1).first.first.include?("2016")).to be(false)
-    expect(Session.data_for_charts(52).first.first.include?("2016")).to be(true)
-    expect(Session.data_for_charts(52).first.last).to eq(10)
+    expect(Session.data_for_charts(52).first.first.include?("2015")).to be(true)
+    expect(Session.data_for_charts(52).last.count).to eq(13)
 
 
   end
