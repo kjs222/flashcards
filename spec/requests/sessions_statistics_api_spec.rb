@@ -11,7 +11,6 @@ RSpec.describe "Sessions Statistics API", :type => :request do
     session_date = 5.days.ago
     session = skill.sessions.create(duration: 60, created_at: 5.days.ago)
 
-    # get "/api/v1/sessions/statistics?period=1&user_id=#{user.id}"
     get '/api/v1/sessions/statistics?period=1'
 
     expect(response).to be_success

@@ -59,16 +59,18 @@
       </div>
 
       <div class="container-fluid" id="log-session">
-        <h4>Log a Practice Session</h4>
-        <%= form_for current_user do |f| %>
-          <div class="form-group">
-            <%= f.label :skill %>
-            <%= select(:skill_nickname, :skill_id, current_user.session_form_options, {}, :id => "skill-id-session", :class=> "form-control") %>
-            <% end  %>
-            <label for="session-length">Duration</label>
-            <select class="form-control session-length" id="session-length-log"></select>
-          </div>
-          <input class="btn btn-default pull-right" id="create-session" type="button" name="submit" value="Log Session">
+        <% if current_user.current_goals.count > 0 %>
+          <h4>Log a Practice Session</h4>
+          <%= form_for current_user do |f| %>
+            <div class="form-group">
+              <%= f.label :skill %>
+              <%= select(:skill_nickname, :skill_id, current_user.session_form_options, {}, :id => "skill-id-session", :class=> "form-control") %>
+              <% end  %>
+              <label for="session-length">Duration</label>
+              <select class="form-control session-length" id="session-length-log"></select>
+            </div>
+            <input class="btn btn-default pull-right" id="create-session" type="button" name="submit" value="Log Session">
+        <% end %>
       </div>
 
       <div class="new-current-goal-form container-fluid">
