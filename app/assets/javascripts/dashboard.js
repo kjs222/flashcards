@@ -1,8 +1,6 @@
 $(document).ready(function(){
 
-  hideElementsOnLoad()
-
-  $(".statistics-nav").on('click', function(){
+  $(".statistics.index").ready(function(){
     renderChartOnLoad();
   });
 
@@ -16,13 +14,6 @@ $(document).ready(function(){
         renderChart(chartInfo, "week")
       }
     });
-  }
-
-  function hideElementsOnLoad() {
-    $(".termList").hide();
-    $(".collapseTerms").hide();
-    $(".side-form").hide();
-    $(".next").hide();
   }
 
   function updatePoints(points, type) {
@@ -72,7 +63,6 @@ $(document).ready(function(){
         $select.append($('<option id=option-' + i +'></option>').val(i).html(i))
     }
   })
-
 
   $(".chart-button").on('click', function(){
     var type = $(this).attr('target')
@@ -230,3 +220,20 @@ $(document).ready(function(){
   });
 
 });
+
+(function ($) {
+  var ready = $.fn.ready;
+  $.fn.ready = function (fn) {
+    if (this.context === undefined) {
+      ready(fn);
+    } else if (this.selector) {
+      ready($.proxy(function(){
+        $(this.selector, this.context).each(fn);
+      }, this));
+    } else {
+      ready($.proxy(function(){
+        $(this).each(fn);
+      }, this));
+    }
+  }
+})(jQuery);
