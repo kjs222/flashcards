@@ -18,9 +18,10 @@
    font-family: 'Open Sans', !important;
  }
 
-.navbar-inverse {
+.navbar-default {
   height: 60px;
   z-index: 9999;
+  background-color: white;
 }
  .tab-container{
    margin-top: -50px;
@@ -142,6 +143,7 @@
  }
 
  .profile-photo {
+  margin-top: 5px;
   height: 50px;
   width: 50px;
   border-radius: 50px;

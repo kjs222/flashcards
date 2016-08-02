@@ -12,7 +12,7 @@
 
 
 
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-default">
     <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -24,7 +24,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<%=dashboard_index_path%>">Dashboard</a></li>
+        <li><a href="<%=dashboard_index_path%>">Dashboard</a></li>
         <li><a href="<%=statistics_path%>">Statistics</a></li>
         <li><a href="<%=skills_path%>">Skills</a></li>
         <li><a href="<%=quizlet_index_path%>">Quizlet</a></li>
@@ -102,7 +102,7 @@
 
     </div>
 
-    <div class="">
+    <body class="<%= controller_name %> <%= action_name %>">
       <%= yield %>
     </div>
 
