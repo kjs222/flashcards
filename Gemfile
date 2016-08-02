@@ -35,6 +35,7 @@ gem 'faraday'
 gem 'rspec-rails'
 gem 'public_activity'
 gem 'groupdate'
+gem "skylight"
 
 group :development, :test do
   gem "minitest-rails-capybara"
