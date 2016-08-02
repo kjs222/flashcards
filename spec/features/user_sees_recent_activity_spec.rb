@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "User sees recent activity" do
   scenario "user sees activity" do
-    user = User.create(gh_uid: 1, name: "Kerry Sheldon", nickname: "kjs222", gh_token: ENV['GITHUB_TOKEN'], email: "myemail@email.com", quiz_id: "kjs222", quiz_token: ENV['QUIZLET_TOKEN'])
+    user = User.create(gh_uid: 1, name: "Kerry Sheldon", nickname: "kjs222", gh_token: ENV['GITHUB_TOKEN'], email: "myemail@email.com", quiz_id: "kjs222", quiz_token: ENV['QUIZLET_TOKEN'], image: "image.com")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
     create_list(:skill, 5)
     create_list(:current_goal, 5)
