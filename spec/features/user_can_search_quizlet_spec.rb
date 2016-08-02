@@ -6,15 +6,18 @@ RSpec.feature "User can seach quizlet" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
 
     visit quizlet_index_path
-    click_on "Search Quizlet"
-    expect(current_path).to equal "/quizlet/search"
-    fill_in(:q), with: "SQL"
+    fill_in :q, with: "SQL"
+
+    fill_in :created_by, with: "kjs222"
     click_on "Search"
 
-    expect(page).to have_content("Quizlet Search Results:")
-    # within(".search-1") do
-    #   #content
-    # end
+    expect(current_path).to eq(quizlet_search_path)
+
+    expect(page).to have_content("Quizlet Search Results")
+    expect(page).to have_content("SQL")
+    expect(page).to have_content("kjs222")
+
+
   end
 
 end

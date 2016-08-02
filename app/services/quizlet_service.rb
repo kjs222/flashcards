@@ -1,4 +1,5 @@
 class QuizletService
+  attr_reader :user
 
   def initialize(user)
     @user = user
@@ -7,7 +8,7 @@ class QuizletService
   end
 
   def get_sets
-    response = @connection.get("/2.0/users/#{@user.quiz_id}/sets")
+    response = @connection.get("/2.0/users/#{user.quiz_id}/sets")
     parse(response)
   end
 
