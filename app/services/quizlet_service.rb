@@ -11,9 +11,15 @@ class QuizletService
     parse(response)
   end
 
+
   def get_terms(set_id)
     response = @connection.get("/2.0/sets/#{set_id}/terms")
     parse(response)
+  end
+
+  def get_search_results(searched_term, searched_created_by)
+    response = @connection.get("/2.0/search/sets?q=#{searched_term}&creator=#{searched_created_by}")
+    parse(response)["sets"]
   end
 
   private

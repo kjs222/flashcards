@@ -1,5 +1,18 @@
 <div class="paper col-sm-7 col-md-offset-1">
 
+  <h2>Search Quizlet</h2>
+    <%= form_tag :quizlet_search, method: :get, class: "form-inline" do %>
+      <div class="form-group search-field">
+        <label for="q">Search Name/Description</label>
+        <%= text_field_tag :q, "e.g. SQL", class: "form-control", id: "q"%>
+        <label for="created_by">Quizlet Username</label>
+        <%= text_field_tag :created_by, "e.g. kjs222", class: "form-control", id: "created_by"%>
+        <input type="hidden" name="key" id="token" value="<%current_user.quiz_token%>">
+        <%= submit_tag "Search", class: "flash-button", id: "search-submit" %>
+      </div>
+    <% end %>
+
+
 <h2>Your Quizsets</h2>
 
   <table class="table">

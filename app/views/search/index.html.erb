@@ -1,0 +1,27 @@
+<div class="paper col-sm-7 col-md-offset-1">
+
+  <div class="search-results-container">
+    <h2>Quizlet Search Results</h2>
+    <div class="search-results">
+        <table class="table">
+          <% @search_results.each do |search_set| %>
+          <tr>
+            <td>
+            <div class="<%=search_set.title%>">
+              <h4><b><%= search_set.title %></b></h4>
+              <p><%= search_set.description %></p>
+            </td>
+            <td>
+              <div class="quiz-info">
+              <p>Created by: <%= search_set.created_by %></p>
+              <p><%= search_set.term_count %> Cards</p>
+              <%= link_to "View On Quizlet", "https://www.quizlet.com/#{search_set.url}" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+</div>
