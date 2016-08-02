@@ -10,7 +10,7 @@ RSpec.feature "user can add quizlet to their account" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( user )
     visit dashboard_index_path
     within("nav") do
-      click_link "Account"
+      click_link "Welcome, Kerry Sheldon"
     end
     expect(current_path).to eq(account_path)
     expect(page).to have_content("Kerry Sheldon")

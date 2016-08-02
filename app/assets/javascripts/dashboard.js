@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-  hideElementsOnLoad();
-
   $(".statistics.index").ready(function(){
     renderChartOnLoad();
   });
@@ -16,13 +14,6 @@ $(document).ready(function(){
         renderChart(chartInfo, "week")
       }
     });
-  }
-
-  function hideElementsOnLoad() {
-    $(".termList").hide();
-    $(".collapseTerms").hide();
-    $(".side-form").hide();
-    $(".next").hide();
   }
 
   function updatePoints(points, type) {
@@ -72,7 +63,6 @@ $(document).ready(function(){
         $select.append($('<option id=option-' + i +'></option>').val(i).html(i))
     }
   })
-
 
   $(".chart-button").on('click', function(){
     var type = $(this).attr('target')
