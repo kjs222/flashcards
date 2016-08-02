@@ -4,9 +4,9 @@
     <%= form_tag :quizlet_search, method: :get, class: "form-inline" do %>
       <div class="form-group search-field">
         <label for="q">Search Name/Description</label>
-        <%= text_field_tag :q, "e.g. SQL", class: "form-control", id: "q"%>
+        <%= text_field_tag :q, "", placeholder: "e.g. SQL", class: "form-control"%>
         <label for="created_by">Quizlet Username</label>
-        <%= text_field_tag :created_by, "e.g. kjs222", class: "form-control", id: "created_by"%>
+        <%= text_field_tag :created_by, "", placeholder: "e.g. kjs222", class: "form-control"%>
         <input type="hidden" name="key" id="token" value="<%current_user.quiz_token%>">
         <%= submit_tag "Search", class: "flash-button", id: "search-submit" %>
       </div>
@@ -16,8 +16,6 @@
 <h2>Your Quizsets</h2>
 
   <table class="table">
-
-
   <% @quizsets.each do |quizset| %>
     <tr>
       <td>
@@ -44,23 +42,14 @@
             </div>
           <% end %>
         </div>
-
-
       </td>
       <td>
         <div class="quiz-info">
-
         <p>Created <%= unix_to_days_from_today(quizset.created_date) %> ago</p>
-
         <p><%= quizset.term_count %> Cards</p>
         <%= link_to "Practice On Quizlet", "https://www.quizlet.com/#{quizset.url}" %>
         </div>
       </td>
-
-
-
-
-
       </div>
 
     </td>

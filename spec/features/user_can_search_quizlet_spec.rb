@@ -11,7 +11,7 @@ RSpec.feature "User can seach quizlet" do
     fill_in(:q), with: "SQL"
     click_on "Search"
 
-    expect(page).to have_content("Quizsets Matching Your Search:")
+    expect(page).to have_content("Quizlet Search Results:")
     # within(".search-1") do
     #   #content
     # end
