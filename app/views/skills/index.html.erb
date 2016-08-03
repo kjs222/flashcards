@@ -2,33 +2,31 @@
 
 <h2>Skills</h2>
 <div id="skills">
-<% if @skills %>
-<table class="table">
-  <tr>
-  <% @skills.each do |skill| %>
-    <div class="skill">
-      <td>
-        <h4><b><%= skill.nickname %></b></h4>
-        <p><%= skill.description %></p>
-      </td>
-      <td>
-        <p>Added <%= days_from_today skill.created_at %> ago</p>
-      <% if skill.last_practiced_date%>
-        <p>Practiced <%= skill.num_sessions %> times for a total of <%= skill.total_practice_time %> minutes</p>
-        <p>Last practiced <%= days_from_today skill.last_practiced_date%> ago</p>
-      <% end %>
-      </td>
-      <td>
-        <% if skill.last_practiced_date%>
-            <h4><span class="number-circle inverse"> <%= skill.points_earned%> </span> Points</h4>
-        <% end %>
-      </td>
-
-    </div>
-  </tr>
+  <% if @skills %>
+    <table class="table">
+      <tr>
+      <% @skills.each do |skill| %>
+        <div class="skill">
+          <td>
+            <h4><b><%= skill.nickname %></b></h4>
+            <p><%= skill.description %></p>
+          </td>
+          <td>
+            <p>Added <%= days_from_today skill.created_at %> ago</p>
+            <% if skill.last_practiced_date%>
+              <p>Practiced <%= skill.num_sessions %> times for a total of <%= skill.total_practice_time %> minutes</p>
+              <p>Last practiced <%= days_from_today skill.last_practiced_date%> ago</p>
+            <% end %>
+          </td>
+          <td>
+            <% if skill.last_practiced_date%>
+                <h4><span class="number-circle inverse"> <%= skill.points_earned%> </span> Points</h4>
+            <% end %>
+          </td>
+        </div>
+      </tr>
+    <% end %>
+    </table>
   <% end %>
-  </table>
-<% end %>
-</div>
-
+  </div>
 </div>

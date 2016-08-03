@@ -2,46 +2,41 @@
   <table class="table">
     <tr><td>
 
-    <h4>Name</h4>
-    <p><%= @user.name %></p>
-
-    <h4>Nickname</h4>
-    <p><%= @user.nickname %></p>
+      <h4>Name</h4>
+      <p><%= @user.name %></p>
+      <h4>Nickname</h4>
+      <p><%= @user.nickname %></p>
 
     </td></tr>
 
     <div class="quizlet">
     <tr><td>
-
-    <h4>Quizlet Integration</h4>
-    <% if @user.quiz_id %>
-      <p>Activated</p>
-      <p>Quizlet Username:<%= @user.quiz_id %></p>
-    <% else %>
-      <p>Not Enabled</p>
-      <%= button_to "Enable Quizlet", quizlet_login_path, method: :get %>
-    <% end %>
-
+      <h4>Quizlet Integration</h4>
+      <% if @user.quiz_id %>
+        <p>Activated</p>
+        <p>Quizlet Username:<%= @user.quiz_id %></p>
+      <% else %>
+        <p>Not Enabled</p>
+        <%= button_to "Enable Quizlet", quizlet_login_path, method: :get %>
+      <% end %>
     </td></tr>
     </div>
 
     <div class="command-line">
     <tr><td>
-    <h4>Command Line App Integration</h4>
-    <% if @user.password_digest %>
-      <p>Activated</p>
-      <h4>Instructions:</h4>
-      <button class="flash-button instructions" target="setup">To Setup</button>
+      <h4>Command Line App Integration</h4>
+      <% if @user.password_digest %>
+        <p>Activated</p>
+        <h4>Instructions:</h4>
+        <button class="flash-button instructions" target="setup">To Setup</button>
 
-      <div id="instructions-setup">
-        <table class=table>
-
-        <tr><td>Clone application from <a href="https://github.com/kjs222/cli_flash">github</a>.</td></tr>
-        <tr><td>Follow instructions on Readme to make program executable</td></tr>
-        <tr><td>From the command line: <b>codepoints setup &lt;your codepoints username&gt; &lt;your codepoints password&gt;</b></td></tr>
-
-      </table>
-      </div>
+        <div id="instructions-setup">
+          <table class=table>
+          <tr><td>Clone application from <a href="https://github.com/kjs222/cli_flash">github</a>.</td></tr>
+          <tr><td>Follow instructions on Readme to make program executable</td></tr>
+          <tr><td>From the command line: <b>codepoints setup &lt;your codepoints username&gt; &lt;your codepoints password&gt;</b></td></tr>
+        </table>
+        </div>
 
       <button class="flash-button instructions" target="use">To Use</button>
 
@@ -60,16 +55,15 @@
       <p>Not Enabled</p>
       <%= button_to "Enable Command Line App", edit_user_path(@user), method: :get %>
     <% end %>
+
     </div>
     </td></tr>
 
     <tr><td>
-    <h4>Level Up</h4>
-    <p>Earn 1 point for each goal set.</p>
-    <p>Earn 10 points for each hour of practice.</p>
-    <p>100 points to level up.</p>
-
-
+      <h4>Level Up</h4>
+      <p>Earn 1 point for each goal set.</p>
+      <p>Earn 10 points for each hour of practice.</p>
+      <p>100 points to level up.</p>
     </td></tr>
 
   </table>
