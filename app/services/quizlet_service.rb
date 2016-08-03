@@ -19,7 +19,8 @@ class QuizletService
   end
 
   def get_search_results(searched_term, searched_created_by)
-    response = @connection.get("/2.0/search/sets?q=#{searched_term}&creator=#{searched_created_by}")
+    response =  @connection.get("/2.0/search/sets", {q: searched_term,
+                creator: searched_created_by})
     parse(response)["sets"]
   end
 

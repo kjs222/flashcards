@@ -13,8 +13,7 @@ RSpec.feature "User sees recent activity" do
     click_on "Recent Activity"
     expect(current_path).to eq(activity_index_path)
 
-    expect(page).to have_content("added skill")
-    expect(page).to have_content("completed a 15 minute practice session of for the following skill")
+    expect(page).to have_content("Recent CodePoints Activity")
 
   end
 

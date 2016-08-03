@@ -19,17 +19,18 @@ class User < ApplicationRecord
     sessions.where('extract(week from sessions.created_at) = ?', current_week)
   end
 
-  #move these to presenters
   def skill_form_options
     skills.pluck(:nickname, :id)
   end
 
   def session_form_options
-    skills = self.skills.select("skills.*").joins(:goals).where('goals.week_number = ?', current_week).distinct
+    skills =  self.skills.select("skills.*")
+                  .joins(:goals)
+                  .where('goals.week_number = ?', current_week)
+                  .distinct
     skills.pluck(:nickname, :id)
   end
 
-  #change to find or create by
   def self.github_from_omniauth(auth_info)
     where(gh_uid: auth_info['uid']).first_or_create do |user|
       user.gh_uid = auth_info["uid"]
@@ -58,8 +59,6 @@ class User < ApplicationRecord
     (points/100).round
   end
 
-
-  #does this belong here or somewhere else?:
   def self.get_credentials_for_cli(nickname, password)
     user = User.find_by(nickname: nickname)
     if user && user.authenticate(password)

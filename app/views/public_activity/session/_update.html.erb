@@ -2,7 +2,10 @@
 <p class="actvity-item">
     <% if a.trackable && a.trackable.skill.user.image  %>
       <%= image_tag a.trackable.skill.user.image, class: "profile-photo"%>
-      <%= a.trackable.username %> completed a <%= a.trackable.duration %> minute practice session of for the following skill: <%= a.trackable.skill.nickname %> <%= days_from_today a.trackable.updated_at%> ago.
+      <%= a.trackable.username %> completed a
+      <%= a.trackable.duration %> minute practice session of for the following skill:
+      <%= a.trackable.skill.nickname %>
+      <%= days_from_today a.trackable.updated_at%> ago.
     <% end %>
 </p>
 

@@ -9,7 +9,7 @@ RSpec.describe Session, type: :model do
     session2 = skill.sessions.create(duration: 60, created_at: "2016-08-02 00:00:00")
     total_duration = session1.duration + session2.duration
 
-    expect(Session.time_series_session_data(user, session1.created_at, session1.created_at + 2.days, "day")).to eq([["Aug 01", "Aug 02", "Aug 03"], [session1.duration, session2.duration, 0]])
+    expect(Session.time_series_session_data(user, session1.created_at, session1.created_at + 2.days, "day")).to eq([["2016-08-01 00:00:00+00", 60], ["2016-08-02 00:00:00+00", 60], ["2016-08-03 00:00:00+00", 0]])
   end
 
   it "gets session duration sum by month" do
@@ -19,7 +19,7 @@ RSpec.describe Session, type: :model do
     session2 = skill.sessions.create(duration: 60, created_at: "2016-08-01 00:00:00")
     total_duration = session1.duration + session2.duration
 
-    expect(Session.time_series_session_data(user, session1.created_at, session1.created_at + 1.days, "month")).to eq([["August 2016"], [total_duration]])
+    expect(Session.time_series_session_data(user, session1.created_at, session1.created_at + 1.days, "month")).to eq([["2016-08-01 00:00:00+00", 120]])
   end
 
   it "gets correct data in right format based on time period" do
