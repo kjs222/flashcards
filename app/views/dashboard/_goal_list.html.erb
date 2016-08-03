@@ -1,11 +1,15 @@
 <table class=table  id="<%=type%>-goals">
-  <% goals.each do |goal| %>
-  <tr>
-    <div class="goal">
-      <td><b><%= goal.skill.nickname %></b></td>
-      <td><%= goal.num_sessions %> practice session(s)</td>
-      <td><%= goal.session_length %> minutes each</td>
-    </div>
-  </tr>
+  <% cache "#{type}-goals-list-#{current_user.id}-#{goals.count}-#{current_user.goals.maximum(:updated_at)}" do  %>
+    <% goals.each do |goal| %>
+        <% cache "goal-#{goal.id}" do  %>
+        <tr>
+          <div class="goal">
+            <td><b><%= goal.skill.nickname %></b></td>
+            <td><%= goal.num_sessions %> practice session(s)</td>
+            <td><%= goal.session_length %> minutes each</td>
+          </div>
+        </tr>
+      <% end %>
+    <% end %>
   <% end %>
 </table>

@@ -1,4 +1,3 @@
-
 <div class="paper col-sm-7 col-sm-offset-1">
   <div class="tab-container">
     <h5 class='tab active-tab' id="current-tab" target="current">Current Week</h5>
@@ -19,18 +18,21 @@
     <% end %>
   </div>
 
-
   <div class="current">
     <h4>Completed This Week:</h4>
     <table class=table id="current-sessions">
-    <% @dashboard.sessions.each do |session| %>
-    <tr>
-      <div class="session">
-          <td><b><%= session.skill.nickname %></b></td>
-          <td><%= session.duration %> minutes</td>
-          <td><%= days_from_today session.created_at %> ago</td>
-      </div>
-    </tr>
+    <% cache "dashboard-sessions-#{current_user.id}-#{@dashboard.sessions.maximum(:updated_at)}" do  %>
+      <% @dashboard.sessions.each do |session| %>
+      <% cache "dashboard-session-#{session.id}" do  %>
+      <tr>
+        <div class="session">
+            <td><b><%= session.skill.nickname %></b></td>
+            <td><%= session.duration %> minutes</td>
+            <td><%= days_from_today session.created_at %> ago</td>
+        </div>
+      </tr>
+      <% end %>
+      <% end %>
     <% end %>
     </table>
   </div>
@@ -42,6 +44,5 @@
       <%= render partial: "goal_list" , locals: {goals:  @dashboard.next_goals, type: "next"} %>
     <% end %>
   </div>
-
 
 </div>
