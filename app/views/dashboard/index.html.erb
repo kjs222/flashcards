@@ -21,7 +21,7 @@
   <div class="current">
     <h4>Completed This Week:</h4>
     <table class=table id="current-sessions">
-    <% cache "dashboard-sessions-#{current_user.id}-#{@dashboard.sessions.maximum(:updated_at)}" do  %>
+    <%# cache "dashboard-sessions-#{current_user.id}-#{@dashboard.sessions.maximum(:updated_at)}" do  %>
       <% @dashboard.sessions.each do |session| %>
       <% cache "dashboard-session-#{session.id}" do  %>
       <tr>
@@ -31,7 +31,7 @@
             <td><%= days_from_today session.created_at %> ago</td>
         </div>
       </tr>
-      <% end %>
+      <%# end %>
       <% end %>
     <% end %>
     </table>
