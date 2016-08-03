@@ -214,7 +214,7 @@ $(document).ready(function(){
   });
 
   $(".arrow-down").on('click', function(){
-      $('#'+$(this).attr('target')).fadeIn(600);
+      $('#'+$(this).attr('target')).toggle();
   });
 
   $(".tab").on('click', function(){
@@ -229,24 +229,9 @@ $(document).ready(function(){
     $(this).toggleClass('flipped');
   });
 
-  // $("#search-submit").on('click', function(){
-  //   var searchTerm = $("#q").val()
-  //   var searchUser = $("#created_by").val()
-  //   var token = $("#created_by").val()
-  //   $.ajax({
-  //     method: "GET",
-  //     url: https://api.quizlet.com/2.0/search/sets?q="sql",
-  //     dataType: "JSON",
-  //     data: {session: {skill_id: skillId, duration: duration}},
-  //     success: function(newSession) {
-  //       appendSession(newSession)
-  //       updatePoints(Math.floor(duration/6), "earned")
-  //       updatePoints(Math.floor(duration/6), "total")
-  //       $('#skill-id-session').prop('selectedIndex',0);
-  //       $('#session-length-log').prop('selectedIndex',0);
-  //     }
-  //   })
-  // });
+  $('.instructions').on('click', function() {
+    $('#instructions-'+$(this).attr('target')).toggle();
+  });
 
 });
 

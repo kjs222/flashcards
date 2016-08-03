@@ -35,7 +35,7 @@
   z-index: -1;
 }
 
- .termList, .collapseTerms,  .side-form,  .next {
+ .termList, .collapseTerms,  .side-form,  .next, #instructions-setup, #instructions-use {
    display: none;
  }
 

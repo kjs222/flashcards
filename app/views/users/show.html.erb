@@ -31,17 +31,30 @@
     <% if @user.password_digest %>
       <p>Activated</p>
       <h4>Instructions:</h4>
-      <p>Setup</p>
-      <p>Clone application from HERE</p>
-      <p>Follow instructions on Readme to make program executable</p>
-      <p>From the command line: <b>codepoints setup &lt;your codepoints username&gt; &lt;your codepoints password&gt;</b></p>
-      <p>To Use</p>
-      <p>Log a practice session (start): <b>codepoints start &lt;skill name&gt;</b></p>
-      <p>Log a practice session (stop): <b>codepoints stop &lt;skill name&gt;</b></p>
-      <p>See names of quizlet quizsets: <b>codepoints quizsets</b></p>
-      <p>See list of terms in a quizlet quizset: <b>codepoints terms &lt;quizset name&gt;</b></p>
-      <p>Add term to quizlet quizset: <b>codepoints add_term &lt;quizset name&gt;</b>  (Follow prompts to add term and definition)</p>
-      <p>Add quizlet quizset: <b>codepoints new_set &lt;new quizset name&gt;</b></p>
+      <button class="flash-button instructions" target="setup">To Setup</button>
+
+      <div id="instructions-setup">
+        <table class=table>
+
+        <tr><td>Clone application from <a href="https://github.com/kjs222/cli_flash">github</a>.</td></tr>
+        <tr><td>Follow instructions on Readme to make program executable</td></tr>
+        <tr><td>From the command line: <b>codepoints setup &lt;your codepoints username&gt; &lt;your codepoints password&gt;</b></td></tr>
+
+      </table>
+      </div>
+
+      <button class="flash-button instructions" target="use">To Use</button>
+
+      <div id="instructions-use">
+        <table class="table">
+          <tr><td>Log a practice session (start): </td><td><b>codepoints start &lt;skill name&gt;</b></td></tr>
+          <tr><td>Log a practice session (stop): </td><td><b>codepoints stop &lt;skill name&gt;</b></td></tr>
+          <tr><td>See names of quizlet quizsets: </td><td><b>codepoints quizsets</b></td></tr>
+          <tr><td>See list of terms in a quizlet quizset: </td><td><b>codepoints terms &lt;quizset name&gt;</b></td></tr>
+          <tr><td>Add term to quizlet quizset: </td><td><b>codepoints add_term &lt;quizset name&gt;</b>  <br>(Follow prompts to add term and definition)</td></tr>
+          <tr><td>Add quizlet quizset: </td><td><b>codepoints new_set &lt;new quizset name&gt;</b></td></tr>
+        </table>
+      </div>
 
     <% else %>
       <p>Not Enabled</p>
