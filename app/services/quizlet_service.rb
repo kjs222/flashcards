@@ -8,8 +8,10 @@ class QuizletService
   end
 
   def get_sets
-    response = @connection.get("/2.0/users/#{user.quiz_id}/sets")
-    parse(response)
+    Rails.cache.fetch("user-#{@user.id}-api-quizsets", expires_in: 10.minutes) do
+      response = @connection.get("/2.0/users/#{user.quiz_id}/sets")
+      parse(response)
+    end
   end
 
 
