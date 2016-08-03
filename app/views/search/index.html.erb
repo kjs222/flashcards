@@ -12,11 +12,7 @@
               <p><%= search_set.description %></p>
             </td>
             <td>
-              <div class="quiz-info">
-              <p>Created by: <%= search_set.created_by %></p>
-              <p><%= search_set.term_count %> Cards</p>
-              <%= link_to "View On Quizlet", "https://www.quizlet.com/#{search_set.url}" %>
-              </div>
+              <%= render partial: "/shared/quizset_info", locals: {quizset: search_set, other: true} %>
             </td>
           </tr>
         <% end %>

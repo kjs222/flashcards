@@ -31,11 +31,7 @@
         </div>
       </td>
       <td>
-        <div class="quiz-info">
-        <p>Created <%= unix_to_days_from_today(quizset.created_date) %> ago</p>
-        <p><%= quizset.term_count %> Cards</p>
-        <%= link_to "Practice On Quizlet", "https://www.quizlet.com/#{quizset.url}" %>
-        </div>
+          <%= render partial: "/shared/quizset_info", locals: {quizset: quizset, other: false} %>
       </td>
       </div>
 
