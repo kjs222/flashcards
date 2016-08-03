@@ -1,24 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Session, type: :model do
-  #not used anymore
-  xit "identifies correct sessions for a time period" do
-    session_1_week_ago = create(:session_1_week_ago)
-    session_2_weeks_ago = create(:session_2_weeks_ago)
-    session_3_weeks_ago = create(:session_3_weeks_ago)
-    session_4_weeks_ago = create(:session_4_weeks_ago)
-    session_2_months_ago = create(:session_2_months_ago)
-
-    expect(Session.sessions_for_charts(1).count).to eq(1)
-    expect(Session.sessions_for_charts(1).first).to eq(session_1_week_ago)
-
-    expect(Session.sessions_for_charts(2).count).to eq(2)
-    expect(Session.sessions_for_charts(2).last).to eq(session_2_weeks_ago)
-
-    expect(Session.sessions_for_charts(8).count).to eq(5)
-    expect(Session.sessions_for_charts(8).last).to eq(session_2_months_ago)
-
-  end
 
   it "gets session duration sum by day" do
     user = create(:user)
@@ -52,8 +34,6 @@ RSpec.describe Session, type: :model do
     expect(Session.data_for_charts(user, 1).first.first.include?("2016")).to be(false)
     expect(Session.data_for_charts(user, 52).first.first.include?("2015")).to be(true)
     expect(Session.data_for_charts(user, 52).last.count).to eq(13)
-
-
   end
 
   it "returns a username for a sessions user" do

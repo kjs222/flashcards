@@ -25,6 +25,15 @@ RSpec.describe Skill, type: :model do
     expect(skill.total_practice_time).to eq(75)
   end
 
+  it "identifies num of points earned by user" do
+    skill, other_skill = create_list(:skill, 2)
+    5.times do
+      create(:session, skill: skill)
+      create(:session, skill: other_skill)
+    end
+    expect(skill.points_earned).to eq(12)
+  end
+
   it "identifies the most recent practice date for a skill" do
     skill, other_skill = create_list(:skill, 2)
     most_recent = create(:session_1_week_ago, skill: skill)

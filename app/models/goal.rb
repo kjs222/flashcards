@@ -7,4 +7,8 @@ class Goal < ApplicationRecord
     skill.user.name
   end
 
+  def self.available_points
+    sum("num_sessions * session_length")/6
+  end
+
 end

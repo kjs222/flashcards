@@ -8,14 +8,14 @@ class Session < ApplicationRecord
   end
 
   def self.data_for_charts(user, time_period)
-    interval = time_period.to_i == 52 ? "month" : "day"
+    interval = interval(time_period)
     start_date = time_period.to_i.weeks.ago
-    time_series_session_data(user, start_date, Time.now.utc, interval)
+    data = time_series_session_data(user, start_date, Time.now.utc, interval)
+    format_data_for_charts(data, interval)
   end
 
-
   def self.time_series_session_data(user, start_date, end_date, interval)
-    result = ActiveRecord::Base.connection.exec_query("SELECT
+    ActiveRecord::Base.connection.exec_query("SELECT
         date_trunc('#{interval}', date) as period,
         coalesce(minutes,0) AS minutes
       FROM
@@ -34,9 +34,7 @@ class Session < ApplicationRecord
          AND sessions.created_at <= '#{end_date}'
          GROUP BY period) results
        ON (date = results.period)").rows
-    [get_dates(result, interval), get_values(result)]
   end
-
 
   def self.find_recent_by_skill(skill)
     joins(:skill)
@@ -61,5 +59,12 @@ class Session < ApplicationRecord
     date_value_pairs.map {|data_point| data_point.last}
   end
 
+  def self.format_data_for_charts(time_series_data, time_period)
+    [get_dates(time_series_data, time_period), get_values(time_series_data)]
+  end
+
+  def self.interval(time_period)
+    time_period.to_i == 52 ? "month" : "day"
+  end
 
 end

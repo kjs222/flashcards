@@ -1,5 +1,11 @@
 require 'simplecov'
-SimpleCov.start 'rails'
+
+SimpleCov.start('rails') do
+  add_filter "/models/omniauth_strategy.rb"
+  add_filter "/jobs/"
+  add_filter "/mailers/"
+end
+
 require 'factory_girl_rails'
 require 'selenium/webdriver'
 
