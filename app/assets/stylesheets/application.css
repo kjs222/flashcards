@@ -35,21 +35,6 @@
   z-index: -1;
 }
 
- /*.home-photo-banner
-{
-    background-image: url(code.jpeg);
-    background-size: 100%;
-    /*background-repeat: repeat-x;
-    height: 500px;
-    width: 100%; /* may not be necessary */
-    /*min-height: 50vh;
-    padding-top: 80px;
-    padding-bottom: 10px;
-    overflow: hidden;
-    text-align: center;
-    position: relative;
-}*/
-
  .termList, .collapseTerms,  .side-form,  .next {
    display: none;
  }
@@ -61,7 +46,6 @@
  .navbar-collapse {
      background-color:white;
  }
-
 
 .navbar-default {
   height: 60px;
@@ -107,11 +91,11 @@
 }
 
 #grad {
-  background: #02918C;
-  background: -webkit-linear-gradient(-90deg, #02918C, #63E2C6);
-  background: -o-linear-gradient(-90deg, #02918C, #63E2C6);
-  background: -moz-linear-gradient(-90deg, #02918C, #63E2C6);
-  background: linear-gradient(-90deg, #02918C, #63E2C6);
+  background: #0D324D;
+  background: -webkit-linear-gradient(-90deg, #0D324D, #677DB7);
+  background: -o-linear-gradient(-90deg, #0D324D, #677DB7);
+  background: -moz-linear-gradient(-90deg, #0D324D, #677DB7);
+  background: linear-gradient(-90deg,   #0D324D, #677DB7);
 }
 
 .home-integrate {

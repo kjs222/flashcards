@@ -30,11 +30,35 @@
     <h4>Command Line App Integration</h4>
     <% if @user.password_digest %>
       <p>Activated</p>
+      <h4>Instructions:</h4>
+      <p>Setup</p>
+      <p>Clone application from HERE</p>
+      <p>Follow instructions on Readme to make program executable</p>
+      <p>From the command line: <b>codepoints setup &lt;your codepoints username&gt; &lt;your codepoints password&gt;</b></p>
+      <p>To Use</p>
+      <p>Log a practice session (start): <b>codepoints start &lt;skill name&gt;</b></p>
+      <p>Log a practice session (stop): <b>codepoints stop &lt;skill name&gt;</b></p>
+      <p>See names of quizlet quizsets: <b>codepoints quizsets</b></p>
+      <p>See list of terms in a quizlet quizset: <b>codepoints terms &lt;quizset name&gt;</b></p>
+      <p>Add term to quizlet quizset: <b>codepoints add_term &lt;quizset name&gt;</b>  (Follow prompts to add term and definition)</p>
+      <p>Add quizlet quizset: <b>codepoints new_set &lt;new quizset name&gt;</b></p>
+
     <% else %>
       <p>Not Enabled</p>
       <%= button_to "Enable Command Line App", edit_user_path(@user), method: :get %>
     <% end %>
     </div>
     </td></tr>
+
+    <tr><td>
+    <h4>Level Up</h4>
+    <p>Earn 1 point for each goal set.</p>
+    <p>Earn 10 points for each hour of practice.</p>
+    <p>100 points to level up.</p>
+
+
+    </td></tr>
+
   </table>
+
 </div>
