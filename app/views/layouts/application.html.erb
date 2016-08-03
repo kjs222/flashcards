@@ -62,6 +62,21 @@
         <% end %>
       </div>
 
+      <div class="container-fluid search-quizlet">
+        <div class="side-form" id="search-quizlet">
+          <h4>Search Quizlet</h2>
+            <%= form_tag :quizlet_search, method: :get do %>
+              <div class="form-group search-field">
+                <label for="q">Search Name/Description</label>
+                <%= text_field_tag :q, "", placeholder: "e.g. SQL", class: "form-control"%>
+                <label for="created_by">Quizlet Username</label>
+                <%= text_field_tag :created_by, "", placeholder: "e.g. kjs222", class: "form-control"%>
+                <%= submit_tag "Search", class: "btn btn-default pull-right", id: "search-submit" %>
+              </div>
+            <% end %>
+        </div>
+      </div>
+
       <div class="new-current-goal-form container-fluid">
         <div class="col-sm-2">
           <div class="arrow-down" target="new-current-goal"></div>

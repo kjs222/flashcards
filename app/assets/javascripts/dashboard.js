@@ -4,6 +4,16 @@ $(document).ready(function(){
     renderChartOnLoad();
   });
 
+  $(".quizlet.index").ready(function(){
+    $("#log-session").hide();
+    $("#search-quizlet").show();
+  });
+
+  $(".search.index").ready(function(){
+    $("#log-session").hide();
+    $("#search-quizlet").show();
+  });
+
   function renderChartOnLoad(){
     $.ajax({
       method: "GET",
