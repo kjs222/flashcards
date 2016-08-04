@@ -15,7 +15,7 @@ rake db:migrate
 rails s
 ```
 
-Visit in Production: [CodePoints](https://codepoints.herokuapp.com/statistics)
+Visit in Production: [CodePoints](https://codepoints.herokuapp.com/)
 
 Download the Command Line App:
 [CodePoints Command Line App](https://github.com/kjs222/cli_flash)
