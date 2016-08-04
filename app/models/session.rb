@@ -2,6 +2,8 @@ class Session < ApplicationRecord
   include PublicActivity::Model
   tracked
   belongs_to :skill, touch: true
+  validates :skill_id, presence: true
+
 
   def username
     skill.user.name

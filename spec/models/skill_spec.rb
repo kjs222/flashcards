@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Skill, type: :model do
+
+  it { should validate_presence_of(:nickname) }
+  it { should belong_to(:user) }
+  it { should have_many(:sessions) }
+  it { should have_many(:goals) }
+
   it "identifies username for the skill's user" do
     user = create(:user)
     skill = create(:skill, user: user)

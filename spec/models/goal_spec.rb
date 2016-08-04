@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Goal, type: :model do
 
+  it { should validate_presence_of(:skill_id) }
+  it { should belong_to(:skill) }
+
   it "finds username" do
     user = create(:user)
     skill = create(:skill, user: user)

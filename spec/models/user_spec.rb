@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
+  it { should have_many(:skills) }
+  it { should have_many(:goals) }
+  it { should have_many(:sessions) }
+
   it "identifies current goals for current user only" do
     user, other_user = create_list(:user, 2)
     user_skill = create(:skill, user: user)
