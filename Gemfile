@@ -36,6 +36,7 @@ gem 'rspec-rails'
 gem 'public_activity'
 gem 'groupdate'
 gem "skylight"
+gem 'faker'
 
 group :development, :test do
   gem "minitest-rails-capybara"

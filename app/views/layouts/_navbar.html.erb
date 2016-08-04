@@ -13,7 +13,9 @@
       <li><a href="<%=dashboard_index_path%>">Dashboard</a></li>
       <li><a href="<%=statistics_path%>">Statistics</a></li>
       <li><a href="<%=skills_path%>">Skills</a></li>
-      <li><a href="<%=quizlet_index_path%>">Quizlet</a></li>
+      <% if current_user.quiz_id %>
+        <li><a href="<%=quizlet_index_path%>">Quizlet</a></li>
+      <% end %>
       <li><a href="<%=activity_index_path%>">Recent Activity</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
