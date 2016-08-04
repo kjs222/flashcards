@@ -5,7 +5,9 @@
   <% if @skills %>
     <table class="table">
       <tr>
+      <% cache "skills-list-#{current_user.skills.count}-#{current_user.skills.maximum(:updated_at)}" do  %>
       <% @skills.each do |skill| %>
+      <% cache "skill-#{skill.id}-#{skill.updated_at)}" do  %>
         <div class="skill">
           <td>
             <h4><b><%= skill.nickname %></b></h4>
@@ -25,6 +27,8 @@
           </td>
         </div>
       </tr>
+    <% end %>
+    <% end %>
     <% end %>
     </table>
   <% end %>

@@ -1,7 +1,7 @@
 class Session < ApplicationRecord
   include PublicActivity::Model
   tracked
-  belongs_to :skill
+  belongs_to :skill, touch: true
 
   def username
     skill.user.name
