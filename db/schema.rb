@@ -31,16 +31,6 @@ ActiveRecord::Schema.define(version: 20160804013215) do
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
   end
 
-  create_table "flashcards", force: :cascade do |t|
-    t.integer  "quizset_id"
-    t.string   "term"
-    t.string   "definition"
-    t.bigint   "term_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["quizset_id"], name: "index_flashcards_on_quizset_id", using: :btree
-  end
-
   create_table "goals", force: :cascade do |t|
     t.integer  "num_sessions",   default: 1
     t.integer  "session_length", default: 30
@@ -49,20 +39,6 @@ ActiveRecord::Schema.define(version: 20160804013215) do
     t.datetime "updated_at",                  null: false
     t.integer  "week_number"
     t.index ["skill_id"], name: "index_goals_on_skill_id", using: :btree
-  end
-
-  create_table "quizsets", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "created_date"
-    t.integer  "num_cards"
-    t.string   "url"
-    t.string   "title"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "modified_date"
-    t.string   "description"
-    t.bigint   "quizlet_id"
-    t.index ["user_id"], name: "index_quizsets_on_user_id", using: :btree
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -96,6 +72,5 @@ ActiveRecord::Schema.define(version: 20160804013215) do
     t.string   "image"
   end
 
-  add_foreign_key "quizsets", "users"
   add_foreign_key "sessions", "skills"
 end

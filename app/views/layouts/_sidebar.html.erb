@@ -2,6 +2,9 @@
   <div class="user-info container-fluid">
     <div class='col-sm-12 user-stats'>
       <h4> Points: <span class="number-circle" id="points-total"><%= current_user.points%></span> Level: <span class="number-circle"> <%= current_user.level.to_s + " "%> </span></h4>
+      <% if current_user.skills.empty?%>
+      <p class="get-started"><b>To get started:</b><br>Add a skill below. Then add a goal.</p>
+      <% end %>
     </div>
   </div>
 

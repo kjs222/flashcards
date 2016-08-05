@@ -17,7 +17,7 @@
         <p>Quizlet Username:<%= @user.quiz_id %></p>
       <% else %>
         <p>Not Enabled</p>
-        <%= button_to "Enable Quizlet", quizlet_login_path, method: :get %>
+        <%= button_to "Enable Quizlet", quizlet_login_path, method: :get, class: "flash-button" %>
       <% end %>
     </td></tr>
     </div>
@@ -53,7 +53,7 @@
 
     <% else %>
       <p>Not Enabled</p>
-      <%= button_to "Enable Command Line App", edit_user_path(@user), method: :get %>
+      <%= button_to "Enable Command Line App", edit_user_path(@user), method: :get, class: "flash-button" %>
     <% end %>
 
     </div>

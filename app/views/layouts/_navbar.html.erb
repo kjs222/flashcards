@@ -17,6 +17,9 @@
         <li><a href="<%=quizlet_index_path%>">Quizlet</a></li>
       <% end %>
       <li><a href="<%=activity_index_path%>">Recent Activity</a></li>
+      <% if !current_user.quiz_id || !current_user.password_digest %>
+        <li><a href="<%=account_path%>" id="activate">Activate Quizlet|Command Line</a></li>
+      <% end %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="navbar-custom"> <img src="<%= current_user.image %>", class="profile-photo"></li>
