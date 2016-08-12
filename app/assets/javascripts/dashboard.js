@@ -74,6 +74,33 @@ $(document).ready(function(){
     }
   })
 
+  $("#follow").on('click', function(){
+    var user = $(".follow-container").data('user')
+    var follower = $(".follow-container").data('follower')
+    $.ajax({
+      method: "POST",
+      url: "/api/v1/user_followers.json",
+      dataType: "JSON",
+      data: {user_follower: {user_id: user, follower_id: follower}},
+      success: function(userFollowerInfo) {
+        console.table(userFollowerInfo)
+      }
+    })
+  });
+
+  $("#unfollow").on('click', function(){
+    var user = $(".follow-container").data('user')
+    var follower = $(".follow-container").data('follower')
+    var id = $(this).attr('target')
+    $.ajax({
+      method: "DELETE",
+      url: "/api/v1/user_followers/" + id,
+      success: function(userFollowerInfo) {
+        console.table(userFollowerInfo)
+      }
+    })
+  });
+
   $(".chart-button").on('click', function(){
     var type = $(this).attr('target')
     var weeks = $(this).attr('value')

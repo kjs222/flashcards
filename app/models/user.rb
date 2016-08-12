@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :skills
   has_many :goals, through: :skills
   has_many :sessions, through: :skills
+  has_many :user_followers
+  has_many :followers, through: :user_followers
 
 
   def current_goals

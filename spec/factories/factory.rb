@@ -4,12 +4,16 @@ FactoryGirl.define do
     gh_uid "1"
     gh_token "1"
     name { generate :user_name }
-    nickname "nickname"
+    nickname { generate :nickname }
     password "password"
   end
 
   sequence :user_name do |n|
     "user-#{n}"
+  end
+
+  sequence :nickname do |n|
+    "nickname#{n}"
   end
 
   factory :skill do

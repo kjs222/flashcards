@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get "/auth/quizlet", as: :quizlet_login
   get "/auth/quizlet/callback", to: "users#add_quizlet"
 
-  get "/account", to: "users#show", as: :account
+  get "/account", to: "accounts#show", as: :account
+  # get "/account", to: "users#show", as: :account
 
   get "/api/v1/authenticate", to: "api/v1/users#show"
   get "/api/v1/sessions/statistics", to: "api/v1/sessions/statistics#index"
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   get "/quizlet/search", to: "search#index", as: :quizlet_search
 
   resources :users, only: [:edit, :update]
+  get 'users/:nickname', to: 'users#show'
   resources :dashboard, only: [:index]
   resources :skills, only: [:index]
   resources :quizlet, only: [:index]
@@ -28,6 +30,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :user_followers, only: [:create, :destroy]
     end
   end
 

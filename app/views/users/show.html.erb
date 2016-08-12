@@ -1,71 +1,27 @@
-<div class="paper col-sm-7 col-md-offset-1">
-  <table class="table">
-    <tr><td>
-
-      <h4>Name</h4>
-      <p><%= @user.name %></p>
-      <h4>Nickname</h4>
-      <p><%= @user.nickname %></p>
-
-    </td></tr>
-
-    <div class="quizlet">
-    <tr><td>
-      <h4>Quizlet Integration</h4>
-      <% if @user.quiz_id %>
-        <p>Activated</p>
-        <p>Quizlet Username:<%= @user.quiz_id %></p>
-      <% else %>
-        <p>Not Enabled</p>
-        <%= button_to "Enable Quizlet", quizlet_login_path, method: :get, class: "flash-button" %>
-      <% end %>
-    </td></tr>
-    </div>
-
-    <div class="command-line">
-    <tr><td>
-      <h4>Command Line App Integration</h4>
-      <% if @user.password_digest %>
-        <p>Activated</p>
-        <h4>Instructions:</h4>
-        <button class="flash-button instructions" target="setup">To Setup</button>
-
-        <div id="instructions-setup">
-          <table class=table>
-          <tr><td>Clone application from <a href="https://github.com/kjs222/cli_flash">github</a>.</td></tr>
-          <tr><td>Follow instructions on Readme to make program executable</td></tr>
-          <tr><td>From the command line: <b>codepoints setup &lt;your codepoints username&gt; &lt;your codepoints password&gt;</b></td></tr>
-        </table>
-        </div>
-
-      <button class="flash-button instructions" target="use">To Use</button>
-
-      <div id="instructions-use">
-        <table class="table">
-          <tr><td>Log a practice session (start): </td><td><b>codepoints start &lt;skill name&gt;</b></td></tr>
-          <tr><td>Log a practice session (stop): </td><td><b>codepoints stop &lt;skill name&gt;</b></td></tr>
-          <tr><td>See names of quizlet quizsets: </td><td><b>codepoints quizsets</b></td></tr>
-          <tr><td>See list of terms in a quizlet quizset: </td><td><b>codepoints terms &lt;quizset name&gt;</b></td></tr>
-          <tr><td>Add term to quizlet quizset: </td><td><b>codepoints add_term &lt;quizset name&gt;</b>  <br>(Follow prompts to add term and definition)</td></tr>
-          <tr><td>Add quizlet quizset: </td><td><b>codepoints new_set &lt;new quizset name&gt;</b></td></tr>
-        </table>
-      </div>
-
-    <% else %>
-      <p>Not Enabled</p>
-      <%= button_to "Enable Command Line App", edit_user_path(@user), method: :get, class: "flash-button" %>
-    <% end %>
-
-    </div>
-    </td></tr>
-
-    <tr><td>
-      <h4>Level Up</h4>
-      <p>Earn 1 point for each goal set.</p>
-      <p>Earn 10 points for each hour of practice.</p>
-      <p>100 points to level up.</p>
-    </td></tr>
-
-  </table>
-
+<div class="followers">
+  <h1>Number of Followers: <%= @user.followers.count %></h1>
+  <h1>Followers</h1>
+  <% @user.followers.each do |follower| %>
+  <%= link_to follower.nickname, user_path(follower.nickname) %>
+  <% end %>
 </div>
+
+<div class="follow-container" data-follower="<%= current_user.id %>" data-user="<%= @user.id %>">
+  <% if current_user.followers.include?(@user) %>
+  <!-- get this into a helper method??? -->
+    <button type="button" id="unfollow" target="<%= @user.user_followers.where(follower_id: current_user.id).first.id%>">Unfollow</button>
+  <% else %>
+    <button type="button" id="follow">Follow</button>
+  <% end %>
+</div>
+<!-- if current user follows this person, unfollow button -->
+<!-- unfollow button does a delete method - probs through api call - on userfollowers table -->
+<!-- button sends over current user id (the follower), id of user whos page we are on (the user)  -->
+<!-- it locates the record as a find_by using both? need to figure this out -->
+ <!-- ajax call decrements the count and removes current user from list? THIS COULD BE HAREd -->
+
+
+<!-- if current user does not follows this person, follow button -->
+<!-- follow button does a create method - probs through api call - on userfollowers table -->
+<!-- button sends over current user id (the follower), id of user whos page we are on (the user)  -->
+<!-- ajax call increments the count and adds current user to list? -->
