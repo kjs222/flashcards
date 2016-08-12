@@ -76,30 +76,23 @@ $(document).ready(function(){
 
   function toggleToUnfollow(userFollowerInfo) {
     $(".follow").hide()
-    $('.unfollow-div').append("<button type='button' id='unfollow' target=" + userFollowerInfo[0].id + ">Unfollow</button>");
-    //event listener not workong on this
+    $('.follow-container').append("<button type='button' class='unfollow' target=" + userFollowerInfo[0].id + ">Unfollow</button>");
   }
 
   function toggleToFollow() {
     $(".unfollow").hide()
-    $('.follow-div').append("<button type='button' id='follow'>Follow</button>");
-    //event listener not workong on this
+    $('.follow-container').append("<button type='button' class='follow'>Follow</button>");
   }
 
   function appendFollower(userFollowerInfo) {
-    $(".followers").append("<a href='/users/" + userFollowerInfo[1].nickname + "' id=follower-" + userFollowerInfo[1].id + ">" + userFollowerInfo[1].nickname + "</a>")
+    $(".followers").append("<a href='/users/" + userFollowerInfo[1].nickname + "' class='follower-" + userFollowerInfo[1].id + "'>" + userFollowerInfo[1].nickname + "</a>")
   }
 
   function removeFollower(follower) {
-    $("#follower-" + follower).hide();
+    $(".follower-" + follower).last().hide();
   }
 
-  $(".follow-div").on('click', function(){
-    console.log("clicked")
-    var count = $("#followers-count").html()
-    var user = $(".follow-container").data('user')
-    var follower = $(".follow-container").data('follower')
-    // debugger
+  function follow(count, user, follower) {
     $.ajax({
       method: "POST",
       url: "/api/v1/user_followers.json",
@@ -111,14 +104,10 @@ $(document).ready(function(){
         $("#followers-count").html(parseInt(count) + 1)
       }
     })
-  });
+  }
 
-  $(".unfollow-div").on('click', function(){
-    console.log("UNFOLLOW")
-    var count = $("#followers-count").html()
-    var user = $(".follow-container").data('user')
-    var follower = $(".follow-container").data('follower')
-    var id = $("#unfollow").attr('target')
+  function unfollow(count, user, follower) {
+    var id = $(".unfollow").last().attr('target')
     $.ajax({
       method: "DELETE",
       url: "/api/v1/user_followers/" + id,
@@ -129,6 +118,17 @@ $(document).ready(function(){
 
       }
     })
+  }
+
+  $(".follow-container").on('click', function(e){
+    var count = $("#followers-count").html()
+    var user = $(".follow-container").data('user')
+    var follower = $(".follow-container").data('follower')
+    if ($(e.target).attr('class') === "follow") {
+      follow(count, user, follower)
+    } else {
+      unfollow(count, user, follower)
+    }
   });
 
   $(".chart-button").on('click', function(){
@@ -186,7 +186,6 @@ $(document).ready(function(){
       type: 'line',
       data: data,
       options: options
-
     });
   }
 

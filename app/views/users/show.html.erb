@@ -3,16 +3,16 @@
   <h1 id="followers-count"><%= @user.followers.count %></h1>
   <h1>Followers</h1>
   <% @user.followers.each do |follower| %>
-  <%= link_to follower.nickname, user_path(follower.nickname), id: "follower-#{follower.id}"%>
+  <%= link_to follower.nickname, user_path(follower.nickname), class: "follower-#{follower.id}"%>
   <% end %>
 </div>
 
 <div class="follow-container" data-follower="<%= current_user.id %>" data-user="<%= @user.id %>">
 
   <% if current_user.followers.include?(@user) %>
-    <button type="button" id="unfollow" target="<%= @user.user_followers.where(follower_id: current_user.id).first.id%>">Unfollow</button>
+    <button type="button" class="unfollow" target="<%= @user.user_followers.where(follower_id: current_user.id).first.id%>">Unfollow</button>
   <% else %>
-    <button type="button" id="follow">Follow</button>
+    <button type="button" class="follow">Follow</button>
   <% end %>
 </div>
 
