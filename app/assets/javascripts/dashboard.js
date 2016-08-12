@@ -74,29 +74,59 @@ $(document).ready(function(){
     }
   })
 
-  $("#follow").on('click', function(){
+  function toggleToUnfollow(userFollowerInfo) {
+    $(".follow").hide()
+    $('.unfollow-div').append("<button type='button' id='unfollow' target=" + userFollowerInfo[0].id + ">Unfollow</button>");
+    //event listener not workong on this
+  }
+
+  function toggleToFollow() {
+    $(".unfollow").hide()
+    $('.follow-div').append("<button type='button' id='follow'>Follow</button>");
+    //event listener not workong on this
+  }
+
+  function appendFollower(userFollowerInfo) {
+    $(".followers").append("<a href='/users/" + userFollowerInfo[1].nickname + "' id=follower-" + userFollowerInfo[1].id + ">" + userFollowerInfo[1].nickname + "</a>")
+  }
+
+  function removeFollower(follower) {
+    $("#follower-" + follower).hide();
+  }
+
+  $(".follow-div").on('click', function(){
+    console.log("clicked")
+    var count = $("#followers-count").html()
     var user = $(".follow-container").data('user')
     var follower = $(".follow-container").data('follower')
+    // debugger
     $.ajax({
       method: "POST",
       url: "/api/v1/user_followers.json",
       dataType: "JSON",
       data: {user_follower: {user_id: user, follower_id: follower}},
       success: function(userFollowerInfo) {
-        console.table(userFollowerInfo)
+        toggleToUnfollow(userFollowerInfo);
+        appendFollower(userFollowerInfo);
+        $("#followers-count").html(parseInt(count) + 1)
       }
     })
   });
 
-  $("#unfollow").on('click', function(){
+  $(".unfollow-div").on('click', function(){
+    console.log("UNFOLLOW")
+    var count = $("#followers-count").html()
     var user = $(".follow-container").data('user')
     var follower = $(".follow-container").data('follower')
-    var id = $(this).attr('target')
+    var id = $("#unfollow").attr('target')
     $.ajax({
       method: "DELETE",
       url: "/api/v1/user_followers/" + id,
       success: function(userFollowerInfo) {
-        console.table(userFollowerInfo)
+        toggleToFollow();
+        removeFollower(follower);
+        $("#followers-count").html(parseInt(count) -1)
+
       }
     })
   });

@@ -2,7 +2,8 @@ class Api::V1::UserFollowersController < ApplicationController
 
   def create
     @user_follower = UserFollower.create(follower_params)
-    render json: @user_follower
+    @follower = @user_follower.follower
+    render json: [@user_follower, @follower]
   end
 
   def destroy

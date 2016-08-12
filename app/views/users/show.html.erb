@@ -1,24 +1,21 @@
 <div class="followers">
-  <h1>Number of Followers: <%= @user.followers.count %></h1>
+  <h1>Number of Followers:</h1>
+  <h1 id="followers-count"><%= @user.followers.count %></h1>
   <h1>Followers</h1>
   <% @user.followers.each do |follower| %>
-  <%= link_to follower.nickname, user_path(follower.nickname) %>
+  <%= link_to follower.nickname, user_path(follower.nickname), id: "follower-#{follower.id}"%>
   <% end %>
 </div>
 
 <div class="follow-container" data-follower="<%= current_user.id %>" data-user="<%= @user.id %>">
+
   <% if current_user.followers.include?(@user) %>
-  <!-- get this into a helper method??? -->
     <button type="button" id="unfollow" target="<%= @user.user_followers.where(follower_id: current_user.id).first.id%>">Unfollow</button>
   <% else %>
     <button type="button" id="follow">Follow</button>
   <% end %>
 </div>
-<!-- if current user follows this person, unfollow button -->
-<!-- unfollow button does a delete method - probs through api call - on userfollowers table -->
-<!-- button sends over current user id (the follower), id of user whos page we are on (the user)  -->
-<!-- it locates the record as a find_by using both? need to figure this out -->
- <!-- ajax call decrements the count and removes current user from list? THIS COULD BE HAREd -->
+
 
 
 <!-- if current user does not follows this person, follow button -->
