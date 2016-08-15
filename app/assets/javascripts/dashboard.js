@@ -14,6 +14,13 @@ $(document).ready(function(){
     $("#search-quizlet").show();
   });
 
+  $(".users.show").ready(function(){
+    $(".collapseFollowers").hide();
+    $(".followers-list").hide();
+    $(".collapseFollowing").hide();
+    $(".following-list").hide();
+  });
+
   function renderChartOnLoad(){
     $.ajax({
       method: "GET",
@@ -75,17 +82,18 @@ $(document).ready(function(){
   })
 
   function toggleToUnfollow(userFollowerInfo) {
-    $(".follow").hide()
+    $(".follow").hide() //maybe delete instead
     $('.follow-container').append("<button type='button' class='unfollow' target=" + userFollowerInfo[0].id + ">Unfollow</button>");
   }
 
   function toggleToFollow() {
-    $(".unfollow").hide()
+    $(".unfollow").hide() //maybe delete instead
     $('.follow-container').append("<button type='button' class='follow'>Follow</button>");
   }
 
   function appendFollower(userFollowerInfo) {
     $(".followers").append("<a href='/users/" + userFollowerInfo[1].nickname + "' class='follower-" + userFollowerInfo[1].id + "'>" + userFollowerInfo[1].nickname + "</a>")
+    // can just pass uf object and dig follower info out of it
   }
 
   function removeFollower(follower) {
@@ -130,6 +138,20 @@ $(document).ready(function(){
       unfollow(count, user, follower)
     }
   });
+
+  $(".toggle-followers").on('click', function() {
+    $(".followers-list").toggle()
+    $(".expandFollowers").toggle()
+    $(".collapseFollowers").toggle()
+  })
+
+  $(".toggle-following").on('click', function() {
+    $(".following-list").toggle()
+    $(".expandFollowing").toggle()
+    $(".collapseFollowing").toggle()
+  })
+
+
 
   $(".chart-button").on('click', function(){
     var type = $(this).attr('target')

@@ -2,7 +2,7 @@
   <% if a.trackable && a.trackable.user.image  %>
   <p class="actvity-item">
       <%= image_tag a.trackable.user.image, class: "profile-photo"%>
-      <%= link_to a.trackable.username, user_path(a.trackable.user.nickname) %> added
+      <%= link_to a.trackable.username, user_path(a.trackable.user.nickname) %> deleted
       <%= a.trackable.nickname %> as a skill.
   </p>
   <% end %>

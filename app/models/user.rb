@@ -7,7 +7,15 @@ class User < ApplicationRecord
   has_many :sessions, through: :skills
   has_many :user_followers
   has_many :followers, through: :user_followers
+  has_many :users, through: :user_followers
 
+  def num_users_following
+    users.count
+  end
+
+  def users_following
+    users
+  end
 
   def current_goals
     goals.where('goals.week_number = ?', current_week)

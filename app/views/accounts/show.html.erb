@@ -6,6 +6,8 @@
       <p><%= @user.name %></p>
       <h4>Nickname</h4>
       <p><%= @user.nickname %></p>
+      <h4>Public Profile</h4>
+      <%= link_to "View", user_path(@user.nickname) %>
 
     </td></tr>
 

@@ -335,3 +335,9 @@
   font-size: 18px;
   font-family: 'Open Sans';
 }
+
+.community-photo {
+  height: 100px;
+  width: 100px;
+  border-radius: 8px;
+}

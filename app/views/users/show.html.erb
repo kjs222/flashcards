@@ -1,24 +1,45 @@
-<div class="followers">
-  <h1>Number of Followers:</h1>
-  <h1 id="followers-count"><%= @user.followers.count %></h1>
-  <h1>Followers</h1>
-  <% @user.followers.each do |follower| %>
-  <%= link_to follower.nickname, user_path(follower.nickname), class: "follower-#{follower.id}"%>
-  <% end %>
-</div>
-
+<h1><%= @user.name %> </h1>
+<h1><%= @user.nickname %> </h1>
+<h1><img src="<%= @user.image %>" class="community-photo"></h1>
 <div class="follow-container" data-follower="<%= current_user.id %>" data-user="<%= @user.id %>">
 
-  <% if current_user.followers.include?(@user) %>
-    <button type="button" class="unfollow" target="<%= @user.user_followers.where(follower_id: current_user.id).first.id%>">Unfollow</button>
+  <% if @user.followers.include?(current_user) %>
+    <button type="button" class="unfollow" target="<%= @user.user_followers.first_by_follower(current_user.id).id if @user.user_followers.first_by_follower(current_user.id) %>">Unfollow</button>
   <% else %>
     <button type="button" class="follow">Follow</button>
   <% end %>
 </div>
 
 
+<div class="followers">
+  <h1>Number of Followers:</h1>
+  <h1 id="followers-count"><%= @user.followers.count %></h1>
 
-<!-- if current user does not follows this person, follow button -->
-<!-- follow button does a create method - probs through api call - on userfollowers table -->
-<!-- button sends over current user id (the follower), id of user whos page we are on (the user)  -->
-<!-- ajax call increments the count and adds current user to list? -->
+  <div class="toggle-followers">
+
+    <button type="button" class="expandFollowers flash-button"  name="button">Show</button>
+
+    <button type="button" class="collapseFollowers flash-button" name="button">Hide</button>
+
+  </div>
+
+  <div class="followers-list">
+    <%= render partial: 'shared/associated_user_list', locals: {associated_users: @user.followers, type: "follower"} %>
+  </div>
+</div>
+
+<div class="following">
+  <h1>Number Following:</h1>
+  <h1 id="following-count"><%= @user.num_users_following %></h1>
+  <div class="toggle-following">
+
+    <button type="button" class="expandFollowing flash-button"  name="button">Show</button>
+
+    <button type="button" class="collapseFollowing flash-button" name="button">Hide</button>
+
+  </div>
+  
+  <div class="following-list">
+    <%= render partial: 'shared/associated_user_list', locals: {associated_users: @user.users_following, type: "following"} %>
+  </div>
+</div>

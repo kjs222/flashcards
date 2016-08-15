@@ -1,0 +1,11 @@
+<div class="paper col-sm-7 col-md-offset-1">
+  <div class="col-sm-12">
+    <h1>Followers</h1>
+    <%= render partial: 'shared/associated_user_list', locals: {associated_users: @user.followers, type: "follower"} %>
+  </div>
+
+  <div class="col-sm-12">
+    <h1>Following</h1>
+    <%= render partial: 'shared/associated_user_list', locals: {associated_users: @user.users_following, type: "following"} %>
+  </div>
+</div>

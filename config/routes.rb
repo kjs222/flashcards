@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "/auth/quizlet/callback", to: "users#add_quizlet"
 
   get "/account", to: "accounts#show", as: :account
-  # get "/account", to: "users#show", as: :account
+  get "/community", to: "community#show", as: :community
 
   get "/api/v1/authenticate", to: "api/v1/users#show"
   get "/api/v1/sessions/statistics", to: "api/v1/sessions/statistics#index"
