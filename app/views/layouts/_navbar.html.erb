@@ -17,6 +17,7 @@
         <li><a href="<%=quizlet_index_path%>">Quizlet</a></li>
       <% end %>
       <li><a href="<%=activity_index_path%>">Recent Activity</a></li>
+      <li><a href="<%=community_path%>">Community</a></li>
       <% if !current_user.quiz_id || !current_user.password_digest %>
         <li><a href="<%=account_path%>" id="activate">Activate Quizlet|Command Line</a></li>
       <% end %>

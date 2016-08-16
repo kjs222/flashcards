@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :followers, through: :user_followers
   has_many :users, through: :user_followers
 
+  def most_recent_sessions
+    sessions.order('sessions.created_at DESC').limit(10)
+  end
+
   def num_users_following
     users.count
   end

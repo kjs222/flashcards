@@ -19,6 +19,8 @@ $(document).ready(function(){
     $(".followers-list").hide();
     $(".collapseFollowing").hide();
     $(".following-list").hide();
+    $(".collapseSkills").hide();
+    $(".skills-list").hide();
   });
 
   function renderChartOnLoad(){
@@ -83,19 +85,20 @@ $(document).ready(function(){
 
   function toggleToUnfollow(userFollowerInfo) {
     $(".follow").hide() //maybe delete instead
-    $('.follow-container').append("<button type='button' class='unfollow' target=" + userFollowerInfo[0].id + ">Unfollow</button>");
+    $('.follow-container').append("<button type='button' class='unfollow flash-button' target=" + userFollowerInfo[0].id + ">Unfollow</button>");
   }
 
   function toggleToFollow() {
     $(".unfollow").hide() //maybe delete instead
     $('.follow-container').append("<button type='button' class='follow'>Follow</button>");
+    // putting flah button class on this one breaks it
   }
+
 
   function appendFollower(userFollowerInfo) {
-    $(".followers").append("<a href='/users/" + userFollowerInfo[1].nickname + "' class='follower-" + userFollowerInfo[1].id + "'>" + userFollowerInfo[1].nickname + "</a>")
+    $(".followers-list").append('<div class="col-sm-3 follower-' + userFollowerInfo[1].id + '"><img src="'+ userFollowerInfo[1].image + '" class="community-photo"><h4><a href="/users/' + userFollowerInfo[1].nickname + ' class="follower-' + userFollowerInfo[1].id + '">' + userFollowerInfo[1].nickname + '</a></h4>')
     // can just pass uf object and dig follower info out of it
   }
-
   function removeFollower(follower) {
     $(".follower-" + follower).last().hide();
   }
@@ -149,6 +152,12 @@ $(document).ready(function(){
     $(".following-list").toggle()
     $(".expandFollowing").toggle()
     $(".collapseFollowing").toggle()
+  })
+
+  $(".toggle-skills").on('click', function() {
+    $(".skills-list").toggle()
+    $(".expandSkills").toggle()
+    $(".collapseSkills").toggle()
   })
 
 
