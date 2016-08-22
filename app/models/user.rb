@@ -7,18 +7,18 @@ class User < ApplicationRecord
   has_many :sessions, through: :skills
   has_many :user_followers
   has_many :followers, through: :user_followers
-  has_many :users, through: :user_followers
+
 
   def most_recent_sessions
     sessions.order('sessions.created_at DESC').limit(10)
   end
 
   def num_users_following
-    users.count
+    User.joins(:user_followers).where("user_followers.follower_id = #{self.id}").count
   end
 
   def users_following
-    users
+    User.joins(:user_followers).where("user_followers.follower_id = #{self.id}")
   end
 
   def current_goals

@@ -75,4 +75,17 @@
     </div>
   </div>
 
+  <div class="container-fluid search-user">
+    <div class="side-form" id="search-user">
+      <h4>Search For User</h2>
+        <%= form_tag :user_search, method: :get do %>
+          <div class="form-group user-search-field">
+            <label for="q">Search Nickname/Username</label>
+            <%= text_field_tag :user_nickname, "", placeholder: "e.g. kjs222", class: "form-control"%>
+            <%= submit_tag "Find User", class: "btn btn-default pull-right", id:  "user-search-submit" %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+
 </div>

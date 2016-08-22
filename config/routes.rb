@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   patch "/api/v1/sessions/cli", to: "api/v1/sessions/cli#update"
   get "/quizlet/search", to: "search#index", as: :quizlet_search
 
+  get 'api/v1/users/find' => 'api/v1/users/find#show', as: :user_search
+
   resources :users, only: [:edit, :update]
   get 'users/:nickname', to: 'users#show'
   resources :dashboard, only: [:index]

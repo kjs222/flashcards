@@ -80,7 +80,7 @@
   </div>
 
   <div class="followers col-sm-12">
-    <div class="toggle-followers">
+    <div class="toggle-followers followers-count-<%=@user.followers.count%>" >
 
       <button type="button" class="expandFollowers flash-button"  name="button">Show Followers</button>
 
@@ -94,12 +94,13 @@
   </div>
 
   <div class="following col-sm-12">
-
+    <% if @user.num_users_following > 0 %>
     <div class="toggle-following">
       <button type="button" class="expandFollowing flash-button"  name="button">Show Following</button>
 
       <button type="button" class="collapseFollowing flash-button" name="button">Hide Following</button>
     </div>
+    <% end %>
 
   </div>
 

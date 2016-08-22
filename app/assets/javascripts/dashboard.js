@@ -21,7 +21,14 @@ $(document).ready(function(){
     $(".following-list").hide();
     $(".collapseSkills").hide();
     $(".skills-list").hide();
+    $(".followers-count-0").hide();
+    $("#search-user").show();
   });
+
+  $(".community.index").ready(function(){
+    $("#search-user").show();
+  });
+
 
   function renderChartOnLoad(){
     $.ajax({
@@ -113,6 +120,7 @@ $(document).ready(function(){
         toggleToUnfollow(userFollowerInfo);
         appendFollower(userFollowerInfo);
         $("#followers-count").html(parseInt(count) + 1)
+        $(".followers-count-0").show();
       }
     })
   }
@@ -126,7 +134,8 @@ $(document).ready(function(){
         toggleToFollow();
         removeFollower(follower);
         $("#followers-count").html(parseInt(count) -1)
-
+        $(".followers-count-1").hide();
+        $(".followers-count-0").hide();
       }
     })
   }

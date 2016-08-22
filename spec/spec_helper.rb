@@ -54,7 +54,7 @@ module WaitForAjax
   end
 end
 
-Selenium::WebDriver::Firefox::Binary.path = "/Volumes/Firefox/Firefox.app/Contents/MacOS/firefox"
+Selenium::WebDriver::Firefox::Binary.path = "/Applications/Firefox.app/Contents/MacOS/firefox"
 
 RSpec.configure do |config|
 

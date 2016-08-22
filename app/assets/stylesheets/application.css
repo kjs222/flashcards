@@ -341,3 +341,7 @@
   width: 150px;
   border-radius: 8px;
 }
+
+#search-user {
+  display: none;
+}
