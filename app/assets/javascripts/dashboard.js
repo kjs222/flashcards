@@ -91,14 +91,13 @@ $(document).ready(function(){
   })
 
   function toggleToUnfollow(userFollowerInfo) {
-    $(".follow").hide() //maybe delete instead
-    $('.follow-container').append("<button type='button' class='unfollow flash-button' target=" + userFollowerInfo[0].id + ">Unfollow</button>");
+    $(".follow").remove()
+    $('.follow-container').append("<button type='button' class='unfollow flash-button-reverse' target=" + userFollowerInfo[0].id + ">Unfollow</button>");
   }
 
   function toggleToFollow() {
-    $(".unfollow").hide() //maybe delete instead
-    $('.follow-container').append("<button type='button' class='follow'>Follow</button>");
-    // putting flah button class on this one breaks it
+    $(".unfollow").remove()
+    $('.follow-container').append("<button type='button' class='follow' id='flash-button'>Follow</button>");
   }
 
 

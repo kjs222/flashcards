@@ -165,7 +165,7 @@
     margin-top: 50px;
 }
 
-.flash-button {
+.flash-button, #flash-button {
   padding: 9px 14px;
   font-size: 14px;
   line-height: normal;
@@ -178,6 +178,21 @@
     text-align: center;
     margin-top: 20px;
     color: #9C7A97,
+}
+
+.flash-button-reverse, #flash-button-reverse {
+  padding: 9px 14px;
+  font-size: 14px;
+  line-height: normal;
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+    background-color: rgba(156,122, 151, .5);
+    border: 2px solid #9C7A97;
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+    color: white,
 }
 
 

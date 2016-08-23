@@ -16,9 +16,9 @@
           <div class="follow-container" data-follower="<%= current_user.id %>" data-user="<%= @user.id %>">
 
             <% if @user.followers.include?(current_user) %>
-              <button type="button" class="unfollow flash-button" target="<%= @user.user_followers.first_by_follower(current_user.id).id if @user.user_followers.first_by_follower(current_user.id) %>">Unfollow</button>
+              <button type="button" class="unfollow flash-button-reverse" target="<%= @user.user_followers.first_by_follower(current_user.id).id if @user.user_followers.first_by_follower(current_user.id) %>">Unfollow</button>
             <% else %>
-              <button type="button" class="follow">Follow</button>
+              <button type="button" class="follow" id='flash-button'>Follow</button>
             <% end %>
           </div>
         <% end %>
