@@ -1,4 +1,24 @@
 <div class="paper col-sm-7 col-sm-offset-1">
-  <h2>Recent CodePoints Activity</h2>
-  <%= render_activities(@activities) %>
+  <div class="tab-container">
+    <h5 class='tab active-tab' id="current-tab" target="current">My Community</h5>
+    <h5 class="tab" id="next-tab" target="next">All Users</h5>
+  </div>
+
+  <div class="all-users">
+    <h2>Recent CodePoints Activity - All Users</h2>
+      <%#= render_activities(@activities) %>
+      <%= render_activities(@activities, locals: {following: User.all}) %>
+  </div>
+
+  <h1>SPLIT</h1>
+
+  <div class="community">
+    <h2>Recent CodePoints Activity - All Users</h2>
+      <%#= render_activities(@activities) %>
+      <%= render_activities(@activities, locals: {following: current_user.users_following}) %>
+  </div>
+
+
+
+
 </div>

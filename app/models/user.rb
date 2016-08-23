@@ -21,6 +21,10 @@ class User < ApplicationRecord
     User.joins(:user_followers).where("user_followers.follower_id = #{self.id}")
   end
 
+  def following?(user)
+     where("user_followers.user_id = #{user.id}").empty? ? false : true
+  end
+
   def current_goals
     goals.where('goals.week_number = ?', current_week)
   end
