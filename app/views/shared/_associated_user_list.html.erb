@@ -1,6 +1,6 @@
 <% associated_users.each do |user| %>
 <div class="col-sm-2 <%=type%>-<%=user.id%>">
 <img src="<%= user.image %>" class='community-photo'>
-<h4><%= link_to user.nickname, user_path(user.nickname)%></h4>
+<h4 class="community-link"><%= link_to user.nickname, user_path(user.nickname)%></h4>
 </div>
 <% end %>

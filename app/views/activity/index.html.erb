@@ -1,21 +1,17 @@
 <div class="paper col-sm-7 col-sm-offset-1">
   <div class="tab-container">
-    <h5 class='tab active-tab' id="current-tab" target="current">My Community</h5>
-    <h5 class="tab" id="next-tab" target="next">All Users</h5>
+    <h5 class='tab activity-tab active-tab' id="current-activity-tab" target="community">Your Community</h5>
+    <h5 class="tab activity-tab" id="all-activity-tab" target="all">All Users</h5>
   </div>
 
-  <div class="all-users">
-    <h2>Recent CodePoints Activity - All Users</h2>
-      <%#= render_activities(@activities) %>
-      <%= render_activities(@activities, locals: {following: User.all}) %>
+  <div class="all-activity">
+    <h2>All Users</h2>
+      <%= render_activities(@all_activities) %>
   </div>
 
-  <h1>SPLIT</h1>
-
-  <div class="community">
-    <h2>Recent CodePoints Activity - All Users</h2>
-      <%#= render_activities(@activities) %>
-      <%= render_activities(@activities, locals: {following: current_user.users_following}) %>
+  <div class="community-activity">
+    <h2>Your Community</h2>
+      <%= render_activities(@follower_activities) %>
   </div>
 
 

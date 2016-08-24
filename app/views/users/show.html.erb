@@ -8,7 +8,7 @@
     <div class="col-sm-12">
       <div class="col-sm-6">
         <h2><%= @user.name %> </h2>
-        <h4><%= @user.nickname %> </h4>
+        <h4>Username: <%= @user.nickname %> </h4>
       </div>
 
       <div class="col-sm-6">
@@ -35,6 +35,31 @@
         <span class="number-circle inverse" id="following-count"><%= @user.num_users_following %></span> </h4>
       </div>
     </div>
+    <div class="toggle-skills col-sm-4">
+      <button type="button" class="expandSkills flash-button"  name="button">Show Skills</button>
+
+      <button type="button" class="collapseSkills flash-button" name="button">Hide Skills</button>
+    </div>
+
+    <div class="followers">
+      <div class="toggle-followers followers-count-<%=@user.followers.count%> col-sm-4" >
+
+        <button type="button" class="expandFollowers flash-button" name="button">Show Followers</button>
+
+        <button type="button" class="collapseFollowers flash-button" name="button">Hide Followers</button>
+
+      </div>
+    </div>
+
+    <div class="following">
+      <% if @user.num_users_following > 0 %>
+      <div class="toggle-following col-sm-4">
+        <button type="button" class="expandFollowing flash-button"  name="button">Show Following</button>
+
+        <button type="button" class="collapseFollowing flash-button" name="button">Hide Following</button>
+      </div>
+      <% end %>
+    </div>
   </div>
 
   <div class="recent-activity col-sm-12">
@@ -60,13 +85,8 @@
   </div>
 
   <div class="col-sm-12">
-    <div class="toggle-skills">
-      <button type="button" class="expandSkills flash-button"  name="button">Show Skills</button>
-
-      <button type="button" class="collapseSkills flash-button" name="button">Hide Skills</button>
-    </div>
-
     <div class="skills-list">
+      <h2>Skills:</h2>
       <table class="table">
           <% @user.skills.each do |skill| %>
           <tr>
@@ -79,32 +99,18 @@
     </div>
   </div>
 
-  <div class="followers col-sm-12">
-    <div class="toggle-followers followers-count-<%=@user.followers.count%>" >
 
-      <button type="button" class="expandFollowers flash-button"  name="button">Show Followers</button>
-
-      <button type="button" class="collapseFollowers flash-button" name="button">Hide Followers</button>
-
-    </div>
-
+  <div class="col-sm-12">
     <div class="followers-list">
+      <h2>Followers:</h2>
       <%= render partial: 'shared/associated_user_list', locals: {associated_users: @user.followers, type: "follower"} %>
     </div>
   </div>
 
-  <div class="following col-sm-12">
-    <% if @user.num_users_following > 0 %>
-    <div class="toggle-following">
-      <button type="button" class="expandFollowing flash-button"  name="button">Show Following</button>
 
-      <button type="button" class="collapseFollowing flash-button" name="button">Hide Following</button>
-    </div>
-    <% end %>
-
-  </div>
-
+  <div class="col-sm-12">
     <div class="following-list">
+      <h2>Following:</h2>
       <%= render partial: 'shared/associated_user_list', locals: {associated_users: @user.users_following, type: "following"} %>
     </div>
   </div>

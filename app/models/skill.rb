@@ -1,11 +1,11 @@
 class Skill < ApplicationRecord
   include PublicActivity::Model
-  tracked
+  tracked owner: :user
   belongs_to :user
   has_many :goals
   has_many :sessions
   validates :nickname, presence: true
-  
+
 
   def username
     user.name

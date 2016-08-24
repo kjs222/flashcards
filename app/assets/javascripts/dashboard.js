@@ -29,6 +29,10 @@ $(document).ready(function(){
     $("#search-user").show();
   });
 
+  $(".activity.index").ready(function(){
+    $(".all-activity").hide();
+  });
+
 
   function renderChartOnLoad(){
     $.ajax({
@@ -318,6 +322,14 @@ $(document).ready(function(){
       $('.current').hide();
       $('.next').hide();
       $('.'+$(this).attr('target')).show();
+  });
+
+  $(".activity-tab").on('click', function(){
+      $('.activity-tab').removeClass("active-tab")
+      $(this).addClass("active-tab")
+      $('.all-activity').toggle();
+      $('.community-activity').toggle();
+      // $('.'+$(this).attr('target')).show();
   });
 
   $('.flashcard').on('click', function() {
