@@ -13,36 +13,37 @@
     </h4>
 
     <h4>Goals</h4>
-    <% if @dashboard.current_goals %>
       <%= render partial: "goal_list" , locals: {goals:  @dashboard.current_goals, type: "current"} %>
-    <% end %>
   </div>
 
   <div class="current">
     <h4>Completed This Week:</h4>
     <table class=table id="current-sessions">
-    <% cache "dashboard-sessions-#{current_user.id}-#{@dashboard.sessions.maximum(:updated_at)}" do  %>
-      <% @dashboard.sessions.each do |session| %>
-      <% cache "dashboard-session-#{session.id}-#{session.updated_at}" do  %>
-      <tr>
-        <div class="session">
-            <td><b><%= session.skill.nickname %></b></td>
-            <td><%= session.duration %> minutes</td>
-            <td><%= days_from_today session.created_at %> ago</td>
-        </div>
-      </tr>
+    <% if !@dashboard.sessions.empty? %>
+      <% cache "dashboard-sessions-#{current_user.id}-#{@dashboard.sessions.maximum(:updated_at)}" do  %>
+        <% @dashboard.sessions.each do |session| %>
+        <% cache "dashboard-session-#{session.id}-#{session.updated_at}" do  %>
+        <tr>
+          <div class="session">
+              <td><b><%= session.skill.nickname %></b></td>
+              <td><%= session.duration %> minutes</td>
+              <td><%= days_from_today session.created_at %> ago</td>
+          </div>
+        </tr>
+        <% end %>
+        <% end %>
       <% end %>
+      <% else %>
+        <p class="session-message">No practice sessions complete for this week.</p>
       <% end %>
-    <% end %>
-    </table>
+      </table>
+
   </div>
 
   <div class="next">
     <h4><span class="number-circle inverse" id="points-available-next"> <%= @dashboard.next_week_points_available%> </span> Points Available Next Week</h4>
     <h4>Next Week's Goals</h4>
-    <% if @dashboard.next_goals %>
       <%= render partial: "goal_list" , locals: {goals:  @dashboard.next_goals, type: "next"} %>
-    <% end %>
   </div>
 
 </div>

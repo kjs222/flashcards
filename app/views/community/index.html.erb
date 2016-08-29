@@ -1,11 +1,20 @@
 <div class="paper col-sm-7 col-md-offset-1">
   <div class="col-sm-12 community-followers">
     <h1>Followers</h1>
-    <%= render partial: 'shared/associated_user_list', locals: {associated_users: @user.followers, type: "follower"} %>
+    <%if @user.followers.empty?%>
+      <p>No followers yet!</p>
+    <% else %>
+      <%= render partial: 'shared/associated_user_list', locals: {associated_users: @user.followers, type: "follower"} %>
+    <% end %>
   </div>
 
   <div class="col-sm-12 community-following">
     <h1>Following</h1>
-    <%= render partial: 'shared/associated_user_list', locals: {associated_users: @user.users_following, type: "following"} %>
+    <%if @user.users_following.empty?%>
+      <p>You aren't following any users yet!</p>
+      <p>Search for users by name or view Recent Activity of recent users to find other users.</p>
+    <% else %>
+      <%= render partial: 'shared/associated_user_list', locals: {associated_users: @user.users_following, type: "following"} %>
+      <% end %>
   </div>
 </div>

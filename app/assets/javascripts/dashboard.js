@@ -1,16 +1,17 @@
 $(document).ready(function(){
+  $("#log-session-0").hide();
 
   $(".statistics.index").ready(function(){
     renderChartOnLoad();
   });
 
   $(".quizlet.index").ready(function(){
-    $("#log-session").hide();
+    $(".log-session").hide();
     $("#search-quizlet").show();
   });
 
   $(".search.index").ready(function(){
-    $("#log-session").hide();
+    $(".log-session").hide();
     $("#search-quizlet").show();
   });
 
@@ -71,11 +72,13 @@ $(document).ready(function(){
   }
 
   function appendGoal(goal_skill, type) {
+    $('.' + type + '-goal-message').remove()
     $("#" + type + "-goals").append(
       "<tr><div class='goal'><td><b>" + goal_skill[1].nickname + "</b></td><td>" + goal_skill[0].num_sessions + " practice session(s)</td><td>" + goal_skill[0].session_length + " minutes each</td></div></tr>")
   }
 
   function appendSession(session_skill) {
+    $('.session-message').remove()
     $("#current-sessions").append(
       "<tr><div class='session'><td><b>" + session_skill[1].nickname + "</b></td><td>" + session_skill[0].duration + " minutes</td><td>less than a minute ago</td></div></tr>")
   }
@@ -251,6 +254,9 @@ $(document).ready(function(){
         resetDropdowns(type);
         addSkillToDropdown(newGoal, type);
         $(".side-form").hide();
+        if (type==="current"){
+          $("#log-session-0").show();
+        }
       }
     })
   });

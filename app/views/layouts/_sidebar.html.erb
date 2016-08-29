@@ -8,8 +8,7 @@
     </div>
   </div>
 
-  <div class="container-fluid" id="log-session">
-    <% if !current_user.current_goals.empty? %>
+  <div class="container-fluid" class="log-session" id="log-session-<%=current_user.current_goals.count%>">
       <h4>Log a Practice Session</h4>
       <%= form_for current_user do |f| %>
         <div class="form-group">
@@ -20,7 +19,6 @@
           <select class="form-control session-length" id="session-length-log"></select>
         </div>
         <input class="btn btn-default pull-right" id="create-session" type="button" name="submit" value="Log Session">
-    <% end %>
   </div>
 
   <div class="container-fluid search-quizlet">

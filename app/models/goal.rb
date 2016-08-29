@@ -1,12 +1,10 @@
 class Goal < ApplicationRecord
   include PublicActivity::Model
   tracked owner: :user
-  # tracked owner: :skill
-  # tracked
-
-
   belongs_to :skill
   delegate :user, to: :skill
+
+  
   validates :skill_id, presence: true
 
 

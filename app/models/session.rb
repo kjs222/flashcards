@@ -1,9 +1,9 @@
 class Session < ApplicationRecord
   include PublicActivity::Model
   tracked owner: :user
-
   belongs_to :skill, touch: true
   delegate :user, to: :skill
+  
   validates :skill_id, presence: true
 
   def username

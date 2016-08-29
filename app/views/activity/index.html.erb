@@ -11,7 +11,11 @@
 
   <div class="community-activity">
     <h2>Your Community</h2>
+    <%if @follower_activities.empty?%>
+      <p>No activity from members of your community! See activity of All Users from tab above.</p>
+    <% else %>
       <%= render_activities(@follower_activities) %>
+    <% end %>
   </div>
 
 
