@@ -128,6 +128,7 @@ $(document).ready(function(){
         appendFollower(userFollowerInfo);
         $("#followers-count").html(parseInt(count) + 1)
         $(".followers-count-0").show();
+        $(".followers-count-1").show();
       }
     })
   }
