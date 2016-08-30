@@ -105,6 +105,7 @@ $(document).ready(function(){
   function toggleToFollow() {
     $(".unfollow").remove()
     $('.follow-container').append("<button type='button' class='follow' id='flash-button'>Follow</button>");
+    // $(".followers-count-1").toggle();
   }
 
 
