@@ -8,8 +8,13 @@ class Quizlet < OpenStruct
     raw_sets.map {|set| Quizlet.new(set)}
   end
 
-  def self.search_results(user, searched_term, searched_created_by)
-    raw_sets = service(user).get_search_results(searched_term, searched_created_by)
+  # def self.search_results(user, searched_term, searched_created_by)
+  #   raw_sets = service(user).get_search_results(searched_term, searched_created_by)
+  #   raw_sets.map {|set| Quizlet.new(set)}
+  # end
+
+  def self.search_results(user, search_params)
+    raw_sets = service(user).get_search_results(search_params)
     raw_sets.map {|set| Quizlet.new(set)}
   end
 

@@ -28,7 +28,7 @@ RSpec.describe Quizlet do
         expect(results.first).to respond_to(:created_date)
         expect(results.first).to respond_to(:term_count)
         expect(results.first.title).to eq("SQL")
-        expect(results.first.created_by).to eq("kjs222")
+        expect(results.first.created_by).to eq("Javier_Garcia70")
       end
     end
   end
@@ -49,7 +49,7 @@ RSpec.describe Quizlet do
   end
 
   context '.search_sets by user and term' do
-    it "returns a list of quizsets based on user" do
+    it "returns a list of quizsets based on user and term" do
       created_by_search = "kjs222"
       search_term = "SQL"
       VCR.use_cassette("search-#{search_term}-#{created_by_search}") do

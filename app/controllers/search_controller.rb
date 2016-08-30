@@ -1,7 +1,7 @@
 class SearchController<ApplicationController
 
   def index
-    @search_results = Quizlet.search_results(current_user, params[:q], params[:created_by])
+    @search_results = Quizlet.search_results(current_user, params)
   end
 
   private

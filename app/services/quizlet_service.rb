@@ -20,10 +20,16 @@ class QuizletService
     parse(response)
   end
 
-  def get_search_results(searched_term, searched_created_by)
-    response =  @connection.get("/2.0/search/sets", {q: searched_term,
-                creator: searched_created_by})
-    parse(response)["sets"]
+  def get_search_results(search_terms)
+    if search_terms[:created_by] && search_terms[:q].empty?
+      response = @connection.get("/2.0/users/#{search_terms[:created_by]}/sets")
+      parse(response)
+    else
+      response =  @connection.get("/2.0/search/sets",
+                  {q: search_terms[:q],
+                  creator: search_terms[:created_by]})
+      parse(response)["sets"]
+    end
   end
 
   private
