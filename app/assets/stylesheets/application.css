@@ -220,6 +220,10 @@
    color: white;
  }
 
+ .error {
+   color: red;
+ }
+
  .paper {
  	position: relative;
  	width: 800px;

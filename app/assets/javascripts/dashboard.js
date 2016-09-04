@@ -304,6 +304,24 @@ $(document).ready(function(){
     })
   });
 
+  $("#user-search-submit").on('click', function(){
+    var userNickname = $("#nickname-search").val()
+    console.log("heard a click")
+    $.ajax({
+      method: "GET",
+      url: "/api/v1/users/find",
+      dataType: "JSON",
+      data: {user_nickname: userNickname},
+      success: function(user) {
+        location.href = "/users/" + user.nickname
+      },
+      error: function(error) {
+        console.table(error)
+        $(".search-user").append("<p class=error>User not found.</p>")
+      }
+    })
+  });
+
   $(function(){
      $('.expandTerms').click(function(){
         $('#set-'+$(this).attr('target')).show();
