@@ -1,9 +1,12 @@
-# README
+### CodePoints
 
-About:
-CodePoints is a deliberate practice goal setting and tracking app aimed at new programmers.  It helps you set learning goals, track progress, see what others are doing, and maximize the use of the Quizlet flashcard program.
+CodePoints is a productivity app aimed at new programmers.  It helps new learners set learning goals, track learning activities, see historical practice information, follow other users, and maximize the use of the Quizlet flashcard program to learn programming skills.
 
-This app uses Ruby on Rails as a web app framework, the JavaScript libraries ChartJS and jQuery, and Bootstrap for UI. Data is collected from the Quizlet API.  Through an internal API, and related command line application can interact with this program and with Quizlet.
+See blog posts [here](https://www.turing.io/blog/2016/08/30/where-begin-solve-problem-you-know-well) and [here](https://medium.com/@KerrySheldon/customized-activity-feeds-in-rails-c6009f54c68b#.qlw033uci) for more information on the app.  
+
+Codepoints app uses Ruby on Rails as a web app framework, the JavaScript libraries ChartJS and jQuery, and Bootstrap for UI. The app uses Quizlet's API and serves up it's own API to respond to AJAX requests as well as the companion CLI application.   The Public Activity gem is used to create customized feeds comprised of activity for the user's community.  
+
+The testing suite uses RSpec, Capybara, and Selenium. 
 
 To run locally:
 ```
@@ -17,5 +20,5 @@ rails s
 
 Visit in Production: [CodePoints](https://codepoints.herokuapp.com/)
 
-Download the Command Line App:
+For the Command Line App:
 [CodePoints Command Line App](https://github.com/kjs222/cli_flash)
