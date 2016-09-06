@@ -316,7 +316,6 @@ $(document).ready(function(){
         location.href = "/users/" + user.nickname
       },
       error: function(error) {
-        console.table(error)
         $(".search-user").append("<p class=error>User not found.</p>")
       }
     })

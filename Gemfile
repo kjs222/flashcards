@@ -37,6 +37,7 @@ gem 'public_activity'
 gem 'groupdate'
 gem "skylight"
 gem 'faker'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem "minitest-rails-capybara"
